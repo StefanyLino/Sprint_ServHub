@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+
+:root{
+    --primary-color:#7b5da6;
+    --button-hover:#5b3f82;
+    --fundo:#efeded;
+}
+
+
 *{
     font-family: "Poppins", sans-serif;
     font-weight: bold;
@@ -19,14 +27,31 @@ body{
 }
 
 .titulo{
-    margin: 70px 120px 50px;
-
+    margin: 0 90px 40px;
+    font-weight: bold;
 }
 
 .input-custom {
-    margin: 20px 0;
+    margin: 0 0px 20px 0;
 }
 
 #login{
-    background-color: whitesmoke;
+    background-color: var(--fundo);
+}
+
+#btn-custom {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#btn-custom:hover {
+    background-color: var(--button-hover);
+}
+
+#bem-vindo{
+    font-weight: lighter;
+}
+
+#senha-esqueceu{
+    font-weight: lighter;
 }
