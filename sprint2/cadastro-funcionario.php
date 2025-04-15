@@ -11,7 +11,7 @@
         margin: 0 90px 20px; 
         font-weight: bold;
     }
-    #curiculo{
+    #curriculo{
         background-color:rgb(201, 201, 201);
         border: solid 1px black;
         border-radius: 7px;
@@ -52,13 +52,13 @@
                     <input type="text" name="servico" id="servico" required class="form-control shadow-sm" placeholder="Digite o valor do seu seviço">
                 </div>
                 <div>
-                    <p class="fw-normal">Anexe seu currículo <button class="btn btn-submit btn-sm" id="curiculo">Adicionar Arquivo</button></p>
+                    <p class="fw-normal">Anexe seu currículo <button class="btn btn-submit btn-sm" id="curriculo">Adicionar Arquivo</button></p>
                 </div>
                 <button class="btn btn-submit w-100" id="btn-custom">cadastrar-se</button>
             </form>
         </div>
     </div>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
