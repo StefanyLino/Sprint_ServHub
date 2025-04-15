@@ -7,35 +7,42 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Cadastro de Funcionário</h1>
-        <p>Seja bem vindo(a)!Realize seu cadastro!</p>
-        <form action="">
-            <div>
-                <label for="nome">Nome completo:</label>
-                <input type="text" name="nome_funcionario" id="nome_funcionario" required class="form-control" placeholder="Digite seu nome">
-            </div>
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" name="email_funcionario" id="email_funcionario" required class="form-control" placeholder="Digite seu email">
-            </div>
-            <div>
-                <label for="senha">Senha:</label>
-                <input type="password" min="8" name="senha_funcionario" id="senha_funcionario" required class="form-control" placeholder="Digite sua senha">
-            </div>
-            <div>
-                <label for="cpf">CPF:</label>
-                <input type="number" min="11" name="cpf" id="cpf" required class="form-control" placeholder="Digite seu CPF">
-            </div>
-            <div>
-                <label for="atuacao">Área de atuação</label>
-                <input type="text" name="atuacao" id="atuacao" required class="form-control" placeholder="Digite sua area de atuação(Ex. Engenheiro, Medico e etc">
-            </div>
-            <div>
-                <label for="servico">Valor de seu serviço</label>
-                <input type="text" name="servico" id="servico" required class="form-control" placeholder="Digite o valor do seu seviço">
-            </div>
-        </form>
+    <div class="d-flex col-sm-12">
+        <div class="col-sm-5"></div>
+        <div class="container col-sm-7 mt-2 d-flex flex-column align-items-center">
+            <h1 class="align-self-start titulo fw-bold">Funcionário</h1>
+            <p class="align-self-start fw-normal">Seja bem vindo(a)! Realize seu cadastro!</p>
+            <form action="" class="col-sm-8">
+                <div>
+                    <label for="nome" class="fw-normal mt-1">Nome completo:</label>
+                    <input type="text" name="nome_funcionario" id="nome_funcionario" required class="form-control shadow-sm" placeholder="Digite seu nome">
+                </div>
+                <div>
+                    <label for="email" class="fw-normal mt-1">Email:</label>
+                    <input type="email" name="email_funcionario" id="email_funcionario" required class="form-control shadow-sm" placeholder="Digite seu email">
+                </div>
+                <div>
+                    <label for="senha" class="fw-normal mt-1">Senha:</label>
+                    <input type="password" min="8" name="senha_funcionario" id="senha_funcionario" required class="form-control shadow-sm" placeholder="Digite sua senha">
+                </div>
+                <div>
+                    <label for="cpf" class="fw-normal mt-1">CPF:</label>
+                    <input type="number" min="11" name="cpf" id="cpf" required class="form-control shadow-sm" placeholder="Digite seu CPF">
+                </div>
+                <div>
+                    <label for="atuacao" class="fw-normal mt-1">Área de atuação</label>
+                    <input type="text" name="atuacao" id="atuacao" required class="form-control shadow-sm" placeholder="Digite sua area de atuação(Ex. Engenheiro, Medico e etc">
+                </div>
+                <div>
+                    <label for="servico" class="fw-normal mt-1">Valor de seu serviço</label>
+                    <input type="text" name="servico" id="servico" required class="form-control shadow-sm" placeholder="Digite o valor do seu seviço">
+                </div>
+                <div>
+                    <p class="fw-normal">Anexe seu currículo <button class="btn btn-submit btn-sm">Adicionar Arquivo</button></p>
+                </div>
+                <button class="btn btn-submit btn-primary w-100 mt-1">cadastrar-se</button>
+            </form>
+        </div>
     </div>
 
 <script src="script.js"></script>
