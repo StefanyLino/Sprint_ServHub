@@ -52,3 +52,16 @@ body{
     font-weight: lighter;
 }
 
+@media screen and (max-width: 426px){
+    body{
+        background-color: var(--fundo);
+    }
+    #fundo{
+        display: none !important;
+        background-image: none !important;
+    }
+    #login{
+        height: 100%;
+        padding-top: 50px;
+    }
+}

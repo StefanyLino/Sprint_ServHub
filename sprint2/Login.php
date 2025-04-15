@@ -9,13 +9,34 @@
 </head>
 <style>
     .titulo{
-    margin: 0 90px 40px;
-    font-weight: bold;
-}
+        margin: 0 90px 40px;
+        font-weight: bold;
+    }
+    @media (min-width: 377px) and (max-width: 426px){
+        .titulo{
+            margin: 0 90px 40px;
+            font-weight: bold;
+        }
+    }
+    @media (min-width: 321px) and (max-width: 376px){
+        .titulo{
+            margin: 0 60px 40px;
+            font-weight: bold;
+        }
+    }
+    @media screen and (max-width: 320px){
+        .titulo{
+            margin: 0 40px 40px;
+            font-weight: bold;
+        }
+    }
+
+
+
 </style>
 <body>
     <div class="d-flex col-sm-12 " >
-        <div class="container col-sm-5" id="fundo">
+        <div class="container-fluid col-sm-5" id="fundo">
         </div>
         <main class="container col-sm-7 d-flex align-items-center justify-content-center flex-column" id="login">
             <div class="align-self-start titulo">
