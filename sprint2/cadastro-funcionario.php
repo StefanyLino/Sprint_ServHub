@@ -6,36 +6,57 @@
     <title>Cadastro Funcionário</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="container">
-        <h1>Cadastro de Funcionário</h1>
-        <p>Seja bem vindo(a)!Realize seu cadastro!</p>
-        <form action="">
-            <div>
-                <label for="nome">Nome completo:</label>
-                <input type="text" name="nome_funcionario" id="nome_funcionario" required class="form-control" placeholder="Digite seu nome">
+<style>
+    .titulo{
+        margin: 0 90px 20px; 
+        font-weight: bold;
+    }
+    #curiculo{
+        background-color:rgb(201, 201, 201);
+        border: solid 1px black;
+        border-radius: 7px;
+        margin-top: 5px;
+    }
+</style>
+<body id="login">
+    <div class="d-flex col-sm-12">
+        <div class="col-sm-5" id="fundo"></div>
+        <div class="container col-sm-7 d-flex flex-column justify-content-center align-items-center">
+            <div class="align-self-start titulo">
+                <h1 class="mb-2">Funcionário</h1>
+                <p id="bem-vindo">Seja bem vindo(a)! Realize seu cadastro!</p>
             </div>
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" name="email_funcionario" id="email_funcionario" required class="form-control" placeholder="Digite seu email">
-            </div>
-            <div>
-                <label for="senha">Senha:</label>
-                <input type="password" min="8" name="senha_funcionario" id="senha_funcionario" required class="form-control" placeholder="Digite sua senha">
-            </div>
-            <div>
-                <label for="cpf">CPF:</label>
-                <input type="number" min="11" name="cpf" id="cpf" required class="form-control" placeholder="Digite seu CPF">
-            </div>
-            <div>
-                <label for="atuacao">Área de atuação</label>
-                <input type="text" name="atuacao" id="atuacao" required class="form-control" placeholder="Digite sua area de atuação(Ex. Engenheiro, Medico e etc">
-            </div>
-            <div>
-                <label for="servico">Valor de seu serviço</label>
-                <input type="text" name="servico" id="servico" required class="form-control" placeholder="Digite o valor do seu seviço">
-            </div>
-        </form>
+            <form action="" class="col-sm-9">
+                <div>
+                    <label for="nome" class="fw-normal">Nome completo:</label>
+                    <input type="text" name="nome_funcionario" id="nome_funcionario" required class="form-control shadow-sm" placeholder="Digite seu nome">
+                </div>
+                <div>
+                    <label for="email" class="fw-normal">Email:</label>
+                    <input type="email" name="email_funcionario" id="email_funcionario" required class="form-control shadow-sm" placeholder="Digite seu email">
+                </div>
+                <div>
+                    <label for="senha" class="fw-normal">Senha:</label>
+                    <input type="password" min="8" name="senha_funcionario" id="senha_funcionario" required class="form-control shadow-sm" placeholder="Digite sua senha">
+                </div>
+                <div>
+                    <label for="cpf" class="fw-normal">CPF:</label>
+                    <input type="number" min="11" name="cpf" id="cpf" required class="form-control shadow-sm" placeholder="Digite seu CPF">
+                </div>
+                <div>
+                    <label for="atuacao" class="fw-normal">Área de atuação</label>
+                    <input type="text" name="atuacao" id="atuacao" required class="form-control shadow-sm" placeholder="Digite sua area de atuação(Ex. Engenheiro, Medico e etc)">
+                </div>
+                <div>
+                    <label for="servico" class="fw-normal">Valor de seu serviço</label>
+                    <input type="text" name="servico" id="servico" required class="form-control shadow-sm" placeholder="Digite o valor do seu seviço">
+                </div>
+                <div>
+                    <p class="fw-normal">Anexe seu currículo <button class="btn btn-submit btn-sm" id="curiculo">Adicionar Arquivo</button></p>
+                </div>
+                <button class="btn btn-submit w-100" id="btn-custom">cadastrar-se</button>
+            </form>
+        </div>
     </div>
 
 <script src="script.js"></script>
