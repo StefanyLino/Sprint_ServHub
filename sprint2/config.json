@@ -1,5 +1,6 @@
 {
     "cnpj_minimo": 13,
-    "senha_minima": 7
+    "senha_minima": 7,
+    "cpf_minimo": 10
 }
     

@@ -16,6 +16,10 @@ body{
     width: 100%;
     height: 100%;
     margin: 0;
-    background-image: url(Assets/login-image.png);
+    background-image: url(Assets/Login-fundo.png);
     background-size: cover;
+}
+
+#login{
+    background-color: whitesmoke;
 }
