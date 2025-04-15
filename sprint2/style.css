@@ -13,11 +13,18 @@ body{
     height: 100vh;
 }
 #fundo {
-    width: 100%;
-    height: 100%;
-    margin: 0;
+    height: 100vh !important;
     background-image: url(Assets/Login-fundo.png);
     background-size: cover;
+}
+
+.titulo{
+    margin: 70px 120px 50px;
+
+}
+
+.input-custom {
+    margin: 20px 0;
 }
 
 #login{
