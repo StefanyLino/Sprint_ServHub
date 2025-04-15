@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="style.css">
     <title>Login</title>
 </head>
+<style>
+    .titulo{
+    margin: 0 90px 40px;
+    font-weight: bold;
+}
+</style>
 <body>
     <div class="d-flex col-sm-12 " >
         <div class="container col-sm-5" id="fundo">

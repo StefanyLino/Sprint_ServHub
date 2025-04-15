@@ -7,16 +7,20 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .titulo{
-            margin-top: 0;
+            margin: 0 90px 30px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="d-flex col-sm-12">
         <div class="col-sm-5" id="fundo"></div>
-        <div class="container col-sm-7 d-flex mt-5 flex-column align-items-center " >
-            <h1 class="align-self-start titulo">Empresa</h1>
-            <form method="post" action="salvar-empresa.php" class="col-sm-8 ">
+        <div class="container col-sm-7 d-flex flex-column align-items-center justify-content-center" id="login">
+            <div class="align-self-start titulo">
+                <h1 class="mb-2">Empresa</h1>
+                <p id="bem-vindo">Seja bem vindo(a)! Realize seu cadastro!</p>
+            </div>
+            <form method="post" action="salvar-empresa.php" class="col-sm-9 ">
                 <div class="mb-2">
                     <label for="nome">Nome</label>
                     <input type="text" placeholder="Nome da empresa" id="nome_empresa" name="nome_empresa" required class="form-control shadow-sm">
@@ -37,7 +41,7 @@
                     <label for="endereco">Endereço</label>
                     <input type="text" placeholder="Endereço da empresa" id="endereco" name="endereco" required class="form-control shadow-sm">
                 </div>
-                <button type="submit" class="btn btn-submit btn-primary mt-3 w-100">Cadastre-se</button>
+                <button type="submit" class="btn btn-submit mt-3 w-100 " id="btn-custom">Cadastre-se</button>
             </form>
         </div>
     </div>
