@@ -6,12 +6,14 @@
     <title>Cadastro Empresa</title>
     <link rel="stylesheet" href="style.css">
     <style>
-
+        .titulo{
+            margin-top: 0;
+        }
     </style>
 </head>
 <body>
     <div class="d-flex col-sm-12">
-        <div class="col-sm-5"></div>
+        <div class="col-sm-5" id="fundo"></div>
         <div class="container col-sm-7 d-flex mt-5 flex-column align-items-center " >
             <h1 class="align-self-start titulo">Empresa</h1>
             <form method="post" action="salvar-empresa.php" class="col-sm-8 ">
