@@ -54,7 +54,7 @@
                 </div>
                 <button type="submit" class="btn btn-submit mt-3 mb-3 w-100 " id="btn-custom">Entrar</button>
             </form>
-            <p id="senha-esqueceu">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+            <p id="senha-esqueceu">Não tem uma conta? <a href="cadastro.php">Cadastre-se</a></p>
         </main>
     </div>
     <script src="script.js"></script>
