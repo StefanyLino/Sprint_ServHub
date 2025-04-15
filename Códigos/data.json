@@ -1,0 +1,127 @@
+{
+    "pages": [
+      {
+        "filename": "cadastro-empresa.html",
+        "title": "Cadastro Empresa",
+        "description": "Página de cadastro de empresa."
+      },
+      {
+        "filename": "cadastro-funcionario.html",
+        "title": "Cadastro Funcionário",
+        "description": "Página de cadastro de funcionário."
+      },
+      {
+        "filename": "cadastro.html",
+        "title": "Cadastro",
+        "description": "Página de cadastro de novos usuários.",
+        "fields": [
+          {"label": "Nome", "type": "text", "id": "nome", "name": "nome", "placeholder": "Digite seu nome", "required": true},
+          {"label": "E-mail", "type": "email", "id": "email", "name": "email", "placeholder": "Digite seu e-mail", "required": true},
+          {"label": "Telefone", "type": "tel", "id": "telefone", "name": "telefone", "placeholder": "Digite seu telefone", "required": true},
+          {"label": "Senha", "type": "password", "id": "senha", "name": "senha", "placeholder": "Digite sua senha", "required": true},
+          {"label": "Confirme sua senha", "type": "password", "id": "confirmar-senha", "name": "confirmar-senha", "placeholder": "Digite sua senha novamente", "required": true}
+        ],
+        "buttons": [
+          {"type": "submit", "text": "Cadastrar"}
+        ],
+        "links": [
+          {"href": "index.html", "text": "Voltar"}
+        ]
+      },
+      {
+        "filename": "homepage-admin.html",
+        "title": "Homepage Admin",
+        "description": "Página inicial do administrador."
+      },
+      {
+        "filename": "homepage.html",
+        "title": "Homepage",
+        "description": "Página inicial geral."
+      },
+      {
+        "filename": "index.html",
+        "title": "Login",
+        "description": "Página de login de usuários.",
+        "fields": [
+          {"label": "Email", "type": "email", "id": "email", "name": "email", "required": true},
+          {"label": "Senha", "type": "password", "id": "senha", "name": "senha", "required": true}
+        ],
+        "buttons": [
+          {"type": "submit", "text": "Entrar"}
+        ],
+        "links": [
+          {"href": "cadastro.html", "text": "Cadastre-se"}
+        ]
+      },
+      {
+        "filename": "recuperar-senha.html",
+        "title": "Recuperar Senha",
+        "description": "Página para recuperação de senha.",
+        "fields": [
+          {"label": "E-mail", "type": "email", "id": "email", "name": "email", "placeholder": "Digite aqui...", "required": true},
+          {"label": "Nome", "type": "text", "id": "nome", "name": "nome", "placeholder": "Digite aqui...", "required": true},
+          {"label": "Nova Senha", "type": "password", "id": "nova-senha", "name": "nova-senha", "placeholder": "Digite aqui...", "required": true},
+          {"label": "Confirmação de Senha", "type": "password", "id": "confirmar-senha", "name": "confirmar-senha", "placeholder": "Digite aqui...", "required": true}
+        ],
+        "buttons": [
+          {"type": "submit", "text": "Enviar"}
+        ],
+        "links": [
+          {"href": "index.html", "text": "Sair"}
+        ]
+      },
+      {
+        "filename": "senha-alterada.html",
+        "title": "Senha Alterada",
+        "description": "Página de confirmação de senha alterada.",
+        "buttons": [
+          {"type": "button", "text": "Voltar", "link": "index.html"}
+        ]
+      },
+      {
+        "filename": "verificar-codigo.html",
+        "title": "Verificação de Código",
+        "description": "Página para verificar o código enviado por e-mail.",
+        "fields": [
+          {"label": "Digite o Código", "type": "text", "id": "codigo", "name": "codigo", "placeholder": "Digite aqui...", "required": true}
+        ],
+        "buttons": [
+          {"type": "submit", "text": "Enviar"}
+        ],
+        "links": [
+          {"href": "index.html", "text": "Voltar"}
+        ]
+      }
+    ],
+    "style": {
+      "body": {
+        "fontFamily": "Arial, sans-serif",
+        "backgroundColor": "#f0f2f5",
+        "margin": "0",
+        "padding": "0"
+      },
+      ".container": {
+        "width": "100%",
+        "maxWidth": "400px",
+        "margin": "60px auto",
+        "padding": "20px",
+        "background": "white",
+        "borderRadius": "10px",
+        "boxShadow": "0 4px 8px rgba(0,0,0,0.1)"
+      },
+      "h1": {
+        "textAlign": "center"
+      },
+      ".form": {
+        "display": "flex",
+        "flexDirection": "column"
+      },
+      "label": {
+        "marginTop": "10px"
+      },
+      "input": {
+        "padding": "10px",
+        "marginTop": "5px",
+        "borderRadius": "5px",
+        "border": "1px solid #ccc"
+      },
