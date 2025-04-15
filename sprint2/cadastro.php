@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadastro</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Cadastro</title>
 </head>
+<style>
+    .titulo{
+    margin: 0 90px 40px;
+    font-weight: bold;
+}
+</style>
 <body>
-  <div class="container">
-    <h1>Cadastre-se</h1>
-    <form action="#" method="POST" class="form">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required />
-
-      <label for="email">E-mail:</label>
-      <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required />
-
-      <label for="telefone">Telefone:</label>
-      <input type="tel" id="telefone" name="telefone" placeholder="Digite seu telefone" required />
-
-      <label for="senha">Senha:</label>
-      <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required />
-
-      <label for="confirmar-senha">Confirme sua senha:</label>
-      <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Digite sua senha novamente" required />
-
-      <button type="submit">Cadastrar</button>
-    </form>
-
-    <p style="text-align:center; margin-top:20px;">
-      <a href="index.html">Voltar</a>
-    </p>
-  </div>
-
-<script src="script.js"></script>
+    <div class="d-flex col-sm-12 " >
+        <div class="container col-sm-5" id="fundo">
+        </div>
+        <main class="container col-sm-7 mt-8 d-flex align-items-center justify-content-center flex-column" id="login">
+            <div class="align-self-start titulo">
+                <h1 class="mb-2">Cadastro</h1>
+                <p id="bem-vindo">Seja bem vindo(a)! Escolha uma opção abaixo.</p>
+            </div>
+            <div class="col-sm-9 d-flex flex-column align-items-center">
+                <a class="btn btn-submit w-100 p-3" id="btn-custom" style="margin-bottom: 50px; border-radius: 10px;" href="cadastro-empresa.php">Cadastre-se como Empresa</a>
+                <a class="btn btn-submit w-100 p-3" id="btn-custom" style="border-radius: 10px;" href="cadastro-funcionario.php"> Cadastre-se como Funcionario</a>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

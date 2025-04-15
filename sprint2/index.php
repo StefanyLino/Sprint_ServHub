@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
     <title>ServHub</title>
 </head>
 
@@ -80,6 +79,50 @@
         margin-left: 15px;
         font-size: 1.6rem;
     }
+    @media (min-width: 427px) and (max-width: 768px){
+        #background{
+            background-image: url(Assets/ServHub-tablet.png);
+        }
+        .botão{
+            margin-top: 130px;
+        }
+    }
+    @media screen and (max-width: 320px){
+        #background{
+            background-image: url(Assets/ServHub-cel.png);
+        }
+        .botão{
+            margin-top: 150px;
+            padding: 10px 13px;
+            font-size: 1.4rem;
+        }
+        #login {
+            padding: 8px 16px;
+            font-size: 1rem;
+            margin-right: 0;
+        }
+    }
+    @media (min-width: 321px) and (max-width: 376px){
+        #background{
+            background-image: url(Assets/ServHub-426.png);
+        }
+        .botão{
+            margin-top: 150px;
+            padding: 10px 13px;
+            font-size: 1.4rem;
+        }
+    }
+    @media (min-width: 377px) and (max-width: 426px){
+        #background{
+            background-image: url(Assets/ServHub-426.png);
+        }
+        .botão{
+            margin-top: 220px;
+            padding: 10px 13px;
+            font-size: 1.4rem;
+        }
+    }
+
 </style>
 
 

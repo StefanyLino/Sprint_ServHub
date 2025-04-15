@@ -17,7 +17,7 @@
     <div class="d-flex col-sm-12 " >
         <div class="container col-sm-5" id="fundo">
         </div>
-        <main class="container col-sm-7 mt-8 d-flex align-items-center justify-content-center flex-column" id="login">
+        <main class="container col-sm-7 d-flex align-items-center justify-content-center flex-column" id="login">
             <div class="align-self-start titulo">
                 <h1 class="mb-2">Login</h1>
                 <p id="bem-vindo">Seja bem vindo(a)! Faça seu login abaixo.</p>
