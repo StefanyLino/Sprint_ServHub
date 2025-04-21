@@ -65,3 +65,147 @@ body{
         padding-top: 50px;
     }
 }
+
+
+/* navbar homepage */
+
+/* NAVBAR */
+#navbar {
+    background-color: #E9EDEB;
+    box-shadow: 3px 3px 5px black;
+}
+
+#navbar .navbar-nav{
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#navbar.navbar-nav li{
+    margin-left: 1em;
+}
+
+#navbar button{
+    color: #FFF;
+}
+
+#navbar li{
+    position: relative;
+}
+
+
+.navbar-brand{
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+}
+
+#logout {
+    padding: 8px 16px;
+    border-radius: 10px;
+    background-color: #320A59;
+    color: white;
+    box-shadow: 3px 3px 2px black;
+    margin-right: 20px;
+}
+
+@media(min-width: 768px){
+    .navbar-brand {
+        text-align: left;
+    }
+}
+
+
+#navbar-items{
+    justify-content: space-between;
+}
+
+@media(min-width: 768px){
+    #navbar-items{
+        display: flex;
+        min-width: 80%;
+    }
+}
+
+#search-form{
+    width: 80%;
+    margin: 2em 0;
+    border-radius: 10px;
+}
+
+@media(min-width: 769px){
+    #search-form, #news-form{
+        width: 50%;
+        margin: 0;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    #formulario{
+        display: none;
+    }
+
+    .disable {
+        display: none;
+    }
+}
+
+#search-form{
+    background-color: #BEBAD9; 
+    border: 2px solid #626262;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+
+#search-form input{
+    border: none;
+    color: #000000;
+}
+
+#search-form input:focus{
+    box-shadow: none;
+}
+
+#search-form input::placeholder{
+    color: #000000;
+}
+
+/* BOTTOM NAVBAR */
+#bottom-navbar-container .container{
+    justify-content: flex-end;
+}
+
+#bottom-navbar-container a{
+    color: #000000;
+    font-weight: 600;
+}
+
+.navbar-toggler {
+    font-size: 1.5em;
+}
+
+
+/* card principal */
+
+.card-title{
+    font-weight: bold;
+}
+
+#saiba{
+    background-color: #320A59;
+    border-color: #290849;
+}
+
+#responsivo{
+    display: none;
+}
+
+@media screen and (max-width:768px){
+    #principal{
+        display: none;
+    }
+    #sidebar {
+        display: none;
+    }
+
+}
