@@ -35,7 +35,7 @@ Preenchendo as informações você será levado para a homepage onde dependendo 
 Porem para contratalos basta pedir ao adm, para que ele faça o intermedio entre empresa e funcionario e finalmente contrate o funcionario para a empresa, a tela do adm conta com opções além das normais podendo mudar o estado do perfil do funcionario para contratado ou contratavel e até em casos de violação do site apagar a conta do funcionario ou da empresa inflatora<br><br>
 <img width="550" alt="admin" src="https://github.com/user-attachments/assets/e5d4bde3-06d7-4b78-8953-e5e835a8375f" /><br>
 Além dessas página nosso site ainda conta com uma adptadibilidade com a maioria dos aparelho eletronicos sendo adptavel a pc, notbook, celular e tablet, logo abaixo essa adaptabilidade pode ser vista.<br>
-Pc/notbook:<br>
+Pc/laptop:<br>
 <img width="550" alt="image" src="https://github.com/user-attachments/assets/3bcbb55d-f463-4aa5-bcd2-ab3854d24914" /><br>
 Tablet:<br>
 <img width="515" alt="image" src="https://github.com/user-attachments/assets/d623aa36-5dd7-4a6c-94a1-a00da8a94f1f" /><br>
