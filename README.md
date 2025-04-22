@@ -6,11 +6,13 @@ Com o avanço da tecnologia, muitos profissionais enfrentam dificuldades em aume
 Começamos desenvolvendo o manual de marca, com cores e tipografia:<br>
 
 <img width="158" alt="image" src="https://github.com/user-attachments/assets/50673c95-01d1-476c-9f77-ecb20016e291" />
-<img width="158" alt="image" src="https://github.com/user-attachments/assets/d0e59b8d-0c45-4e6c-acf8-01c911f0c09f" />
+<img width="158" alt="image" src="https://github.com/user-attachments/assets/d0e59b8d-0c45-4e6c-acf8-01c911f0c09f" /><br>
+Tais cores foram escolhidas pensando na harmonia do site, a logo da figura 2 foi criada com uma capivara funcionando como mascote, tal animal foi selecionado por serem roedores conhecidos por sua tranquilidade, adaptabilidade e organização.
 
 #
 Depois desenvolvemos os protótipos de alta fidelidade, tanto para o formato desktop, quanto para o mobile:<br>
 
-<img width="457" alt="image" src="https://github.com/user-attachments/assets/33a3feb5-2aa7-448e-9536-c169964cefbe" />
+<img width="457" alt="image" src="https://github.com/user-attachments/assets/33a3feb5-2aa7-448e-9536-c169964cefbe" /><br>
+Esses protótipos serviram como fundamentais para a concepção e estruturação do nosso site, permitindo testar e validar ideias antes da implementação final. 
 
 
