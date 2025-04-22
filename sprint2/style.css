@@ -122,32 +122,31 @@ body{
 @media(min-width: 768px){
     #navbar-items{
         display: flex;
-        min-width: 80%;
+        width: 20%;
     }
-}
-
-#search-form{
-    width: 80%;
-    margin: 2em 0;
-    border-radius: 10px;
-}
-
-@media(min-width: 769px){
-    #search-form, #news-form{
+    #formulario{
         width: 50%;
+        align-self: flex-start;
+    }
+    #search-form{
+        width: 100%;
         margin: 0;
         border-radius: 10px;
     }
+    #logo{
+        width: 20%;
+    }
+    #burgue{
+        display: none;
+    }
 }
+
 
 @media screen and (max-width: 768px){
     #formulario{
         display: none;
     }
 
-    .disable {
-        display: none;
-    }
 }
 
 #search-form{
@@ -200,12 +199,67 @@ body{
     display: none;
 }
 
-@media screen and (max-width:768px){
+@media screen and (max-width:426px){
     #principal{
         display: none;
     }
     #sidebar {
         display: none;
     }
+    #responsivo{
+        display: block;
+    }
 
 }
+
+
+/* Menu hamburguer */
+
+@media (max-width: 426px) {
+    #navbar{
+        padding-left: 0 !important;
+    }
+    .container-fluid{
+        padding-left: 0 !important;
+    }
+    #navbar-items.show {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 10px;
+      padding: 0;
+    }
+  
+    #navbar-items.show .navbar-nav {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    #navbar-items.show .nav-item {
+      width: 100%;
+      margin: 0 !important;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.15); /* Linha separadora */
+    }
+  
+    #navbar-items.show .nav-link {
+      display: block;
+      width: 100%;
+      border-radius: 0;
+      margin: 0;
+      padding: 10px 15px;
+    }
+  
+    #navbar-items.show .nav-item:last-child {
+      border-bottom: none; /* Remove a linha do último item */
+    }
+  
+    #logout {
+      padding: 5px 0;
+      background-color: transparent;
+      color: black !important;
+      box-shadow: none;
+      margin-right: 20px;
+    }
+    #burgue{
+        align-self: flex-end;
+    }
+  }

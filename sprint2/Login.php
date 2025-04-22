@@ -52,7 +52,7 @@
                     <label for="senha">Senha:</label>
                     <input type="password" id="senha" name="senha" class="form-control input-custom shadow-sm"  required />
                 </div>
-                <button type="submit" class="btn btn-submit mt-3 mb-3 w-100 " id="btn-custom">Entrar</button>
+                <button type="submit" class="btn btn-submit mt-3 mb-3 w-100 " id="btn-custom"><a style="text-decoration: none; color:white" href="homepage-admin.php">Entrar</a></button>
             </form>
             <p id="senha-esqueceu">Não tem uma conta? <a href="cadastro.php">Cadastre-se</a></p>
         </main>

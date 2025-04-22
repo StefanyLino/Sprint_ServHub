@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADM - Locadora de Veículos</title>
+    <title>Servhub-Usuário</title>
 
     <!-- Link Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -16,39 +16,46 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg primary-bg-color py-4 px-2" id="navbar">
-        <div class="container">
-            <a class="navbar-brand text-black" href="#navbar">ServHub</a>
-            <button class="navbar-toggler text-black" type="button" data-bs-toggle="collapse" data-bs-target="#bottom-navbar"
-            aria-controls="bottom-navbar" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="bi bi-list"></i>
-          </button>
-            <div id="navbar-items" class="w-100">
-                <div class="container col-sm-10 mx-2" id="formulario">
-                    <form class="d-flex" id="search-form">
+        <div class="container d-flex">
+            <!-- Logo -->
+            <a class="navbar-brand text-black" id="logo" href="#navbar">ServHub</a>
+
+            <!-- Botão Hamburguer -->
+            <button id="burgue" class="navbar-toggler text-black" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items"
+                aria-controls="navbar-items" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list" ></i>
+            </button>
+
+            <!-- Formulário de busca -->
+            <div class="container col-sm-8 mx-2" id="formulario">
+                <form class="d-flex" id="search-form">
                     <i class="bi bi-search text-black mt-2"></i>
                     <input class="form-control me-2 bg-transparent text-white" type="search" placeholder="Busque um funcionário..."
                         aria-label="Search">
                     <button class="btn secondary-bg-color text-black" type="submit">Pesquisar</button>
-                    </form>
-                </div>
+                </form>
+            </div>
+            <!-- Itens colapsáveis do menu -->
+            <div class="collapse navbar-collapse" id="navbar-items">
+                
+
+                <!-- Links do menu -->
                 <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-                <li class="nav-item disable mx-3">
-                    <a class="nav-link text-black" href="#">HOME</a>
-                </li>
-                <li class="nav-item disable mx-3">
-                    <a class="nav-link text-black" href="#">
-                        CONTA
-                    </a>
-                </li>
-                <li class="nav-item disable mx-3">
-                    <a class="nav-link text-white" href="#" id="logout">
-                        LOGOUT
-                    </a>
-                </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link disabled text-black" href="#">HOME</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link disabled text-black" href="#">CONTA</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link disabled text-white" href="#" id="logout">LOGOUT</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+    
+    
 
     <div class="py-4 mx-2">
         
@@ -227,7 +234,8 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 </html>
