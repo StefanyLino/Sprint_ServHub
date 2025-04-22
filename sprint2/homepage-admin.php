@@ -16,15 +16,16 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg primary-bg-color py-4 px-2" id="navbar">
-        <div class="container d-flex">
-            <!-- Logo -->
-            <a class="navbar-brand text-black" id="logo" href="#navbar">ServHub</a>
-
-            <!-- Botão Hamburguer -->
-            <button id="burgue" class="navbar-toggler text-black" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items"
-                aria-controls="navbar-items" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="bi bi-list"></i>
-            </button>
+        <div class="container">
+            <div class="container d-flex justify-content-between" id="bot-nav">
+                <!-- Logo -->
+                <a class="navbar-brand text-black" id="logo" href="#navbar">ServHub</a>
+                <!-- Botão Hamburguer -->
+                <button id="burgue" class="navbar-toggler text-black" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items"
+                    aria-controls="navbar-items" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
 
             <!-- Formulário de busca -->
             <div class="container col-sm-8 mx-2" id="formulario">
@@ -40,7 +41,7 @@
                 
 
                 <!-- Links do menu -->
-                <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+                <ul class="navbar-nav mb-2 mb-lg-0 ">
                     <li class="nav-item mx-3">
                         <a class="nav-link disabled text-black" href="#">HOME</a>
                     </li>

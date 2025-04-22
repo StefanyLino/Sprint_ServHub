@@ -108,18 +108,13 @@ body{
     margin-right: 20px;
 }
 
-@media(min-width: 768px){
-    .navbar-brand {
-        text-align: left;
-    }
-}
 
 
 #navbar-items{
     justify-content: space-between;
 }
 
-@media(min-width: 768px){
+@media(min-width: 991px){
     #navbar-items{
         display: flex;
         width: 20%;
@@ -136,9 +131,10 @@ body{
     #logo{
         width: 20%;
     }
-    #burgue{
-        display: none;
+    #bot-nav{
+        width: 20%;
     }
+    
 }
 
 
@@ -148,6 +144,17 @@ body{
     }
 
 }
+
+@media (min-width: 426px) and (max-width: 768px){
+    #navbar-items{
+        width: 50%;
+    }
+    #navegacao{
+        display: flex;
+        flex-direction: row;
+    }
+}
+
 
 #search-form{
     background-color: #BEBAD9; 
@@ -215,11 +222,8 @@ body{
 
 /* Menu hamburguer */
 
-@media (max-width: 426px) {
+@media (max-width: 991px) {
     #navbar{
-        padding-left: 0 !important;
-    }
-    .container-fluid{
         padding-left: 0 !important;
     }
     #navbar-items.show {
@@ -263,3 +267,11 @@ body{
         align-self: flex-end;
     }
   }
+
+/* laptop */
+
+@media(min-width: 991px) and (max-width:1024px){
+    #formulario{
+        width: 40%;
+    }
+}
