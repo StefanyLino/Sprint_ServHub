@@ -71,7 +71,7 @@
 
                     <div class="card mb-4" id="responsivo">
                         <div class="card-body d-flex flex-row justify-content-around">
-                            <img style="width: 50px;" src="Assets/adm.png" alt="" class="img-fluid">
+                            <img style="width: 50px;" src="Assets/usuario.png" alt="" class="img-fluid">
                             <button id="saiba" class="btn btn-success">Editar perfil</button>
                         </div>
                     </div>
@@ -86,8 +86,6 @@
                                     <h5 class="card-title">Paulo Mathias</h5>
                                     <p class="card-text">Advogado.</p>
                                     <button id="saiba" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#adv">Saiba mais...</button>
-                                    <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                                    <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i>
                                     </button>
                                 </div>
                             </div>
@@ -98,9 +96,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Paloma de Oliveira</h5>
                                     <p class="card-text">Secretária.</p>
-                                    <button id="saiba" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#sec">Saiba mais...</button>
-                                    <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                                    <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i>
+                                    <button id="saiba" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#adv">Saiba mais...</button>
                                     </button>
                                 </div>
                             </div>
@@ -113,10 +109,10 @@
                     <!-- usuario -->
                     <div class="card mb-4">
                         <div class="card-body d-flex flex-column align-items-center">
-                            <img style="width: 200px;" src="Assets/adm.png" alt="">
-                            <h3 class="card-title">Administrador</h5>
-                            <p style="font-size: 0.8rem;"  class="mt-0">administrador@gmail.com</p>
-                            <p class="mx-4 text-center">Voce é o administrador da empresa, altere o que for necessário e deslogue sua conta para mais seguranca</p>
+                            <img style="width: 200px;" src="Assets/usuario.png" alt="">
+                            <h3 class="card-title">Lúcia Andrade</h5>
+                            <p style="font-size: 0.8rem;"  class="mt-0">luciaandrade23@gmail.com</p>
+                            <p class="mx-4 text-center">Sou Lucia Andrade, contadora com experiência em gestão financeira, planejamento tributário e análise contábil. Meu objetivo é fornecer soluções precisas e eficientes, ajudando empresas a otimizar seus processos, sempre com foco em conformidade e resultados de excelência.</p>
                         </div>
                     </div>
                 </div>
@@ -131,9 +127,6 @@
                                     <h5 class="card-title">João Gomes</h5>
                                     <p class="card-text">Professor.</p>
                                     <button id="saiba" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#prof">Saiba mais...</button>
-                                    <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                                    <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i>
-                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -144,9 +137,6 @@
                                     <h5 class="card-title">Levi da Silva</h5>
                                     <p class="card-text">Engenheiro civil.</p>
                                     <button id="saiba" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#eng">Saiba mais...</button>
-                                    <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                                    <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i>
-                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -172,8 +162,6 @@
                         <h5>Informações</h5>
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatibus quo quisquam qui saepe quas dolor quidem ipsum delectus labore voluptas esse, excepturi aut sequi libero! Illo sint quo maiores.</p>
                         <form action="post" class="">
-                            <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                            <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i></button>
                         </form>
                     </div>
                 </div>
@@ -192,8 +180,6 @@
                         <h5>Informações</h5>
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatibus quo quisquam qui saepe quas dolor quidem ipsum delectus labore voluptas esse, excepturi aut sequi libero! Illo sint quo maiores.</p>
                         <form action="post" class="">
-                            <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                            <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i></button>
                         </form>
                     </div>
                 </div>
@@ -212,8 +198,6 @@
                         <h5>Informações</h5>
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatibus quo quisquam qui saepe quas dolor quidem ipsum delectus labore voluptas esse, excepturi aut sequi libero! Illo sint quo maiores.</p>
                         <form action="post" class="">
-                            <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                            <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i></button>
                         </form>
                     </div>
                 </div>
@@ -232,8 +216,7 @@
                         <h5>Informações</h5>
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatibus quo quisquam qui saepe quas dolor quidem ipsum delectus labore voluptas esse, excepturi aut sequi libero! Illo sint quo maiores.</p>
                         <form action="post" class="">
-                            <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                            <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i></button>
+
                         </form>
                     </div>
                 </div>

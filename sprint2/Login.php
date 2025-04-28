@@ -9,13 +9,34 @@
 </head>
 <style>
     .titulo{
-    margin: 0 90px 40px;
-    font-weight: bold;
-}
+        margin: 0 90px 40px;
+        font-weight: bold;
+    }
+    @media (min-width: 377px) and (max-width: 426px){
+        .titulo{
+            margin: 0 90px 40px;
+            font-weight: bold;
+        }
+    }
+    @media (min-width: 321px) and (max-width: 376px){
+        .titulo{
+            margin: 0 60px 40px;
+            font-weight: bold;
+        }
+    }
+    @media screen and (max-width: 320px){
+        .titulo{
+            margin: 0 40px 40px;
+            font-weight: bold;
+        }
+    }
+
+
+
 </style>
 <body>
     <div class="d-flex col-sm-12 " >
-        <div class="container col-sm-5" id="fundo">
+        <div class="container-fluid col-sm-5" id="fundo">
         </div>
         <main class="container col-sm-7 d-flex align-items-center justify-content-center flex-column" id="login">
             <div class="align-self-start titulo">
@@ -33,7 +54,7 @@
                 </div>
                 <button type="submit" class="btn btn-submit mt-3 mb-3 w-100 " id="btn-custom">Entrar</button>
             </form>
-            <p id="senha-esqueceu">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+            <p id="senha-esqueceu">Não tem uma conta? <a href="cadastro.php">Cadastre-se</a></p>
         </main>
     </div>
     <script src="script.js"></script>
