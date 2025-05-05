@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+:root{
+    --primary-color:#7b5da6;
+    --button-hover:#5b3f82;
+    --fundo:#efeded;
+    --secondary-color:;
+}
+
+
+*{
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+}
+body{
+    width: 100%;
+    height: 100vh;
+}
+#fundo {
+    height: 100vh !important;
+    background-image: url(Assets/Login-fundo.png);
+    background-size: cover;
+}
+
+.input-custom {
+    margin: 0 0px 20px 0;
+}
+
+#login{
+    background-color: var(--fundo);
+}
+
+#btn-custom {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#btn-custom:hover {
+    background-color: var(--button-hover);
+}
+
+#bem-vindo{
+    font-weight: lighter;
+}
+
+#senha-esqueceu{
+    font-weight: lighter;
+}
+
+@media screen and (max-width: 426px){
+    body{
+        background-color: var(--fundo);
+    }
+    #fundo{
+        display: none !important;
+        background-image: none !important;
+    }
+    #login{
+        height: 100%;
+        padding-top: 50px;
+    }
+}
+
+
+/* navbar homepage */
+
+/* NAVBAR */
+#navbar {
+    background-color: #E9EDEB;
+    box-shadow: 3px 3px 5px black;
+}
+
+#navbar .navbar-nav{
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#navbar.navbar-nav li{
+    margin-left: 1em;
+}
+
+#navbar button{
+    color: #FFF;
+}
+
+#navbar li{
+    position: relative;
+}
+
+
+.navbar-brand{
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+}
+
+#logout {
+    padding: 8px 16px;
+    border-radius: 10px;
+    background-color: #320A59;
+    color: white;
+    box-shadow: 3px 3px 2px black;
+    margin-right: 20px;
+}
+
+
+
+#navbar-items{
+    justify-content: space-between;
+}
+
+@media(min-width: 991px){
+    #navbar-items{
+        display: flex;
+        width: 20%;
+    }
+    #formulario{
+        width: 50%;
+        align-self: flex-start;
+    }
+    #search-form{
+        width: 100%;
+        margin: 0;
+        border-radius: 10px;
+    }
+    #logo{
+        width: 20%;
+    }
+    #bot-nav{
+        width: 20%;
+    }
+    
+}
+
+
+@media screen and (max-width: 768px){
+    #formulario{
+        display: none;
+    }
+
+}
+
+@media (min-width: 426px) and (max-width: 768px){
+    #navbar-items{
+        width: 50%;
+    }
+    #navegacao{
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+
+#search-form{
+    background-color: #BEBAD9; 
+    border: 2px solid #626262;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+
+#search-form input{
+    border: none;
+    color: #000000;
+}
+
+#search-form input:focus{
+    box-shadow: none;
+}
+
+#search-form input::placeholder{
+    color: #000000;
+}
+
+/* BOTTOM NAVBAR */
+#bottom-navbar-container .container{
+    justify-content: flex-end;
+}
+
+#bottom-navbar-container a{
+    color: #000000;
+    font-weight: 600;
+}
+
+.navbar-toggler {
+    font-size: 1.5em;
+}
+
+
+/* card principal */
+
+.card-title{
+    font-weight: bold;
+}
+
+#saiba{
+    background-color: #320A59;
+    border-color: #290849;
+}
+
+#responsivo{
+    display: none;
+}
+
+@media screen and (max-width:426px){
+    #principal{
+        display: none;
+    }
+    #sidebar {
+        display: none;
+    }
+    #responsivo{
+        display: block;
+    }
+
+}
+
+
+/* Menu hamburguer */
+
+@media (max-width: 991px) {
+    #navbar{
+        padding-left: 0 !important;
+    }
+    #navbar-items.show {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 10px;
+      padding: 0;
+    }
+  
+    #navbar-items.show .navbar-nav {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    #navbar-items.show .nav-item {
+      width: 100%;
+      margin: 0 !important;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.15); /* Linha separadora */
+    }
+  
+    #navbar-items.show .nav-link {
+      display: block;
+      width: 100%;
+      border-radius: 0;
+      margin: 0;
+      padding: 10px 15px;
+    }
+  
+    #navbar-items.show .nav-item:last-child {
+      border-bottom: none; /* Remove a linha do último item */
+    }
+  
+    #logout {
+      padding: 5px 0;
+      background-color: transparent;
+      color: black !important;
+      box-shadow: none;
+      margin-right: 20px;
+    }
+    #burgue{
+        align-self: flex-end;
+    }
+  }
+
+/* laptop */
+
+@media(min-width: 991px) and (max-width:1024px){
+    #formulario{
+        width: 40%;
+    }
+}
