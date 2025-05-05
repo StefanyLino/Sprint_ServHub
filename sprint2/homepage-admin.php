@@ -1,3 +1,11 @@
+<?php
+require_once __DIR__ . '/../services/Auth.php';
+
+use Services\Auth;
+
+$usuario = Auth::getUsuario();
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -49,7 +57,7 @@
                         <a class="nav-link disabled text-black" href="#">CONTA</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link disabled text-white" href="#" id="logout">LOGOUT</a>
+                        <a class="nav-link disabled text-white" href="?logout=1" id="logout">LOGOUT</a>
                     </li>
                 </ul>
             </div>
@@ -89,25 +97,14 @@
                             <div class="card">
                                 <img src="Assets/profissional1.png" alt="advogado" class="card-img-top">
                                 <div class="card-body">
-                                    <h5 class="card-title">Paulo Mathias</h5>
-                                    <p class="card-text">Advogado.</p>
+                                    <h5 class="card-title"><?= htmlspecialchars($veiculo->getNome()) ?></h5>
+                                    <p class="card-text"><?= htmlspecialchars($veiculo->getProfissao()) ?></p>
                                     <button id="saiba" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#adv">Saiba mais...</button>
+                                    <?php if (Auth::isAdmin()): ?>
                                     <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
                                     <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i>
                                     </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 mb-4">
-                            <div class="card">
-                                <img src="Assets/profissional2.png" alt="secretária" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="card-title">Paloma de Oliveira</h5>
-                                    <p class="card-text">Secretária.</p>
-                                    <button id="saiba" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#sec">Saiba mais...</button>
-                                    <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                                    <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i>
-                                    </button>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -120,9 +117,18 @@
                     <div class="card mb-4">
                         <div class="card-body d-flex flex-column align-items-center">
                             <img style="width: 200px;" src="Assets/adm.png" alt="">
-                            <h3 class="card-title">Administrador</h5>
-                            <p style="font-size: 0.8rem;"  class="mt-0">administrador@gmail.com</p>
-                            <p class="mx-4 text-center">Voce é o administrador da empresa, altere o que for necessário e deslogue sua conta para mais seguranca</p>
+                            <h3 class="card-title">
+                                <?=htmlspecialchars($usuario['username'])
+                                ?>
+                            </h3>
+                            <p style="font-size: 0.8rem;"  class="mt-0">
+                                <?=htmlspecialchars($usuario['email'])
+                                ?>
+                                </p>
+                            <p class="mx-4 text-center">
+                                <?=htmlspecialchars($usuario['descricao'])
+                                ?>
+                                </p>
                         </div>
                     </div>
                 </div>
@@ -132,122 +138,23 @@
                     <div class="row">
                         <div class="col-sm-6 mb-4">
                             <div class="card">
-                                <img src="Assets/profissional3.png" alt="professor" class="card-img-top">
+                                <img src="Assets/profissional1.png" alt="advogado" class="card-img-top">
                                 <div class="card-body">
-                                    <h5 class="card-title">João Gomes</h5>
-                                    <p class="card-text">Professor.</p>
-                                    <button id="saiba" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#prof">Saiba mais...</button>
+                                    <h5 class="card-title"><?= htmlspecialchars($veiculo->getNome()) ?></h5>
+                                    <p class="card-text"><?= htmlspecialchars($veiculo->getProfissao()) ?></p>
+                                    <button id="saiba" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#adv">Saiba mais...</button>
+                                    <?php if (Auth::isAdmin()): ?>
                                     <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
                                     <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i>
                                     </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 mb-4">
-                            <div class="card">
-                                <img src="Assets/profissional4.png" alt="emgenheiro civil" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="card-title">Levi da Silva</h5>
-                                    <p class="card-text">Engenheiro civil.</p>
-                                    <button id="saiba" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#eng">Saiba mais...</button>
-                                    <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                                    <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i>
-                                    </button>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
-
-
-        <!-- Modais profissionais -->
-        <div class="modal fade" id="adv">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="d-flex flex-column">
-                            <h2>Paulo Mathias</h2>
-                            <p>Advogado.</p>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <h5>Informações</h5>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatibus quo quisquam qui saepe quas dolor quidem ipsum delectus labore voluptas esse, excepturi aut sequi libero! Illo sint quo maiores.</p>
-                        <form action="post" class="">
-                            <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                            <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="sec">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="d-flex flex-column">
-                            <h2>Paloma de Oliveira</h2>
-                            <p>Secretária.</p>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <h5>Informações</h5>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatibus quo quisquam qui saepe quas dolor quidem ipsum delectus labore voluptas esse, excepturi aut sequi libero! Illo sint quo maiores.</p>
-                        <form action="post" class="">
-                            <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                            <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="prof">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="d-flex flex-column">
-                            <h2>João Gomes</h2>
-                            <p>Professor.</p>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <h5>Informações</h5>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatibus quo quisquam qui saepe quas dolor quidem ipsum delectus labore voluptas esse, excepturi aut sequi libero! Illo sint quo maiores.</p>
-                        <form action="post" class="">
-                            <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                            <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="eng">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="d-flex flex-column">
-                            <h2>Levi da Silva</h2>
-                            <p>Engenheiro civil.</p>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <h5>Informações</h5>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatibus quo quisquam qui saepe quas dolor quidem ipsum delectus labore voluptas esse, excepturi aut sequi libero! Illo sint quo maiores.</p>
-                        <form action="post" class="">
-                            <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                            <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
