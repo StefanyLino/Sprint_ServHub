@@ -9,16 +9,16 @@ require_once __DIR__ . '/../config/config.php';
 session_start();
 
 // Inserir a classe de autenticação
-use Services\auth;
+use Services\Auth;
 
 // Inicializa a variável para mensagens de erro
 $mensagem = '';
 
 // Instanciar a classe de autenticação
-$auth = new auth();
+$Auth = new Auth();
 
 // Verifica se já foi autenticado
-if (auth::verificarLogin()) {
+if (Auth::verificarLogin()) {
     echo "Usuário já autenticado. Redirecionando...";
     header('Location: index.php');
     exit;
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validação básica dos campos
     if (empty($username) || empty($password)) {
         $mensagem = 'Por favor, preencha todos os campos.';
-    } elseif ($auth->login($username, $password)) {
+    } elseif ($Auth->login($username, $password)) {
         echo "Login bem-sucedido. Redirecionando...";
         header('Location: index.php');
         exit;
