@@ -1,3 +1,46 @@
+<?php 
+
+    // incuir o auto load do composer para carregar automaticamente as classes utilizadas
+    require_once __DIR__ . '/../vendor/autoload.php';
+
+    // incluir o arquivo com as variaveis
+    require_once __DIR__ . '/../config/config.php';
+
+    session_start();
+
+    // inserir a classe de autenticação
+    use Services\Auth;
+
+    // Inicializa a variável para mensagens de erro
+    $mensagem = '';
+
+    // instanciar a classe de autenticação
+    $auth = new Auth();
+
+    // verifica se já foi autenticado
+    if (Auth::verificarLogin()) {
+        echo "Usuário já autenticado. Redirecionando...";
+        header('Location: index.php');
+        exit;
+    }
+
+    // verifica se o formulário foi enviado
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        echo "Formulário enviado. Verificando login...";
+        $username = $_POST['username'] ?? '';
+        $password = $_POST['password'] ?? '';
+    
+        if ($auth->login($username, $password)) {
+            echo "Login bem-sucedido. Redirecionando...";
+            header('Location: index.php');
+            exit;
+        } else {
+            $mensagem = 'Usuário ou senha incorretos!';
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
