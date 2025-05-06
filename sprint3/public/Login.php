@@ -1,4 +1,47 @@
+<?php 
 
+// Incluir o autoload do Composer para carregar automaticamente as classes utilizadas
+require_once __DIR__ . '/../vendor/autoload.php';
+
+// Incluir o arquivo com as variáveis de configuração
+require_once __DIR__ . '/../config/config.php';
+
+session_start();
+
+// Inserir a classe de autenticação
+use Services\Auth;
+
+// Inicializa a variável para mensagens de erro
+$mensagem = '';
+
+// Instanciar a classe de autenticação
+$Auth = new Auth();
+
+// Verifica se já foi autenticado
+if (Auth::verificarLogin()) {
+    echo "Usuário já autenticado. Redirecionando...";
+    header('Location: index.php');
+    exit;
+}
+
+// Verifica se o formulário foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['email'] ?? '');
+    $password = trim($_POST['senha'] ?? '');
+
+    // Validação básica dos campos
+    if (empty($username) || empty($password)) {
+        $mensagem = 'Por favor, preencha todos os campos.';
+    } elseif ($Auth->login($username, $password)) {
+        echo "Login bem-sucedido. Redirecionando...";
+        header('Location: index.php');
+        exit;
+    } else {
+        $mensagem = 'Usuário ou senha incorretos!';
+    }
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">

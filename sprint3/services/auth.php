@@ -64,7 +64,7 @@ class Auth{
         foreach ($this->usuario as $usuario) {
             if ($usuario['username'] === $username && password_verify($password, $usuario['password'])) {
                 
-                $_SESSION['auth'] = [
+                $_SESSION['Auth'] = [
                     'logado' => true,
                     'username' => $username,
                     'perfil' => $usuario['perfil'],

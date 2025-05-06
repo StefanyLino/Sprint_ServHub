@@ -2,7 +2,7 @@
 namespace Services;
 
 use models\{pessoas, funcionario};
-use services\auth;
+use services\Auth;
 
 // Classe para gerenciar a locação
 class Locadora {
