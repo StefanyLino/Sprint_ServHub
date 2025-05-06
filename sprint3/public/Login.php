@@ -38,13 +38,13 @@
     <div class="d-flex col-sm-12 " >
         <div class="container-fluid col-sm-6" id="fundo">
         </div>
-        <main class="container col-sm-6 d-flex align-items-start justify-content-center flex-column" id="login">
-            <section class="d-flex flex-column align-items-center justify-content-center col-sm-12">
+        <main class="container col-sm-6 d-flex align-items-center justify-content-center flex-column" id="login">
+            <section class="col-sm-9">
                 <div class=" titulo">
                     <h1 class="mb-2">Login</h1>
                     <p id="bem-vindo">Seja bem vindo(a)! Faça seu login abaixo.</p>
                 </div>
-                <form action="#" method="POST" class="form col-sm-9">
+                <form action="#" method="POST" class="form">
                     <div>
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" class="form-control input-custom shadow-sm" required />
