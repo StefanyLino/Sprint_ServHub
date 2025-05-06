@@ -16,9 +16,9 @@ class Auth{
     private function carregarUsuarios(): void
     {
         // Verifica se o arquivo existe e carrega os usuários
-        if (file_exists(EMPRESA_JSON)) {
+        if (file_exists(pessoas_JSON)) {
             // Lê o conteúdo do arquivo JSON e decodifica para um array
-            $conteudo = json_decode(file_get_contents(EMPRESA_JSON), true);
+            $conteudo = json_decode(file_get_contents(pessoas_JSON), true);
 
             $this->usuario = is_array($conteudo) ? $conteudo : [];
         } else {
@@ -35,6 +35,11 @@ class Auth{
                 'password' => password_hash('user123', PASSWORD_DEFAULT),
                 'perfil' => 'usuario',
                 ],
+                [
+                'username' => 'Miguel',
+                'password' => password_hash('user123', PASSWORD_DEFAULT),
+                'perfil' => 'empresa',
+                ]
             ];
             $this->salvarUsuarios();
         }
@@ -43,13 +48,13 @@ class Auth{
     // Método para salvar os usuários no arquivo JSON
     private function salvarUsuarios(): void
     {
-        $dir = dirname(EMPRESA_JSON);
+        $dir = dirname(pessoas_JSON);
         // Verifica se o diretório existe, caso contrário cria
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
         // Salva os usuários no arquivo JSON
-        file_put_contents(EMPRESA_JSON, json_encode($this->usuario, JSON_PRETTY_PRINT));
+        file_put_contents(pessoas_JSON, json_encode($this->usuario, JSON_PRETTY_PRINT));
     }
 
     // Método para login
@@ -76,9 +81,9 @@ class Auth{
     }
 
     // verifica se o usuário está logado
-    public static function verificarLogin(): bool{
-        return isset($_SESSION['auth']) && $_SESSION['auth']['perfil'] === $perfil;
-    } 
+    public static function verificarLogin(): bool {
+        return isset($_SESSION['auth']) && $_SESSION['auth']['logado'] === true;
+    }
 
     public static function isPerfil(string $perfil): bool
     {

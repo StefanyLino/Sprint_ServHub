@@ -15,9 +15,9 @@ class Locadora {
 
     private function carregarFuncionarios(): void
     {
-        if (file_exists(FUNCIONARIOS_JSON)) {
+        if (file_exists(pessoas_JSON)) {
             // Verifica se o arquivo JSON existe e carrega os dados
-            $dados = json_decode(file_get_contents(FUNCIONARIOS_JSON), true);
+            $dados = json_decode(file_get_contents(pessoas_JSON), true);
 
             foreach ($dados as $dado) {
                 if ($dado['profissao'] === 'funcionario') {
@@ -41,14 +41,14 @@ class Locadora {
             ];
         }
 
-        $dir = dirname(FUNCIONARIOS_JSON);
+        $dir = dirname(pessoas_JSON);
 
         // Verifica se o diretório existe, se não existir cria o diretório
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
 
-        file_put_contents(FUNCIONARIOS_JSON, json_encode($dados, JSON_PRETTY_PRINT));
+        file_put_contents(pessoas_JSON, json_encode($dados, JSON_PRETTY_PRINT));
     }
 
     public function adicionarFuncionario(funcionario $funcionario): void

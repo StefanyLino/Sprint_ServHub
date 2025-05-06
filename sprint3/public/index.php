@@ -10,6 +10,7 @@
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
     *{
         font-family: "Poppins", sans-serif;
@@ -23,10 +24,17 @@
         width: 100%;
         height: 90.3vh;
     }
+    .fonte-index{
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 10rem;
+        color:rgb(255, 255, 255);
+        text-align: center;
+        margin-top: 50px;
+    }
     #background {
-        background: url(Assets/Servhub.png);
-        background-size:cover;
-        margin: 0;
+        background: url(Assets/Fundo-index.png);
+        background-size: fill;
+        background-repeat: no-repeat;
         width: 100%;
         height: 100%;
     }
@@ -65,7 +73,6 @@
     } 
 
     .botão {
-        margin-top: 270px;
         padding: 15px 18px;
         color: white;
         text-decoration: none;
@@ -79,48 +86,44 @@
         margin-left: 15px;
         font-size: 1.6rem;
     }
-    @media (min-width: 427px) and (max-width: 768px){
-        #background{
-            background-image: url(Assets/ServHub-tablet.png);
+
+    #Serv{
+        margin-bottom: 50px;
+    }
+
+    @media (max-width: 426px) {
+        .fonte-index{
+            font-size: 4rem;
+            margin-top: 0;
         }
-        .botão{
-            margin-top: 130px;
+        .botão {
+            font-size: 1.5rem;
+        }
+        #Serv{
+            padding-left: 0px; 
+        }
+        #principal{
+            flex-direction: column-reverse!important;
+            height: 70%;
+        }
+        #logo{
+            width: 70%;
         }
     }
-    @media screen and (max-width: 320px){
-        #background{
-            background-image: url(Assets/ServHub-cel.png);
+    @media (min-width: 426px) and (max-width: 768px) {
+        .fonte-index{
+            font-size: 5rem;
+            margin-top: 0;
         }
-        .botão{
-            margin-top: 150px;
-            padding: 10px 13px;
-            font-size: 1.4rem;
+        .botão {
+            font-size: 1.5rem;
         }
-        #login {
-            padding: 8px 16px;
-            font-size: 1rem;
-            margin-right: 0;
+        #Serv{
+            padding-left: 0px; 
         }
-    }
-    @media (min-width: 321px) and (max-width: 376px){
-        #background{
-            background-image: url(Assets/ServHub-426.png);
-        }
-        .botão{
-            margin-top: 150px;
-            padding: 10px 13px;
-            font-size: 1.4rem;
-        }
-    }
-    @media (min-width: 377px) and (max-width: 426px){
-        #background{
-            background-image: url(Assets/ServHub-426.png);
-        }
-        .botão{
-            margin-top: 220px;
-            padding: 10px 13px;
-            font-size: 1.4rem;
-        }
+        #logo{
+            width: 90%;
+        } 
     }
 
 </style>
@@ -135,8 +138,14 @@
             </ul>
         </div>
     </nav>
-    <main class="d-flex container" id="principal">
-        <a href="cadastro.php" class="botão">Comece já</a>
+    <main class="d-flex flex-row-reverse" id="principal">
+        <div class="d-flex flex-column col-md-6 justify-content-center align-items-center" id="Serv">
+            <h1 class="fonte-index">SERVHUB</h1>
+            <a href="cadastro.php" class="botão">Comece já</a>
+        </div>
+        <div class="logo col-md-6 d-flex justify-content-center align-items-center">
+            <img src="Assets/Logo_Branca_transparente.png" class="img-fluid" id="logo" alt="">
+        </div>
     </main>
 </body>
 </html>
