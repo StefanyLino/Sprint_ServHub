@@ -33,12 +33,12 @@ class Auth{
                 [
                 'username' => 'usuario',
                 'password' => password_hash('user123', PASSWORD_DEFAULT),
-                'perfil' => 'usuario',
+                'perfil' => 'empresa',
                 ],
                 [
-                'username' => 'Miguel',
+                'username' => 'Gabriel',
                 'password' => password_hash('user123', PASSWORD_DEFAULT),
-                'perfil' => 'empresa',
+                'perfil' => 'funcionario',
                 ]
             ];
             $this->salvarUsuarios();
