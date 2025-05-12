@@ -1,5 +1,8 @@
 <?php
 
+
+    error_reporting(E_ALL);
+ini_set('display_errors', 1);
     // incluir o autoload
     require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -11,8 +14,8 @@
     // importar as classes Locadora e Auth
     use Services\{Locadora, Auth};
 
-    // inportar as classes Carro e moto
-    use Models\{funcionario};
+    // inportar as classes Carro e Moto
+    use Models\{Inicial, Experiente, Senior};
 
     // Verifica se o usuário está logado
     if(!Auth::verificarLogin()){

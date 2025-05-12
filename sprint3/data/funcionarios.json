@@ -1,38 +1,44 @@
 [
     {
+        "nome": "João Silva",
         "tipo": "funcionario",
         "email": "sla1@gmail.com",
-        "placa": 1200,
+        "experiencia": "Inicial",
         "disponivel": false
     },
     {
+        "nome": "Maria Oliveira",
         "tipo": "funcionario",
         "email": "sla2@gmail.com",
-        "placa": 900,
+        "experiencia": "Experiente",
         "disponivel": true
     },
     {
+        "nome": "Carlos Souza",
         "tipo": "funcionario",
         "email": "sla3@gmail.com",
-        "placa": 1500,
+        "experiencia": "Senior",
         "disponivel": true
     },
     {
+        "nome": "Ana Pereira",
         "tipo": "funcionario",
         "email": "sla4@gmail.com",
-        "placa": 1800,
+        "experiencia": "Inicial",
         "disponivel": true
     },
     {
+        "nome": "Fernanda Lima",
         "tipo": "funcionario",
         "email": "sla5@gmail.com",
-        "placa": 2000,
+        "experiencia": "Senior",
         "disponivel": true
     },
     {
+        "nome": "Rafael Costa",
         "tipo": "funcionario",
         "email": "sla6@gmail.com",
-        "placa": 2600,
+        "experiencia": "Experiente",
         "disponivel": true
     }
 ]

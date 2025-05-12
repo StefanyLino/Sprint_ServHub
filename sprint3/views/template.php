@@ -13,7 +13,7 @@ $funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.j
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Locadora de Veículos</title>    
+    <title>Sistema de Gestão de Funcionários</title>    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -104,7 +104,7 @@ $funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.j
         <div class="row mb-4">
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h1>Sistema de Locadora de Veículos</h1>
+                    <h1>Sistema de Gestão de Funcionários</h1>
                     <div class="d-flex align-items-center gap-3 user-info">
                         <!-- Ícone de usuário usando Bootstrap Icons -->
                         <span class="user-icon">
@@ -133,7 +133,7 @@ $funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.j
         <div class="col-<?= Auth::isAdmin() ? 'md-6':'12' ?>">
                 <div class="card h-100">
                     <div class="card-header">
-                        <h4 class="mb-0">Calcular Previsão de Aluguel</h4>
+                        <h4 class="mb-0">Calcular Previsão de Trabalho</h4>
                     </div>
                     <div class="card-body">
                         <form method="post" class="needs-validation" novalidate>
@@ -150,7 +150,7 @@ $funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.j
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Quantidade de Dias</label>
+                                <label class="form-label">Quantidade de Semanas</label>
                                 <input type="number" name="dias_calculo" class="form-control" value="1" required>
                             </div>
                             <button type="submit" name="calcular" class="btn btn-info w-100">Calcular Previsão</button>
@@ -160,20 +160,21 @@ $funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.j
             </div>
         </div>
 
-        <!-- Tabela de veículos cadastrados -->
+        <!-- Tabela de funcionários cadastrados -->
         <div class="row mt-4">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="mb-0">Veículos Cadastrados</h4>
+                        <h4 class="mb-0">Funcionários Cadastrados</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>email</th>
-                                        <th>preco</th>
+                                        <th>Nome</th>
+                                        <th>Experiência</th>
+                                        <th>Status</th>
                                         <?php if (Auth::isAdmin()): ?>
                                         <th>Ações</th>
                                         <?php endif; ?>
@@ -182,41 +183,33 @@ $funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.j
                                 <tbody>
                                     <?php foreach ($locadora->listarFuncionarios() as $funcionario): ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($funcionario->getEmail()) ?></td>
-                                        <td><?= htmlspecialchars($funcionario->getPreco()) ?></td>
+                                        <td><?= htmlspecialchars($funcionario->getNome()) ?></td>
+                                        <td><?= htmlspecialchars($funcionario->getExperiencia()) ?></td>
                                         <td>
                                             <span class="badge bg-<?= $funcionario->isDisponivel() ? 'success' : 'warning' ?>">
-                                                <?= $funcionario->isDisponivel() ? 'Disponível' : 'Alugado' ?>     
+                                                <?= $funcionario->isDisponivel() ? 'Disponível' : 'Ocupado' ?>     
                                             </span>
                                         </td>
                                         <?php if (Auth::isAdmin()): ?>
                                         <td>
                                             <div class="action-wrapper">
                                                 <form method="post" class="btn-group-actions">
-                                                    <input type="hidden" name="email" value="<?= htmlspecialchars($funcionario->getEmail()) ?>">
-
-                                                    <input type="hidden" name="preco" value="<?= htmlspecialchars($funcionario->getPreco()) ?>">
-                                                    
-                                                    <!-- Botão Deletar (sempre disponível para admin) -->
-                                                    <button type="submit" name="deletar" class="btn btn-danger btn-sm delete-btn">Deletar</button>
-                                                    
-                                                    <!-- Botões condicionais baseados no status do veículo -->
+                                                    <input type="hidden" name="nome" value="<?= htmlspecialchars($funcionario->getNome()) ?>">
                                                     <div class="rent-group">
                                                         <?php if (!$funcionario->isDisponivel()): ?>
-                                                        
-                                                        <!-- Veículo alugado: Botão Devolver -->
-                                                            <button type="submit" name="devolver" class="btn btn-warning btn-sm">Devolver</button>
-                                                        <?php else: ?>                                              <!-- Veículo disponível: Campo de dias e Botão Alugar -->
+                                                            <button type="submit" name="devolver" class="btn btn-warning btn-sm">Liberar</button>
+                                                        <?php else: ?>
                                                             <input type="number" name="dias" class="form-control days-input" value="1" min="1" required>
-                                                            <button type="submit" name="alugar" class="btn btn-primary btn-sm">Alugar</button>
+                                                            <button type="submit" name="alugar" class="btn btn-primary btn-sm">Alocar</button>
                                                         <?php endif; ?>
                                                     </div>
+                                                    <button type="submit" name="deletar" class="btn btn-danger btn-sm delete-btn">Remover</button>
                                                 </form>
                                             </div>
                                         </td>
                                         <?php endif; ?>
                                     </tr>
-                                    <?php endforeach; ?>                                    
+                                    <?php endforeach; ?>                                  
                                 </tbody>
                             </table>
                         </div>

@@ -1,7 +1,7 @@
 <?php
 namespace Services;
 
-use Models\{funcionario, pessoa};
+use Models\{Pessoa, Inicial, Experiente, Senior};
 
 // Classe para gerenciar a locação
 class Locadora {
@@ -19,8 +19,8 @@ class Locadora {
 
             foreach ($dados as $dado) {
                 if ($dado['tipo'] === 'funcionario') {
-                    $funcionario = new funcionario($dado['email'], $dado['placa']);
-                    $this->funcionarios[] = $funcionario;
+                    $pessoa = new pessoa($dado['nome'], $dado['experiencia']); // Alterado de 'email' e 'placa/preco' para 'nome' e 'experiencia'
+                    $this->funcionarios[] = $pessoa;
                 } 
             }
         }
@@ -32,8 +32,8 @@ class Locadora {
         foreach ($this->funcionarios as $funcionario) {
             $dados[] = [
                 'tipo' => ($funcionario instanceof funcionario) ? 'funcionario' : 'pessoa',
-                'email' => $funcionario->getEmail(),
-                'placa' => $funcionario->getPreco(),
+                'nome' => $funcionario->getNome(), // Alterado de 'getEmail' para 'getNome'
+                'experiencia' => $funcionario->getExperiencia(), // Alterado de 'getPreco' para 'getExperiencia'
                 'disponivel' => $funcionario->isDisponivel()
             ];
         }
@@ -50,26 +50,26 @@ class Locadora {
     }
 
     // Remover veículo
-    public function deletarVeiculo(string $email, string $preco): string {
+    public function deletarVeiculo(string $nome, string $experiencia): string { // Alterado de 'email' e 'preco' para 'nome' e 'experiencia'
         // Ajustar a comparação para garantir que os tipos sejam consistentes.
         foreach ($this->funcionarios as $key => $funcionario) {
-            $emailFuncionario = trim($funcionario->getEmail());
-            $precoFuncionario = (string) $funcionario->getPreco();
-            error_log("Comparando: email={$emailFuncionario} preco={$precoFuncionario} com email={$email} preco={$preco}");
-            if ($emailFuncionario === $email && $precoFuncionario === $preco) {
+            $nomeFuncionario = trim($funcionario->getNome()); // Alterado de 'getEmail' para 'getNome'
+            $experienciaFuncionario = (string) $funcionario->getExperiencia(); // Alterado de 'getPreco' para 'getExperiencia'
+            error_log("Comparando: nome={$nomeFuncionario} experiencia={$experienciaFuncionario} com nome={$nome} experiencia={$experiencia}");
+            if ($nomeFuncionario === $nome && $experienciaFuncionario === $experiencia) {
                 unset($this->funcionarios[$key]);
                 $this->funcionarios = array_values($this->funcionarios); // Reorganizar os índices
                 $this->salvarFuncionarios();
-                return "Funcionario '{$email}' removido com sucesso!";
+                return "Funcionario '{$nome}' removido com sucesso!";
             }
         }
         return "Funcionario não encontrado!";
     }
 
     // Alugar veículo por n dias
-    public function alugarFuncionario(string $email, int $dias = 1): string {
+    public function alugarFuncionario(string $nome, int $dias = 1): string { // Alterado de 'email' para 'nome'
         foreach ($this->funcionarios as $funcionario) {
-            if ($funcionario->getEmail() === $email && $funcionario->isDisponivel()) {
+            if ($funcionario->getNome() === $nome && $funcionario->isDisponivel()) { // Alterado de 'getEmail' para 'getNome'
                 $valorAluguel = $funcionario->calcularAluguel($dias);
                 $mensagem = $funcionario->alugar();
                 $this->salvarFuncionarios();
@@ -80,9 +80,9 @@ class Locadora {
     }
 
     // Devolver veículo
-    public function devolverFuncionario(string $email): string {
+    public function devolverFuncionario(string $nome): string { // Alterado de 'email' para 'nome'
         foreach ($this->funcionarios as $funcionario) {
-            if ($funcionario->getEmail() === $email && !$funcionario->isDisponivel()) {
+            if ($funcionario->getNome() === $nome && !$funcionario->isDisponivel()) { // Alterado de 'getEmail' para 'getNome'
                 $mensagem = $funcionario->devolver();
                 $this->salvarFuncionarios();
                 return $mensagem;
@@ -97,14 +97,14 @@ class Locadora {
     }
 
     // Ajustar a função calcularPrevisaoAluguel para usar o email do funcionário enviado no formulário.
-    public function calcularPrevisaoAluguel(int $dias, string $tipo, string $email): float {
+    public function calcularPrevisaoAluguel(int $dias, string $tipo, string $nome): float { // Alterado de 'email' para 'nome'
         if ($tipo === 'funcionario') {
             foreach ($this->funcionarios as $funcionario) {
-                if ($funcionario->getEmail() === $email) {
-                    return $dias * $funcionario->getPreco();
+                if ($funcionario->getNome() === $nome) { // Alterado de 'getEmail' para 'getNome'
+                    return $dias * $funcionario->getExperiencia(); // Alterado de 'getPreco' para 'getExperiencia'
                 }
             }
-            throw new RuntimeException("Funcionário com email {$email} não encontrado.");
+            throw new RuntimeException("Funcionário com nome {$nome} não encontrado.");
         }
         throw new InvalidArgumentException("Tipo de cálculo inválido: {$tipo}");
     }

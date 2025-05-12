@@ -1,39 +1,32 @@
 <?php
-namespace models;
+ namespace Models;
 
-// Classe abstrata para todos ps tipos de veículos
+ // Classe abstrata para todos os tipos de veículos
 
-abstract class Pessoa {
-    protected string $funcao;
-    protected string $cpf;
+ abstract class Pessoa {
+    protected string $nome;
+    protected string $experiencia;
     protected bool $disponivel;
 
-    public function __construct(string $funcao, string $cpf)
-    {
-        $this -> funcao = $funcao;
-        $this -> cpf = $cpf;
+    public function __construct (string $nome, string $experiencia){
+        $this -> nome = $nome;
+        $this -> experiencia = $experiencia;
         $this -> disponivel = true;
     }
 
-    // Função para calculo do aluguel
+    // Função para cálculo de aluguel
     abstract public function calcularAluguel(int $dias) : float;
 
-    public function isDisponivel():  bool {
+    public function isDisponivel():bool {
         return $this->disponivel;
     }
-
-    public function getFuncao():  string {
-        return $this->funcao;
+    public function getNome(): string {
+        return $this->nome;
     }
-
-    public function getCpf():  string {
-        return $this->cpf;
+    public function getExperiencia(): string {
+        return $this->experiencia;
     }
-
-    public function setDisponivel(bool $disponivel) : void {
+    public function setDisponivel(bool $disponivel): void {
         $this->disponivel = $disponivel;
     }
-}
-
-
-?>
+ }
