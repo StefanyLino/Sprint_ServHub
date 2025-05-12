@@ -1,40 +1,42 @@
 <?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-// Incluir o autoload do Composer para carregar automaticamente as classes utilizadas
+// incluir o auto load do composer para carregar automaticamente as classes utilizadas
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// Incluir o arquivo com as variáveis de configuração
+// incluir o arquivo com as variáveis
 require_once __DIR__ . '/../config/config.php';
 
 session_start();
 
-// Inserir a classe de autenticação
+// inserir a classe de autenticação
+
 use Services\Auth;
 
 // Inicializa a variável para mensagens de erro
 $mensagem = '';
 
-// Instanciar a classe de autenticação
+// instanciar a classe de autenticação
 $auth = new Auth();
 
-// Verifica se já foi autenticado
-if (Auth::verificarLogin()) {
+// verifica se já foi autenticado
+if ($auth->verificarLogin()) { // Alterado para usar a instância $auth
     echo "Usuário já autenticado. Redirecionando...";
     header('Location: index.php');
     exit;
 }
 
-// Verifica se o formulário foi enviado
+// verifica se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['email'] ?? '');
-    $password = trim($_POST['senha'] ?? '');
+    echo "Formulário enviado. Verificando login...";
+    $username = $_POST['email'] ?? '';
+    $password = $_POST['senha'] ?? '';
 
-    // Validação básica dos campos
-    if (empty($username) || empty($password)) {
-        $mensagem = 'Por favor, preencha todos os campos.';
-    } elseif ($auth->login($username, $password)) {
+    if ($auth->login($username, $password)) {
         echo "Login bem-sucedido. Redirecionando...";
-        header('Location: index.php');
+        header('Location: exibicao.php');
         exit;
     } else {
         $mensagem = 'Usuário ou senha incorretos!';
@@ -73,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="password" id="senha" name="senha" class="form-control input-custom shadow-sm"  required />
                         <a href="recuperar-senha.php" class="links" >Esqueci minha senha</a>
                     </div>
-                    <button type="submit" class="btn btn-submit mt-3 mb-3 w-100 " id="btn-custom"><a style="text-decoration: none; color:white" href="homepage-admin.php">Entrar</a></button>
+                    <button type="submit" class="btn btn-submit mt-3 mb-3 w-100 " id="btn-custom">Entrar</button>
                 </form>
                 <div class="d-flex justify-content-start flex-column align-items-start">
                     <p id="senha-esqueceu" class="mb-2">Não tem uma conta? <a href="cadastro.php" class="links">Cadastre-se</a></p>

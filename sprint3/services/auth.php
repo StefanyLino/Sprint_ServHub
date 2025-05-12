@@ -16,9 +16,9 @@ class Auth{
     private function carregarUsuarios(): void
     {
         // Verifica se o arquivo existe e carrega os usuários
-        if (file_exists(pessoas_JSON)) {
+        if (file_exists(ARQUIVO_USUARIOS)) {
             // Lê o conteúdo do arquivo JSON e decodifica para um array
-            $conteudo = json_decode(file_get_contents(pessoas_JSON), true);
+            $conteudo = json_decode(file_get_contents(ARQUIVO_USUARIOS), true);
 
             $this->usuario = is_array($conteudo) ? $conteudo : [];
         } else {
@@ -33,12 +33,12 @@ class Auth{
                 [
                 'username' => 'usuario',
                 'password' => password_hash('user123', PASSWORD_DEFAULT),
-                'perfil' => 'empresa',
+                'perfil' => 'usuario',
                 ],
                 [
                 'username' => 'Gabriel',
                 'password' => password_hash('user123', PASSWORD_DEFAULT),
-                'perfil' => 'funcionario',
+                'perfil' => 'admin',
                 ]
             ];
             $this->salvarUsuarios();
@@ -48,13 +48,13 @@ class Auth{
     // Método para salvar os usuários no arquivo JSON
     private function salvarUsuarios(): void
     {
-        $dir = dirname(pessoas_JSON);
+        $dir = dirname(ARQUIVO_USUARIOS);
         // Verifica se o diretório existe, caso contrário cria
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
         // Salva os usuários no arquivo JSON
-        file_put_contents(pessoas_JSON, json_encode($this->usuario, JSON_PRETTY_PRINT));
+        file_put_contents(ARQUIVO_USUARIOS, json_encode($this->usuario, JSON_PRETTY_PRINT));
     }
 
     // Método para login
@@ -64,7 +64,7 @@ class Auth{
         foreach ($this->usuario as $usuario) {
             if ($usuario['username'] === $username && password_verify($password, $usuario['password'])) {
                 
-                $_SESSION['Auth'] = [
+                $_SESSION['auth'] = [
                     'logado' => true,
                     'username' => $username,
                     'perfil' => $usuario['perfil'],

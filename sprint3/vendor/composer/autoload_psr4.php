@@ -6,5 +6,8 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Dev2oAno\\SprintServHub\\' => array($baseDir . '/src'),
+    'Services\\' => array($baseDir . '/services'),
+    'Models\\' => array($baseDir . '/models'),
+    'Interfaces\\' => array($baseDir . '/interfaces'),
+    'Dev2oAno\\Sprint3\\' => array($baseDir . '/src'),
 );

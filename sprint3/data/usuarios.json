@@ -1,0 +1,13 @@
+[
+    {
+        "username": "grupo4@gmail.com",
+        "password": "$2y$12$ihRpxLf/x6PtZE05PgMZhOWyCTL56B4sOu4z/WhRkdKJXtlacrZx6",
+        "perfil": "admin"
+    },
+    {
+        "username": "usuario",
+        "password": "$2y$12$wvvvfPfijyFu0WHnxJlsCugWwpZlMM1llCU4LA/6qB/H8CJ.snMQe",
+        "perfil": "usuario"
+    }
+    
+]

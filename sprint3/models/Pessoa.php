@@ -3,7 +3,7 @@ namespace models;
 
 // Classe abstrata para todos ps tipos de veículos
 
-abstract class pessoas {
+abstract class Pessoa {
     protected string $funcao;
     protected string $cpf;
     protected bool $disponivel;

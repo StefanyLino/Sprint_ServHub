@@ -1,0 +1,38 @@
+[
+    {
+        "tipo": "funcionario",
+        "email": "sla1@gmail.com",
+        "placa": 1200,
+        "disponivel": false
+    },
+    {
+        "tipo": "funcionario",
+        "email": "sla2@gmail.com",
+        "placa": 900,
+        "disponivel": true
+    },
+    {
+        "tipo": "funcionario",
+        "email": "sla3@gmail.com",
+        "placa": 1500,
+        "disponivel": true
+    },
+    {
+        "tipo": "funcionario",
+        "email": "sla4@gmail.com",
+        "placa": 1800,
+        "disponivel": true
+    },
+    {
+        "tipo": "funcionario",
+        "email": "sla5@gmail.com",
+        "placa": 2000,
+        "disponivel": true
+    },
+    {
+        "tipo": "funcionario",
+        "email": "sla6@gmail.com",
+        "placa": 2600,
+        "disponivel": true
+    }
+]
