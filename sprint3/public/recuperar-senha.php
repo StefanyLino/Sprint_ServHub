@@ -24,7 +24,7 @@
                         <input type="email" id="email" name="email" class="form-control input-custom shadow-sm" required />
                     </div>
                     <div>
-                        <label for="nova-senha"> Nova Senha:</label>
+                        <label for="nova-senha  "> Nova Senha:</label>
                         <input type="password" id="senha" name="nova-senha" class="form-control input-custom shadow-sm"  required />
                     </div>
                     <div>
@@ -33,8 +33,8 @@
                     </div>
                     <button type="submit" class="btn btn-submit mt-3 mb-3 w-100 " id="btn-custom"><a style="text-decoration: none; color:white" href="Login.php">Alterar Senha</a></button>
                 </form>
-                <div class="d-flex justify-content-start flex-column align-items-start">
-                    <a href="Index.php" class="links" >Voltar <i class="bi bi-caret-right-fill"></i></a>
+                <div class="">
+                    <a href="Login.php" class="links" >Voltar <i class="bi bi-caret-right-fill"></i></a>
                 </div>
             </section>
         </main>
