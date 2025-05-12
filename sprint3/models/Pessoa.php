@@ -1,32 +1,41 @@
 <?php
- namespace Models;
+namespace Models;
 
- // Classe abstrata para todos os tipos de veículos
+// Classe abstrata para todos os tipos de veículos
 
- abstract class Pessoa {
+abstract class Pessoa {
     protected string $nome;
-    protected string $experiencia;
-    protected bool $disponivel;
+    protected string $email;
+    protected int $experiencia;
+    protected bool $disponivel = true;
 
-    public function __construct (string $nome, string $experiencia){
-        $this -> nome = $nome;
-        $this -> experiencia = $experiencia;
-        $this -> disponivel = true;
+    public function __construct(string $nome, string $email, int $experiencia) {
+        $this->nome = $nome;
+        $this->email = $email;
+        $this->experiencia = $experiencia;
     }
 
-    // Função para cálculo de aluguel
-    abstract public function calcularAluguel(int $dias) : float;
-
-    public function isDisponivel():bool {
-        return $this->disponivel;
-    }
     public function getNome(): string {
         return $this->nome;
     }
-    public function getExperiencia(): string {
+
+    public function getExperiencia(): int {
         return $this->experiencia;
     }
-    public function setDisponivel(bool $disponivel): void {
-        $this->disponivel = $disponivel;
+
+    public function isDisponivel(): bool {
+        return $this->disponivel;
     }
- }
+
+    public function alugar(): string {
+        $this->disponivel = false;
+        return "Funcionário {$this->nome} alugado.";
+    }
+
+    public function devolver(): string {
+        $this->disponivel = true;
+        return "Funcionário {$this->nome} devolvido.";
+    }
+
+    abstract public function calcularAluguel(int $dias): float;
+}

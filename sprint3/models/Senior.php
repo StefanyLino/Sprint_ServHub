@@ -1,14 +1,16 @@
 <?php
- namespace Models;
+namespace Models;
+
+require_once __DIR__ . '/../config/config.php';
+
 use Interfaces\Locavel;
 
 
 
-class Funcionario extends Pessoa implements Locavel { // Alterado para herdar de Pessoa
+class Senior extends Pessoa implements Locavel { // Alterado para herdar de Pessoa
 
     public function calcularAluguel(int $dias): float {
-        return $dias * SEMANAL_SENIOR; // Constante ajustada para Senior
-
+        return $dias * SEMANAL_SENIOR;
     }
 
     public function alugar(): string{
@@ -26,5 +28,9 @@ class Funcionario extends Pessoa implements Locavel { // Alterado para herdar de
             return "Funcionario '{$this->nome}' devolvido com sucesso!";
         }
         return "Funcionario '{$this->nome}' está disponivel.";
+    }
+
+    public function getNivelExperiencia(): string {
+        return 'Senior';
     }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace Services;
 
-use Models\{Pessoa, Inicial, Experiente, Senior};
+use Models\{Pessoa, Iniciante, Experiente, Senior, Intermediario, Avancado};
 
 // Classe para gerenciar a locação
 class Locadora {
@@ -13,15 +13,19 @@ class Locadora {
 
     // Adicionar logs para depuração ao carregar e salvar funcionários.
     private function carregarFuncionarios(): void {
-        if (file_exists(ARQUIVO_JSON)) {
-            $dados = json_decode(file_get_contents(ARQUIVO_JSON), true);
-            error_log("Carregando dados do JSON: " . print_r($dados, true));
+        $dados = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.json'), true);
 
-            foreach ($dados as $dado) {
-                if ($dado['tipo'] === 'funcionario') {
-                    $pessoa = new pessoa($dado['nome'], $dado['experiencia']); // Alterado de 'email' e 'placa/preco' para 'nome' e 'experiencia'
-                    $this->funcionarios[] = $pessoa;
-                } 
+        foreach ($dados as $funcionario) {
+            $experiencia = strtolower($funcionario['experiencia']);
+            $nome = $funcionario['nome'];
+            $disponivel = $funcionario['disponivel'];
+
+            if ($experiencia === 'iniciante') {
+                $this->funcionarios[] = new Iniciante($nome, '', 1, $disponivel);
+            } elseif ($experiencia === 'experiente') {
+                $this->funcionarios[] = new Experiente($nome, '', 3, $disponivel);
+            } elseif ($experiencia === 'senior') {
+                $this->funcionarios[] = new Senior($nome, '', 5, $disponivel);
             }
         }
     }
@@ -31,39 +35,31 @@ class Locadora {
 
         foreach ($this->funcionarios as $funcionario) {
             $dados[] = [
-                'tipo' => ($funcionario instanceof funcionario) ? 'funcionario' : 'pessoa',
-                'nome' => $funcionario->getNome(), // Alterado de 'getEmail' para 'getNome'
-                'experiencia' => $funcionario->getExperiencia(), // Alterado de 'getPreco' para 'getExperiencia'
+                'tipo' => ($funcionario instanceof Iniciante) ? 'iniciante' : (($funcionario instanceof Experiente) ? 'experiente' : 'senior'),
+                'nome' => $funcionario->getNome(),
+                'experiencia' => strtolower($funcionario->getNivelExperiencia()),
                 'disponivel' => $funcionario->isDisponivel()
             ];
         }
 
         error_log("Salvando dados no JSON: " . print_r($dados, true));
 
-        $dir = dirname(ARQUIVO_JSON);
+        $arquivoJson = __DIR__ . '/../data/funcionarios.json';
 
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-
-        file_put_contents(ARQUIVO_JSON, json_encode($dados, JSON_PRETTY_PRINT));
+        file_put_contents($arquivoJson, json_encode($dados, JSON_PRETTY_PRINT));
     }
 
-    // Remover veículo
-    public function deletarVeiculo(string $nome, string $experiencia): string { // Alterado de 'email' e 'preco' para 'nome' e 'experiencia'
-        // Ajustar a comparação para garantir que os tipos sejam consistentes.
+    // Remover funcionário
+    public function removerFuncionario(string $nome): string {
         foreach ($this->funcionarios as $key => $funcionario) {
-            $nomeFuncionario = trim($funcionario->getNome()); // Alterado de 'getEmail' para 'getNome'
-            $experienciaFuncionario = (string) $funcionario->getExperiencia(); // Alterado de 'getPreco' para 'getExperiencia'
-            error_log("Comparando: nome={$nomeFuncionario} experiencia={$experienciaFuncionario} com nome={$nome} experiencia={$experiencia}");
-            if ($nomeFuncionario === $nome && $experienciaFuncionario === $experiencia) {
+            if ($funcionario->getNome() === $nome) {
                 unset($this->funcionarios[$key]);
                 $this->funcionarios = array_values($this->funcionarios); // Reorganizar os índices
                 $this->salvarFuncionarios();
-                return "Funcionario '{$nome}' removido com sucesso!";
+                return "Funcionário '{$nome}' removido com sucesso!";
             }
         }
-        return "Funcionario não encontrado!";
+        return "Erro: Funcionário '{$nome}' não encontrado.";
     }
 
     // Alugar veículo por n dias
@@ -96,16 +92,41 @@ class Locadora {
         return $this->funcionarios;
     }
 
-    // Ajustar a função calcularPrevisaoAluguel para usar o email do funcionário enviado no formulário.
-    public function calcularPrevisaoAluguel(int $dias, string $tipo, string $nome): float { // Alterado de 'email' para 'nome'
-        if ($tipo === 'funcionario') {
-            foreach ($this->funcionarios as $funcionario) {
-                if ($funcionario->getNome() === $nome) { // Alterado de 'getEmail' para 'getNome'
-                    return $dias * $funcionario->getExperiencia(); // Alterado de 'getPreco' para 'getExperiencia'
-                }
-            }
-            throw new RuntimeException("Funcionário com nome {$nome} não encontrado.");
+    // Calcular previsão do valor de aluguel
+    public function calcularPrevisaoAluguel(int $dias, string $tipo): float {
+        $tipo = strtolower($tipo); // Normalizar o tipo para minúsculas
+
+        if ($tipo === 'iniciante') {
+            return (new Iniciante('', '', 1))->calcularAluguel($dias);
+        } elseif ($tipo === 'experiente') {
+            return (new Experiente('', '', 3))->calcularAluguel($dias);
+        } elseif ($tipo === 'senior') {
+            return (new Senior('', '', 5))->calcularAluguel($dias);
         }
-        throw new InvalidArgumentException("Tipo de cálculo inválido: {$tipo}");
+
+        throw new \InvalidArgumentException("Tipo de funcionário inválido.");
+    }
+
+    public function alocarFuncionario(string $nome, int $dias): string {
+        foreach ($this->funcionarios as $funcionario) {
+            if ($funcionario->getNome() === $nome && $funcionario->isDisponivel()) {
+                $valorAluguel = $funcionario->calcularAluguel($dias);
+                $funcionario->alugar();
+                $this->salvarFuncionarios();
+                return "Funcionário '{$nome}' alugado por {$dias} dias. Valor total: R$ " . number_format($valorAluguel, 2, ',', '.');
+            }
+        }
+        return "Erro: Funcionário '{$nome}' não encontrado ou indisponível.";
+    }
+
+    public function liberarFuncionario(string $nome): string {
+        foreach ($this->funcionarios as $funcionario) {
+            if ($funcionario->getNome() === $nome && !$funcionario->isDisponivel()) {
+                $mensagem = $funcionario->devolver();
+                $this->salvarFuncionarios();
+                return $mensagem;
+            }
+        }
+        return "Erro: Funcionário '{$nome}' já está disponível ou não foi encontrado.";
     }
 }

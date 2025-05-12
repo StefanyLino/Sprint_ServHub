@@ -138,15 +138,12 @@ $funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.j
                     <div class="card-body">
                         <form method="post" class="needs-validation" novalidate>
                             <!-- Adicionar um campo oculto para enviar o tipo de cálculo como 'funcionario'. -->
-                            <input type="hidden" name="tipo_calculo" value="funcionario">
                             <div class="mb-3">
-                                <label class="form-label">Selecione o Funcionário</label>
-                                <select name="email_funcionario" class="form-select" required>
-                                    <?php foreach ($funcionarios as $funcionario): ?>
-                                        <option value="<?= htmlspecialchars($funcionario['email']) ?>">
-                                            <?= htmlspecialchars($funcionario['email']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
+                                <label for="" class="form-label">Nivel de Experiencia</label>
+                                <select name="tipo_calculo" class="form-select" required>
+                                    <option value="iniciante">Iniciante</option>
+                                    <option value="experiente">Experiente</option>
+                                    <option value="senior">Senior</option>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -184,7 +181,7 @@ $funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.j
                                     <?php foreach ($locadora->listarFuncionarios() as $funcionario): ?>
                                     <tr>
                                         <td><?= htmlspecialchars($funcionario->getNome()) ?></td>
-                                        <td><?= htmlspecialchars($funcionario->getExperiencia()) ?></td>
+                                        <td><?= htmlspecialchars($funcionario->getNivelExperiencia()) ?></td>
                                         <td>
                                             <span class="badge bg-<?= $funcionario->isDisponivel() ? 'success' : 'warning' ?>">
                                                 <?= $funcionario->isDisponivel() ? 'Disponível' : 'Ocupado' ?>     
@@ -197,10 +194,10 @@ $funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.j
                                                     <input type="hidden" name="nome" value="<?= htmlspecialchars($funcionario->getNome()) ?>">
                                                     <div class="rent-group">
                                                         <?php if (!$funcionario->isDisponivel()): ?>
-                                                            <button type="submit" name="devolver" class="btn btn-warning btn-sm">Liberar</button>
+                                                            <button type="submit" name="devolver" class="btn btn-warning btn-sm">Devolver</button>
                                                         <?php else: ?>
                                                             <input type="number" name="dias" class="form-control days-input" value="1" min="1" required>
-                                                            <button type="submit" name="alugar" class="btn btn-primary btn-sm">Alocar</button>
+                                                            <button type="submit" name="alugar" class="btn btn-primary btn-sm">Alugar</button>
                                                         <?php endif; ?>
                                                     </div>
                                                     <button type="submit" name="deletar" class="btn btn-danger btn-sm delete-btn">Remover</button>

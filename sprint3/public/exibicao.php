@@ -49,24 +49,58 @@ ini_set('display_errors', 1);
             }
         }
 
-       if(isset($_POST['alugar'])){
-            $dias = isset($_POST['dias']) ? (int)$_POST['dias'] :1;
-            $mensagem = $locadora->alugarFuncionario($_POST['email'], $dias);
+        if(isset($_POST['adicionar'])){
+            $nome = $_POST['nome'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $tipo = $_POST['tipo'] ?? '';
+
+            if (empty($nome) || empty($email) || empty($tipo)) {
+                $mensagem = "Erro: Todos os campos são obrigatórios para adicionar um funcionário.";
+            } else {
+                $funcionario = ($tipo === 'Carro') ? new Carro($nome, $email) : new Moto($nome, $email);
+                $locadora->adicionarFuncionario($funcionario);
+                $mensagem = "Funcionário adicionado com sucesso!";
+            }
+        }
+        elseif(isset($_POST['alugar'])){
+            $nome = $_POST['nome'] ?? '';
+            $dias = isset($_POST['dias']) ? (int)$_POST['dias'] : 1;
+
+            if (empty($nome)) {
+                $mensagem = "Erro: O nome do funcionário é obrigatório para alocar.";
+            } else {
+                $mensagem = $locadora->alocarFuncionario($nome, $dias);
+            }
         }
         elseif(isset($_POST['devolver'])){
-            $mensagem = $locadora->devolverFuncionario($_POST['email']);
+            $nome = $_POST['nome'] ?? '';
+
+            if (empty($nome)) {
+                $mensagem = "Erro: O nome do funcionário é obrigatório para liberar.";
+            } else {
+                $mensagem = $locadora->liberarFuncionario($nome);
+            }
         }
         elseif(isset($_POST['deletar'])){
-            $mensagem = $locadora->deletarVeiculo($_POST['email'], $_POST['preco']);
+            $nome = $_POST['nome'] ?? '';
+
+            if (empty($nome)) {
+                $mensagem = "Erro: O nome do funcionário é obrigatório para remover.";
+            } else {
+                $mensagem = $locadora->removerFuncionario($nome);
+            }
         }
-        // Ajustar a chamada para calcularPrevisaoAluguel para incluir o email do funcionário.
         elseif(isset($_POST['calcular'])){
             $dias = (int)$_POST['dias_calculo'];
-            $tipo = $_POST['tipo_calculo'] ?? 'funcionario';
-            $email = $_POST['email_funcionario']; // Obter o email do funcionário selecionado
-            $valor = $locadora->calcularPrevisaoAluguel($dias, $tipo, $email);
+            $tipo = $_POST['tipo_calculo'] ?? '';
 
-            $mensagem = "Previsão de valor para {$dias} dias: R$ " . number_format($valor, 2, ',', '.');
+            // Verificar se o tipo selecionado é válido
+            if (!in_array($tipo, ['iniciante', 'experiente', 'senior'])) {
+                $mensagem = "Erro: Tipo de funcionário inválido.";
+            } else {
+                $valor = $locadora->calcularPrevisaoAluguel($dias, $tipo);
+                $mensagem = "Previsão de trabalho para {$dias} dias ({$tipo}): R$ " . number_format($valor, 2, ',', '.');
+            }
         }
 
     }

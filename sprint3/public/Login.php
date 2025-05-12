@@ -24,7 +24,7 @@ $auth = new Auth();
 // verifica se já foi autenticado
 if ($auth->verificarLogin()) { // Alterado para usar a instância $auth
     echo "Usuário já autenticado. Redirecionando...";
-    header('Location: index.php');
+    header('Location: exibicao.php');
     exit;
 }
 
