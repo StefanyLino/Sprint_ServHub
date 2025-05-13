@@ -22,7 +22,7 @@ body{
     height: 100vh;
 }
 #fundo {
-    height: 100vh !important;
+    height: 100vh;
     background-image: url(../Assets/Login-fundo.png);
     background-size: cover;
     background-position: center;
@@ -221,6 +221,25 @@ body{
     }
     #responsivo{
         display: block;
+    }
+    #form-login{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0!important;
+    }
+    #texto-login{
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 40px;
+    }
+    #texto-cadastro{
+        text-align: center;
+        align-self: center;
+    }
+    #form-login form input{
+        margin-bottom: 5px;
     }
 
 }

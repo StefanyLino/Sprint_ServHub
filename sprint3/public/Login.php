@@ -57,21 +57,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="d-flex col-sm-12 " >
-        <div class="container-fluid col-sm-6" id="fundo">
+        <div class="col-sm-6" id="fundo">
         </div>
-        <main class="container col-sm-6 d-flex align-items-center justify-content-center flex-column" id="login">
-            <section class="col-sm-9">
-                <div>
+        <main class="container col-sm-6 d-flex align-items-center justify-content-center flex-column">
+            <section class="col-sm-9" id="form-login">
+                <div id="texto-login">
                     <h1 class="mb-2">Login</h1>
                     <p id="bem-vindo">Seja bem vindo(a)! Faça seu login abaixo.</p>
                 </div>
-                <form action="#" method="POST" class="form">
+                <form action="#" method="POST" class="form w-100">
                     <div>
-                        <label for="email">Email:</label>
+                        <label for="email" class="fw-normal">Email:</label>
                         <input type="email" id="email" name="email" class="form-control input-custom shadow-sm" required />
                     </div>
                     <div>
-                        <label for="senha">Senha:</label>
+                        <label for="senha" class="fw-normal">Senha:</label>
                         <input type="password" id="senha" name="senha" class="form-control input-custom shadow-sm"  required />
                         <a href="recuperar-senha.php" class="links" >Esqueci minha senha</a>
                     </div>
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
                 <div class="d-flex justify-content-start flex-column align-items-start">
                     <p id="senha-esqueceu" class="mb-2">Não tem uma conta? <a href="cadastro.php" class="links">Cadastre-se</a></p>
-                    <a href="Index.php" class="links" >Voltar <i class="bi bi-caret-right-fill"></i></a>
+                    <div id="texto-cadastro" class="aling-self-center"><a href="Index.php" class="links" >Voltar <i class="bi bi-caret-right-fill"></i></a></div>
                 </div>
             </section>
         </main>
