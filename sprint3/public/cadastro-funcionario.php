@@ -39,19 +39,12 @@
                         <input type="text" name="atuacao" id="atuacao" required class="form-control shadow-sm" placeholder="Digite sua area de atuação(Ex. Engenheiro, Medico e etc)">
                     </div>
                     <div>
-<<<<<<< Updated upstream
                         <label for="experiencia" class="fw-normal">Nivel de Experiência</label>
                         <select class="form-control mb-2" name="nivel-experiencia" id="">
                             <option value="" disabled selected>Selecione seu nível de experiência</option>
                             <option value="iniciante">Iniciante</option>
                             <option value="experiente">Experiente</option>
                             <option value="senior">Sênior</option>
-=======
-                        <select name="experiencia" id="experiencia">
-                            <option value="Iniciante">Iniciante</option>
-                            <option value="Experiente">Experiente</option>
-                            <option value="Senior">Senior</option>
->>>>>>> Stashed changes
                         </select>
                     </div>
                     <button class="btn btn-submit w-100 mb-2" id="btn-custom">Cadastre-se</button>

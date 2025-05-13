@@ -54,7 +54,7 @@ if (strlen($_POST["senha_funcionario"])) {
     $funcionairo[] = $novoFuncionairo;
 
     // transforma os dados novamente em JSON e salva no arquivo usuarios.json
-    file_put_contents(__DIR__ . '/../data/funcionarios.json', json_encode($usuario, JSON_PRETTY_PRINT));
+    file_put_contents(__DIR__ . '/../data/funcionarios.json', json_encode($funcionairo, JSON_PRETTY_PRINT));
 
     echo "dados salvos com sucesso ! <a href='cadastro-empresa.php'>voltar </a>";
 } else {
