@@ -20,9 +20,10 @@ $novoDado = [
     "nome" => $_POST["nome_funcionario"],
     "email" => $_POST["email_funcionario"],
     "senha" => $senhaCodificada, // Senha codificada
-    "cnpj" => $_POST["cpf"],
+    "cpf" => $_POST["cpf"],
     "endereco" => $_POST["atuacao"],
-    "experiencia" => $_POST["experiencia"]
+    "descricao" => "",
+    "experiencia" => $_POST["nivel-experiencia"]
 
 ];
 
