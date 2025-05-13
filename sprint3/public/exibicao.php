@@ -37,7 +37,7 @@ ini_set('display_errors', 1);
 
     $usuario = Auth::getUsuario();
 
-    // veriifica os dados do formupario via POST
+    // veriifica os dados do formulario via POST
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         // verificar se requer permissão de administrador
@@ -106,4 +106,4 @@ ini_set('display_errors', 1);
     }
 
     renderizar:
-    require_once __DIR__ . '/../views/template.php';
+    require_once __DIR__ . '/../public/homepage.php';
