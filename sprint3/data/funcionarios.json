@@ -3,7 +3,7 @@
         "tipo": "iniciante",
         "nome": "Jo\u00e3o Silva",
         "experiencia": "iniciante",
-        "disponivel": true
+        "disponivel": false
     },
     {
         "tipo": "experiente",
