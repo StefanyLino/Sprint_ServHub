@@ -13,6 +13,10 @@
         "username": "ford@gmail.com",
         "perfil": "empresa",
         "password": "$2y$12$EDCLf.4Z.bH1kD.hOiDuUe\/L42ZBzPNuimTn6FOCbeBHM3jvS51Ju"
+    },
+    {
+        "username": "carlos@gmail.com",
+        "perfil": "funcionario",
+        "password": "$2y$12$68RRUJlkHh24R2vYNb3Q1edYiTLNFRVxWAotjdTscIXU\/XVT325lG"
     }
-    
 ]

@@ -2,11 +2,14 @@
 // Corrigir o caminho do arquivo JSON para usar __DIR__
 $dados = json_decode(file_get_contents(__DIR__ . '/../data/data_funcionario.json'), true);
 $usuario = json_decode(file_get_contents(__DIR__ . '/../data/usuarios.json'), true);
-$funcionairo = json_decode(file_get_contents(__DIR__ . '/../data/funcionario.json'), true);
+$funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.json'), true);
 
 // verifica se deu certo a comverção
 if (!is_array($dados)){
     $dados = [];
+}
+if (!is_array($funcionarios)) {
+    $funcionarios = [];
 }
 
 // Codificar a senha antes de salvar
@@ -19,7 +22,7 @@ $novoDado = [
     "senha" => $senhaCodificada, // Senha codificada
     "cnpj" => $_POST["cpf"],
     "endereco" => $_POST["atuacao"],
-    "experiencia" => $_POST["experiencia"],
+    "experiencia" => $_POST["experiencia"]
 
 ];
 
@@ -31,14 +34,14 @@ $novoUsuario = [
 ];
 
 $novoFuncionario = [
-    "tipo" => $_POST["experiencia"],
+    "tipo" => $_POST["nivel-experiencia"],
     "nome" => $_POST["nome_funcionario"],
-    "experiencia" => $_POST["experiencia"],
-    "disponivel" => true,
+    "experiencia" => $_POST["nivel-experiencia"],
+    "disponivel" => true
 ];
 
 // adiciona os novos dados aos já existentes
-if (strlen($_POST["senha_funcionario"])) {
+if (strlen($_POST["nome_funcionario"])) {
     $dados[] = $novoDado;
 
     // transforma os dados novamente em JSON e salva no arquivo data_empresa.json
@@ -50,11 +53,11 @@ if (strlen($_POST["senha_funcionario"])) {
     // transforma os dados novamente em JSON e salva no arquivo usuarios.json
     file_put_contents(__DIR__ . '/../data/usuarios.json', json_encode($usuario, JSON_PRETTY_PRINT));
 
-    // Adicionar o novo usuário ao array de usuários
-    $funcionairo[] = $novoFuncionairo;
+    // Adicionar o novo funcionário ao array de funcionários
+    $funcionarios[] = $novoFuncionario;
 
-    // transforma os dados novamente em JSON e salva no arquivo usuarios.json
-    file_put_contents(__DIR__ . '/../data/funcionarios.json', json_encode($funcionairo, JSON_PRETTY_PRINT));
+    // Salvar o array atualizado em funcionarios.json
+    file_put_contents(__DIR__ . '/../data/funcionarios.json', json_encode($funcionarios, JSON_PRETTY_PRINT));
 
     echo "dados salvos com sucesso ! <a href='cadastro-empresa.php'>voltar </a>";
 } else {
@@ -67,4 +70,4 @@ if (strlen($_POST["senha_funcionario"])) {
     setTimeout(() => {
       window.location.href = "Login.php"; 
     }, 0); 
-</script> 
+</script>

@@ -34,5 +34,11 @@
         "nome": "Lucas Almeida",
         "experiencia": "senior",
         "disponivel": true
+    },
+    {
+        "tipo": "senior",
+        "nome": "Carlos Pereira",
+        "experiencia": "senior",
+        "disponivel": true
     }
 ]
