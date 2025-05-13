@@ -199,9 +199,6 @@ body{
 
 /* card principal */
 
-.card-title{
-    font-weight: bold;
-}
 
 #saiba{
     background-color: #320A59;
@@ -212,6 +209,7 @@ body{
     display: none;
 }
 
+/* Celular */
 @media screen and (max-width:426px){
     #principal{
         display: none;
@@ -293,10 +291,34 @@ body{
     }
   }
 
+
 /* laptop */
 
 @media(min-width: 991px) and (max-width:1024px){
     #formulario{
         width: 40%;
     }
+}
+
+
+/* Card */
+
+#titulo-card{
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+#texto-card{
+    width: 60%;
+    margin-top: 5px;
+    margin-left: 15px;
+    font-size: 1.5em;
+    font-weight: lighter;
+}
+
+#logo-card{
+    width: 40%;
+    margin-right: 40px;
 }

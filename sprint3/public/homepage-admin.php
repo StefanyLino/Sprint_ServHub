@@ -12,15 +12,10 @@ $usuario = Auth::getUsuario();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servhub-ADM</title>
-
-    <!-- Link Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <!-- Link ícones do bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <link rel="stylesheet" href="style.css">
+    <title>Servhub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg primary-bg-color py-4 px-2" id="navbar">
@@ -76,10 +71,10 @@ $usuario = Auth::getUsuario();
                     <div class="card mb-4" id="principal">
                         <div class="card-body d-flex flex-row justify-content-between">
                             <div>
-                                <h1 class="card-title">ServHub</h5>
-                                <p class="card-text">Conectando talentos e impulsionando oportunidades!</p>
+                                <h1 class="card-title" id="titulo-card">SERVHUB</h5>
+                                <p class="card-text" id="texto-card">Conectando talentos e impulsionando oportunidades!</p>
                             </div>
-                            <img style="width: 250px;" src="Assets/logo.png" alt="" class="img-fluid">
+                            <img id="logo-card" src="Assets/logo.png" alt="" class="img-fluid">
                         </div>
                     </div>
 
