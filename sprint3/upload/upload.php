@@ -1,5 +1,3 @@
-
-
 <?php
 // Verifica se um arquivo foi enviado
 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -40,23 +38,60 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     } else {
         echo "Erro ao mover o arquivo.";
     }
-} else {
+} elseif (isset($_FILES['image'])) {
+    echo "Erro ao mover o arquivo.";
+}
+
+// Arquivos curriculo
+if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+    $uploadDir = 'uploads2/';
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
+    $fileTmp = $_FILES['file']['tmp_name'];
+    $fileName = basename($_FILES['file']['name']);
+    $filePath = $uploadDir . $fileName;
+
+    // Verifica o tipo do arquivo (imagem ou PDF)
+    $fileType = mime_content_type($fileTmp);
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
+
+    if (!in_array($fileType, $allowedTypes)) {
+        echo "Tipo de arquivo não permitido.";
+        exit;
+    }
+
+    if (move_uploaded_file($fileTmp, $filePath)) {
+        $fileData = [
+            'filename' => $fileName,
+            'path' => $filePath,
+            'type' => $fileType,
+            'uploaded_at' => date('Y-m-d H:i:s')
+        ];
+
+        $jsonFile = 'arquivos.json';
+        $existingData = [];
+
+        if (file_exists($jsonFile)) {
+            $jsonContent = file_get_contents($jsonFile);
+            $existingData = json_decode($jsonContent, true) ?? [];
+        }
+
+        $existingData[] = $fileData;
+        file_put_contents($jsonFile, json_encode($existingData, JSON_PRETTY_PRINT));
+
+        echo "Arquivo enviado com sucesso!";
+    } else {
+        echo "Erro ao mover o arquivo.";
+    }
+} elseif (isset($_FILES['file'])) {
     echo "Nenhum arquivo foi enviado.";
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-    <label for="image">Selecione uma imagem:</label>
-    <input type="file" name="image" id="image" accept="image/*" required>
-    <input type="submit" value="Enviar">
-</form>
-</body>
-</html>
+<script>
+    setTimeout(() => {
+      window.location.href = "../public/accountpage.php"; 
+    }, 0); 
+</script>
