@@ -34,7 +34,7 @@ $dado_funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/data_func
                     <div class="card mb-4" id="responsivo">
                         <div class="card-body d-flex flex-row justify-content-around">
                             <img style="width: 50px;" src="Assets/adm.png" alt="" class="img-fluid">
-                            <button id="saiba" class="btn btn-success">Editar perfil</button>
+                            <a href="exibicaoaccount.php" class="btn btn-submit w-100 mb-2" id="btn-custom">Editar Perfil</a>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@ $dado_funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/data_func
                                     <p style="font-size: 0.8rem;" class="mt-0"><?= htmlspecialchars($dados['email']) ?></p>
                                 <?php endforeach; ?>
                             <?php endif; ?>
-                            <a href="accountpage.php" class="btn btn-submit w-100 mb-2" id="btn-custom">Editar Perfil</a>
+                            <a href="exibicaoaccount.php" class="btn btn-submit w-100 mb-2" id="btn-custom">Editar Perfil</a>
                         </div>
                     </div>
                 </div>
