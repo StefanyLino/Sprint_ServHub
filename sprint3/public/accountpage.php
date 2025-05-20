@@ -14,16 +14,9 @@ foreach ($dado_funcionarios as $dado) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servhub</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
-</head>
+<?php
+    include 'htmls/head.html';
+?>
 <body>
     <nav class="navbar navbar-expand-lg primary-bg-color py-4 px-2" id="navbar">
         <div class="container">
@@ -33,6 +26,7 @@ foreach ($dado_funcionarios as $dado) {
                     <i class="bi bi-list"></i>
                 </button>
             </div>
+
             <div class="container col-sm-8 mx-2" id="formulario">
                 <form class="d-flex" id="search-form">
                     <i class="bi bi-search text-black mt-2"></i>
@@ -40,6 +34,7 @@ foreach ($dado_funcionarios as $dado) {
                     <button class="btn secondary-bg-color text-black" type="submit">Pesquisar</button>
                 </form>
             </div>
+
             <div class="collapse navbar-collapse" id="navbar-items">
                 <ul class="navbar-nav mb-2 mb-lg-0 ">
                     <li class="nav-item mx-3">
