@@ -30,12 +30,10 @@ if ($auth->verificarLogin()) { // Alterado para usar a instância $auth
 
 // verifica se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    echo "Formulário enviado. Verificando login...";
     $username = $_POST['email'] ?? '';
     $password = $_POST['senha'] ?? '';
 
     if ($auth->login($username, $password)) {
-        echo "Login bem-sucedido. Redirecionando...";
         header('Location: exibicao.php');
         exit;
     } else {

@@ -1,17 +1,22 @@
 [
     {
         "username": "grupo4@gmail.com",
-        "password": "$2y$12$ihRpxLf\/x6PtZE05PgMZhOWyCTL56B4sOu4z\/WhRkdKJXtlacrZx6",
-        "perfil": "admin"
+        "perfil": "admin",
+        "password": "$2y$12$iKGzYCwueiIY2EDMVgr05utvujA5avqPLBHV4Pfupdcuf/8wBkAjS"
     },
     {
-        "username": "usuario",
-        "password": "$2y$12$wvvvfPfijyFu0WHnxJlsCugWwpZlMM1llCU4LA\/6qB\/H8CJ.snMQe",
-        "perfil": "usuario"
-    },
-    {
-        "username": "ford@gmail.com",
+        "username": "honda@gmail.com",
         "perfil": "empresa",
-        "password": "$2y$12$EDCLf.4Z.bH1kD.hOiDuUe\/L42ZBzPNuimTn6FOCbeBHM3jvS51Ju"
+        "password": "$2y$12$wET21nS08\/f5q2OJ4kV1LeGCMebtG66hoZPws.A265eJyNceuIHce"
     },
+    {
+        "username": "alfredo@gmail.com",
+        "perfil": "funcionario",
+        "password": "$2y$12$Dy3dlhRcadmLeHZKzxfx4eaXDUK2toNcUfEQRaCdGJOZfACRLiGcW"
+    },
+    {
+        "username": "nike@gmail.com",
+        "perfil": "empresa",
+        "password": "$2y$12$OhbLOyka4gD0V1b4pzD9e.8t1jzOZoQwnjhLYvi1W7xyr1KHaMFtC"
+    }
 ]

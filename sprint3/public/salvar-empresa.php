@@ -7,6 +7,9 @@ $usuario = json_decode(file_get_contents(__DIR__ . '/../data/usuarios.json'), tr
 if (!is_array($dados)){
     $dados = [];
 }
+if (!is_array($usuario)){
+    $usuario = [];
+}
 
 // Codificar a senha antes de salvar
 $senhaCodificada = password_hash($_POST["senha_empresa"], PASSWORD_DEFAULT);

@@ -23,7 +23,10 @@ $novoDado = [
     "cpf" => $_POST["cpf"],
     "endereco" => $_POST["atuacao"],
     "descricao" => "",
-    "experiencia" => $_POST["nivel-experiencia"]
+    "experiencia" => $_POST["nivel-experiencia"],
+    "path" => "",
+    "filename"=> "",
+    "uploaded_at"=> "",
 
 ];
 

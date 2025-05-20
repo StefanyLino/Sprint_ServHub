@@ -1,3 +1,14 @@
 [
-    
+    {
+        "nome": "alfredo",
+        "email": "alfredo@gmail.com",
+        "senha": "$2y$12$Dy3dlhRcadmLeHZKzxfx4eaXDUK2toNcUfEQRaCdGJOZfACRLiGcW",
+        "cpf": "18263981632",
+        "endereco": "Dev",
+        "descricao": "",
+        "experiencia": "senior",
+        "path": "",
+        "filename": "",
+        "uploaded_at": ""
+    }
 ]
