@@ -92,6 +92,7 @@ $dado_funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/data_func
                                     <p style="font-size: 0.8rem;" class="mt-0"><?= htmlspecialchars($dados['email']) ?></p>
                                 <?php endforeach; ?>
                             <?php endif; ?>
+                            <a href="accountpage.php" class="btn btn-submit w-100 mb-2" id="btn-custom">Editar Perfil</a>
                         </div>
                     </div>
                 </div>
