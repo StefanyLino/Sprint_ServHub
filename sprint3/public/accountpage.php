@@ -47,13 +47,24 @@ foreach ($dado_funcionarios as $dado) {
                 
                 <div class="col-md-8">
                     <div class="card mb-4">
-                        <div class="card-body d-flex flex-column align-items-center">
+                        <div class="card-body d-flex flex-column align-items-start">
                             <img src="" alt="">
                             <!-- Formulário de upload de imagem -->
-                            <form action="../upload/upload.php" method="post" enctype="multipart/form-data" class="mb-3 d-flex flex-column align-items-start">
-                                <label class="fw-normal" for="image">Selecione uma imagem:</label>
-                                <input class="form-control" type="file" name="image" id="image" accept="image/*">
-                            </form>
+                            <div class="d-flex align-items-center justify-content-center flex-row">
+                                <?php if (Auth::isAdmin()): ?>
+                                    <img style="width: 100px;" class="me-3" src="Assets/adm.png" alt="">
+                                <?php endif; ?>
+                                <form action="../upload/upload.php" method="post" enctype="multipart/form-data" class="d-flex flex-column align-items-start justify-content-center">
+                                    <label class="fw-normal" for="image">Selecione uma imagem:</label>
+                                    <input class="form-control" type="file" name="image" id="image" accept="image/*">
+                                </form>
+                                <div class="d-flex align-self-center flex-row flex-wrap ms-3 mt-4">
+                                    <?php if (Auth::isAdmin()): ?>
+                                        <button class="btn btn-danger h-50"><i class="bi bi-trash-fill text-black"></i></button>
+                                        <button class="btn btn-warning h-50 ms-2"><i class="bi bi-pen-fill text-black"></i></button>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
                             <!-- Formulário de dados do funcionário -->
                             <form action="" class="row">
                                 <div class="col-md-12 mb-2">
