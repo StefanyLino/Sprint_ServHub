@@ -90,6 +90,9 @@
     #Serv{
         margin-bottom: 50px;
     }
+    #logo{
+        width: 60%;
+    }
 
     @media (max-width: 426px) {
         .fonte-index{
@@ -107,7 +110,9 @@
             height: 70%;
         }
         #logo{
-            width: 70%;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            width: 50%;
         }
     }
     @media (min-width: 426px) and (max-width: 768px) {
@@ -122,7 +127,7 @@
             padding-left: 0px; 
         }
         #logo{
-            width: 90%;
+            width: 60%;
         } 
     }
 
@@ -144,7 +149,7 @@
             <a href="cadastro.php" class="botão">Comece já</a>
         </div>
         <div class="logo col-md-6 d-flex justify-content-center align-items-center">
-            <img src="Assets/Logo_Branca_transparente.png" class="img-fluid" id="logo" alt="">
+            <img src="Assets/ServHub_branca.png" class="img-fluid" id="logo" alt="">
         </div>
     </main>
 </body>
