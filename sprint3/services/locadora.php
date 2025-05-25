@@ -51,16 +51,60 @@ class Locadora {
 
     // Remover funcionário
     public function removerFuncionario(string $nome): string {
+        $removido = false;
+
+        // Remove da lista de funcionários
         foreach ($this->funcionarios as $key => $funcionario) {
             if ($funcionario->getNome() === $nome) {
                 unset($this->funcionarios[$key]);
-                $this->funcionarios = array_values($this->funcionarios); // Reorganizar os índices
+                $this->funcionarios = array_values($this->funcionarios);
                 $this->salvarFuncionarios();
-                return "Funcionário '{$nome}' removido com sucesso!";
+                $removido = true;
+                break;
             }
         }
-        return "Erro: Funcionário '{$nome}' não encontrado.";
+
+        if (!$removido) {
+            return "Erro: Funcionário '{$nome}' não encontrado.";
+        }
+
+        // Arquivos onde também será removido
+        $arquivos = [
+            __DIR__ . '/../data/usuario.json',
+            __DIR__ . '/../data/data_funcionario.json'
+        ];
+
+        foreach ($arquivos as $arquivo) {
+            $this->removerDeArquivo($nome, $arquivo);
+        }
+
+        return "Funcionário '{$nome}' removido com sucesso de todos os arquivos!";
     }
+
+
+    private function removerDeArquivo(string $nome, string $caminhoArquivo): void {
+        if (!file_exists($caminhoArquivo)) {
+            return; // Arquivo não existe, então não precisa fazer nada
+        }
+
+        $dados = json_decode(file_get_contents($caminhoArquivo), true);
+
+        if (!is_array($dados)) {
+            return; // Dados inválidos, evita erro
+        }
+
+        // Remove todos os registros que tenham o mesmo nome
+        $dados = array_filter($dados, function($item) use ($nome) {
+            return !(isset($item['nome']) && $item['nome'] === $nome);
+        });
+
+        // Reorganiza os índices
+        $dados = array_values($dados);
+
+        // Salva novamente
+        file_put_contents($caminhoArquivo, json_encode($dados, JSON_PRETTY_PRINT));
+    }
+
 
     // Alugar veículo por n dias
     public function alugarFuncionario(string $nome, int $dias = 1): string { // Alterado de 'email' para 'nome'

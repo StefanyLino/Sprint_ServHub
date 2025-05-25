@@ -34,11 +34,5 @@
         "nome": "Lucas Almeida",
         "experiencia": "senior",
         "disponivel": true
-    },
-    {
-        "tipo": "senior",
-        "nome": "alfredo",
-        "experiencia": "senior",
-        "disponivel": true
     }
 ]
