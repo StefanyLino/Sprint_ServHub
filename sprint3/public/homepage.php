@@ -71,10 +71,15 @@ $dado_funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/data_func
                         <div class="card-body">
                             <h5 class="card-title"><?= htmlspecialchars($funcionario->getNome()) ?></h5>
                             <p class="card-text"><?= htmlspecialchars($funcionario->getNivelExperiencia()) ?></p>
-                            <button id="saiba" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#adv">Saiba mais...</button>
-                            <?php if (Auth::isAdmin()): ?>
-                            <button class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
-                            <button class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i></button>
+                            <div class="d-flex gap-2">
+                                <button id="saiba" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#adv">Saiba mais...</button>
+                                <?php if (Auth::isAdmin()): ?>
+                                <form method="post">
+                                    <input type="hidden" name="nome" value="<?= htmlspecialchars($funcionario->getNome()) ?>">
+                                    <button type="submit" name="deletar" class="btn btn-danger"><i class="bi bi-trash-fill text-black"></i></button>
+                                    <button type="submit" class="btn btn-warning"><i class="bi bi-pen-fill text-black"></i></button>
+                                </form>
+                            </div>
                             <?php endif; ?>
                         </div>
                     </div>

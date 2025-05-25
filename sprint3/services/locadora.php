@@ -1,7 +1,7 @@
 <?php
 namespace Services;
 
-use Models\{Pessoa, Iniciante, Experiente, Senior, Intermediario, Avancado};
+use Models\{Pessoa, Iniciante, Experiente, Senior};
 
 // Classe para gerenciar a locação
 class Locadora {
