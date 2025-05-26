@@ -1,50 +1,81 @@
 <?php
-// Verifica se um arquivo foi enviado
+
+require_once __DIR__ . '/../public/atualizar_dados.php';
+
+function atualizarFuncionarioJson($fileName, $filePath, $emailUsuario) {
+    $dataFile = __DIR__ . '/../data/data_funcionario.json';
+    if (!file_exists($dataFile)) return;
+
+    $funcionarios = json_decode(file_get_contents($dataFile), true);
+
+    foreach ($funcionarios as &$funcionario) {
+        if ($funcionario['email'] === $emailUsuario) {
+            $funcionario['filename'] = $fileName;
+            $funcionario['path'] = $filePath;
+            $funcionario['uploaded_at'] = date('Y-m-d H:i:s');
+            break;
+        }
+    }
+
+    file_put_contents($dataFile, json_encode($funcionarios, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+}
+
+// Verifica se um e-mail foi enviado
+$emailUsuario = $_POST['email'] ?? null;
+
+if (!$emailUsuario) {
+    echo "E-mail do usuário não fornecido.";
+    exit;
+}
+
+// Upload de imagem
 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-    $uploadDir = 'uploads/'; // Pasta onde a imagem será salva
+    $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+    $imagemNome = uniqid('img_', true) . '.' . $ext;
+    $uploadDir = __DIR__ . '/../public/uploads/';
+    $webPath = 'uploads/' . $imagemNome;
+
     if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0777, true); // Cria a pasta se não existir
+        mkdir($uploadDir, 0777, true);
     }
 
     $fileTmp = $_FILES['image']['tmp_name'];
-    $fileName = basename($_FILES['image']['name']);
-    $filePath = $uploadDir . $fileName;
+    $filePath = $uploadDir . $imagemNome;
 
-    // Move o arquivo para a pasta
     if (move_uploaded_file($fileTmp, $filePath)) {
-        // Dados a serem salvos no JSON
         $imageData = [
-            'filename' => $fileName,
-            'path' => $filePath,
+            'filename' => $imagemNome,
+            'path' => $webPath,
             'uploaded_at' => date('Y-m-d H:i:s')
         ];
 
-        $jsonFile = 'imagens.json';
+        $jsonFile = __DIR__ . '/../data/imagens.json';
         $existingData = [];
 
-        // Lê os dados existentes, se houver
         if (file_exists($jsonFile)) {
             $jsonContent = file_get_contents($jsonFile);
             $existingData = json_decode($jsonContent, true) ?? [];
         }
 
-        // Adiciona a nova imagem
         $existingData[] = $imageData;
+        file_put_contents($jsonFile, json_encode($existingData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
-        // Salva novamente no JSON
-        file_put_contents($jsonFile, json_encode($existingData, JSON_PRETTY_PRINT));
+        // Atualiza também no data_funcionario.json
+        atualizarFuncionarioJson($imagemNome, $webPath, $emailUsuario);
 
         echo "Imagem enviada com sucesso!";
     } else {
-        echo "Erro ao mover o arquivo.";
+        echo "Erro ao mover o arquivo da imagem.";
     }
 } elseif (isset($_FILES['image'])) {
-    echo "Erro ao mover o arquivo.";
+    echo "Erro ao processar o arquivo da imagem.";
 }
 
-// Arquivos curriculo
+// Upload de arquivo adicional (PDF ou imagem extra)
 if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
-    $uploadDir = 'uploads2/';
+    $uploadDir = __DIR__ . '/../public/uploads2/';
+    $webPath = 'uploads2/' . basename($_FILES['file']['name']);
+
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
     }
@@ -53,7 +84,6 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
     $fileName = basename($_FILES['file']['name']);
     $filePath = $uploadDir . $fileName;
 
-    // Verifica o tipo do arquivo (imagem ou PDF)
     $fileType = mime_content_type($fileTmp);
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
 
@@ -65,12 +95,12 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
     if (move_uploaded_file($fileTmp, $filePath)) {
         $fileData = [
             'filename' => $fileName,
-            'path' => $filePath,
+            'path' => $webPath,
             'type' => $fileType,
             'uploaded_at' => date('Y-m-d H:i:s')
         ];
 
-        $jsonFile = 'arquivos.json';
+        $jsonFile = __DIR__ . '/../data/arquivos.json';
         $existingData = [];
 
         if (file_exists($jsonFile)) {
@@ -79,7 +109,10 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
         }
 
         $existingData[] = $fileData;
-        file_put_contents($jsonFile, json_encode($existingData, JSON_PRETTY_PRINT));
+        file_put_contents($jsonFile, json_encode($existingData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
+        // Atualiza também no data_funcionario.json
+        atualizarFuncionarioJson($fileName, $webPath, $emailUsuario);
 
         echo "Arquivo enviado com sucesso!";
     } else {
@@ -92,6 +125,6 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
 
 <script>
     setTimeout(() => {
-      window.location.href = "../public/accountpage.php"; 
-    }, 0); 
+        window.location.href = "../public/exibicaoaccount.php";
+    }, 0);
 </script>

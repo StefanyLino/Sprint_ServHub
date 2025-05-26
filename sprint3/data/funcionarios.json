@@ -1,12 +1,6 @@
 [
     {
         "tipo": "senior",
-        "nome": "teste",
-        "experiencia": "senior",
-        "disponivel": true
-    },
-    {
-        "tipo": "senior",
         "nome": "teste2",
         "experiencia": "senior",
         "disponivel": true

@@ -42,6 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         file_put_contents($funcionarioJsonPath, json_encode($funcionarios, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
 
-    header('Location: exibicaoaccount.php');
+    header('Location: ../public/exibicaoaccount.php');
     exit;
 }

@@ -3,6 +3,7 @@ require_once __DIR__ .'/../services/Auth.php';
 use Services\Auth;
 
 $usuario = Auth::getUsuario();
+
 $funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.json'), true);
 $dado_funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/data_funcionario.json'), true);
 
@@ -37,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deletar'])) {
             return $usuario['username'] !== $emailParaRemover;
         });
 
-        // Reindexar usuários para evitar lacunas
+        // Reindexar usuários
         $usuarios = array_values($usuarios);
 
         // Salvar os arquivos modificados
@@ -45,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deletar'])) {
         file_put_contents(__DIR__ . '/../data/data_funcionario.json', json_encode($dado_funcionarios, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         file_put_contents($usuarioJsonPath, json_encode($usuarios, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
-        // Redirecionar para evitar reenvio de dados
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
@@ -73,7 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
 <div class="py-4 mx-2">
     <div class="container mt-4">
         <div class="row">
-            <!-- Coluna principal -->
             <div class="col-md-8">
                 <div class="card mb-4" id="principal">
                     <div class="card-body d-flex flex-row justify-content-between">
@@ -93,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                 </div>
             </div>
 
-            <!-- Sidebar -->
             <div class="col-md-4" id="sidebar">
                 <div class="card mb-4">
                     <div class="card-body d-flex flex-column align-items-center">
@@ -102,11 +100,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                             <h3 class="card-title"><?= htmlspecialchars($usuario['username']) ?></h3>
                             <p id="descricao-adm" class="mt-0 fw-normal">Você é o administrador da empresa, altere o que for necessário e deslogue sua conta para ter mais segurança.</p>
                         <?php else: ?>
-                            <?php foreach ($dado_funcionarios as $dados): ?>
-                                <img style="width: 200px;" src="Assets/adm.png" alt="Funcionário">
-                                <h3 class="card-title"><?= htmlspecialchars($dados['nome'] ?? 'Sem nome') ?></h3>
-                                <p style="font-size: 0.8rem;" class="mt-0"><?= htmlspecialchars($dados['email'] ?? 'Sem email') ?></p>
-                            <?php endforeach; ?>
+                            <?php
+                                $funcionarioLogado = null;
+                                foreach ($dado_funcionarios as $funcionario) {
+                                    if (isset($funcionario['email']) &&
+                                        $funcionario['email'] === $usuario['username'] &&
+                                        isset($funcionario['descricao']) &&
+                                        isset($funcionario['path'])) {
+                                            
+                                        $funcionarioLogado = $funcionario;
+                                        break;
+                                    }
+                                }
+                            ?>
+                            <img style="width: 200px;" src="<?= htmlspecialchars($funcionarioLogado['path'] ?? 'Assets/default.png') ?>" alt="Funcionário">
+                            <h3 class="card-title"><?= htmlspecialchars($funcionarioLogado['nome'] ?? 'Sem nome') ?></h3>
+                            <p style="font-size: 0.8rem;" class="mt-0"><?= htmlspecialchars($funcionarioLogado['email'] ?? 'Sem email') ?></p>
+                            <?php if ($funcionarioLogado['descricao'] === ""): ?>
+                                <p style="font-size: 0.8rem;" class="mt-0">Sem descrição.</p>
+                            <?php else: ?>
+                                <p style="font-size: 0.8rem;" class="mt-0"><?= htmlspecialchars($funcionarioLogado['descricao']) ?></p>
+                            <?php endif; ?>
                         <?php endif; ?>
                         <a href="exibicaoaccount.php" class="btn btn-submit w-100 mb-2" id="btn-custom">Editar Perfil</a>
                     </div>
@@ -114,7 +128,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
             </div>
         </div>
 
-        <!-- Lista de Funcionários -->
         <div class="row mt-3">
             <?php foreach ($dado_funcionarios as $index => $funcionario): ?>
                 <?php $modalId = "editarFuncionario" . $index; ?>
@@ -127,10 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                             <div class="d-flex gap-2">
                                 <button class="btn btn-success" id="saiba" data-bs-toggle="modal" data-bs-target="#adv">Saiba mais...</button>
                                 <?php if (Auth::isAdmin()): ?>
-                                    <!-- Editar -->
                                     <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#<?= $modalId ?>"><i class="bi bi-pen-fill text-black"></i></button>
-
-                                    <!-- Deletar -->
                                     <form method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
                                         <input type="hidden" name="id" value="<?= $index ?>">
                                         <button type="submit" name="deletar" class="btn btn-danger">
@@ -164,11 +174,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Nível de Experiência</label>
-                                        <select class="form-control mb-2" name="nivel" require id="">
-                                            <option value="" disabled selected>Selecione seu nível de experiência</option>
-                                            <option value="iniciante">Iniciante</option>
-                                            <option value="experiente">Experiente</option>
-                                            <option value="senior">Sênior</option>
+                                        <select class="form-control mb-2" name="nivel" required>
+                                            <option value="" disabled <?= empty($funcionario['experiencia']) ? 'selected' : '' ?>>Selecione seu nível de experiência</option>
+                                            <option value="iniciante" <?= ($funcionario['experiencia'] === 'iniciante') ? 'selected' : '' ?>>Iniciante</option>
+                                            <option value="experiente" <?= ($funcionario['experiencia'] === 'experiente') ? 'selected' : '' ?>>Experiente</option>
+                                            <option value="senior" <?= ($funcionario['experiencia'] === 'senior') ? 'selected' : '' ?>>Sênior</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
