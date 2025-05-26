@@ -278,6 +278,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                                 </div>
                                 <button class="btn btn-success w-100" id="saiba" type="submit" name="calcular">Calcular</button>
                             </form>
+                            <p><?php $mensagem ?></p>
                         </div>
                     </div>
 
