@@ -24,6 +24,7 @@ $novoDado = [
     "atuacao" => $_POST["atuacao"],
     "descricao" => "",
     "experiencia" => $_POST["nivel-experiencia"],
+    "telefone" => "",
     "path" => "",
     "filename"=> "",
     "uploaded_at"=> "",

@@ -1,26 +1,28 @@
 [
     {
-        "nome": "Cleber",
-        "email": "cleber@gmail.com",
-        "senha": "$2y$12$WlgyUhOg2Yi6DxYP3ItzwO0OONrG0gpR8D\/Li3p7FrQOrHngT3DiW",
-        "cpf": "12312312313123",
-        "atuacao": "Tecnico",
-        "descricao": "o cleber mais cleber dos clebers",
-        "experiencia": "senior",
-        "path": "",
-        "filename": "",
-        "uploaded_at": ""
-    },
-    {
         "nome": "teste",
         "email": "teste@gmail.com",
         "senha": "$2y$12$5dnNJdXndSW\/U5CfCME6YOJgk\/ICzsYtfcqwtqf8bp3GqH0MlNPI2",
         "cpf": "123131231221123",
         "atuacao": "Tecnico",
-        "descricao": "",
+        "descricao": "traleleiro tralala",
         "experiencia": "senior",
-        "path": "\/..\/upload\/uploads\/img-2.png",
-        "filename": "",
-        "uploaded_at": ""
+        "telefone": "",
+        "path": "uploads\/img_68349953cd9ab3.72437505.png",
+        "filename": "img_68349953cd9ab3.72437505.png",
+        "uploaded_at": "2025-05-26 16:39:47"
+    },
+    {
+        "nome": "carlos",
+        "email": "carlos@gmail.com",
+        "senha": "$2y$12$5YIsR1wNwVYxe5ZMOPtFa.OjBQdtYNHkldk8H5GJZVI7BByjpMlgq",
+        "cpf": "123123123132123",
+        "atuacao": "sou o malcon",
+        "descricao": "gengar",
+        "experiencia": "iniciante",
+        "telefone": "",
+        "path": "uploads\/img_68349c3dc34ad8.95154170.png",
+        "filename": "img_68349c3dc34ad8.95154170.png",
+        "uploaded_at": "2025-05-26 16:52:13"
     }
 ]

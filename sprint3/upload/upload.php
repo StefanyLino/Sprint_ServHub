@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../public/atualizar_dados.php';
-
 function atualizarFuncionarioJson($fileName, $filePath, $emailUsuario) {
     $dataFile = __DIR__ . '/../data/data_funcionario.json';
     if (!file_exists($dataFile)) return;
@@ -22,7 +20,6 @@ function atualizarFuncionarioJson($fileName, $filePath, $emailUsuario) {
 
 // Verifica se um e-mail foi enviado
 $emailUsuario = $_POST['email'] ?? null;
-
 if (!$emailUsuario) {
     echo "E-mail do usuário não fornecido.";
     exit;
@@ -71,56 +68,6 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     echo "Erro ao processar o arquivo da imagem.";
 }
 
-// Upload de arquivo adicional (PDF ou imagem extra)
-if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
-    $uploadDir = __DIR__ . '/../public/uploads2/';
-    $webPath = 'uploads2/' . basename($_FILES['file']['name']);
-
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0777, true);
-    }
-
-    $fileTmp = $_FILES['file']['tmp_name'];
-    $fileName = basename($_FILES['file']['name']);
-    $filePath = $uploadDir . $fileName;
-
-    $fileType = mime_content_type($fileTmp);
-    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
-
-    if (!in_array($fileType, $allowedTypes)) {
-        echo "Tipo de arquivo não permitido.";
-        exit;
-    }
-
-    if (move_uploaded_file($fileTmp, $filePath)) {
-        $fileData = [
-            'filename' => $fileName,
-            'path' => $webPath,
-            'type' => $fileType,
-            'uploaded_at' => date('Y-m-d H:i:s')
-        ];
-
-        $jsonFile = __DIR__ . '/../data/arquivos.json';
-        $existingData = [];
-
-        if (file_exists($jsonFile)) {
-            $jsonContent = file_get_contents($jsonFile);
-            $existingData = json_decode($jsonContent, true) ?? [];
-        }
-
-        $existingData[] = $fileData;
-        file_put_contents($jsonFile, json_encode($existingData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-
-        // Atualiza também no data_funcionario.json
-        atualizarFuncionarioJson($fileName, $webPath, $emailUsuario);
-
-        echo "Arquivo enviado com sucesso!";
-    } else {
-        echo "Erro ao mover o arquivo.";
-    }
-} elseif (isset($_FILES['file'])) {
-    echo "Nenhum arquivo foi enviado.";
-}
 ?>
 
 <script>

@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                         <?php if (Auth::isAdmin()): ?>
                             <img style="width: 200px;" src="Assets/adm.png" alt="Administrador">
                             <h3 class="card-title"><?= htmlspecialchars($usuario['username']) ?></h3>
-                            <p id="descricao-adm" class="mt-0 fw-normal">Você é o administrador da empresa, altere o que for necessário e deslogue sua conta para ter mais segurança.</p>
+                            <p style="font-size: 0.8rem; font-weight: lighter;" id="descricao-adm" class="mt-0 mx-3 fw-normal">Você é o administrador da empresa, altere o que for necessário e deslogue sua conta para ter mais segurança.</p>
                         <?php else: ?>
                             <?php
                                 $funcionarioLogado = null;
@@ -113,13 +113,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                                     }
                                 }
                             ?>
-                            <img style="width: 200px;" src="<?= htmlspecialchars($funcionarioLogado['path'] ?? 'Assets/default.png') ?>" alt="Funcionário">
-                            <h3 class="card-title"><?= htmlspecialchars($funcionarioLogado['nome'] ?? 'Sem nome') ?></h3>
-                            <p style="font-size: 0.8rem;" class="mt-0"><?= htmlspecialchars($funcionarioLogado['email'] ?? 'Sem email') ?></p>
+                            <img style="max-width: 200px;" src="<?= htmlspecialchars($funcionarioLogado['path'] ?? 'Assets/default.png') ?>" alt="Funcionário">
+                            <h3 style="font-size: 1.2rem; font-weight: bold;" class="card-title"><?= htmlspecialchars($funcionarioLogado['nome'] ?? 'Sem nome') ?></h3>
+                            <p style="font-size: 1rem;" class="mt-0"><?= htmlspecialchars($funcionarioLogado['email'] ?? 'Sem email') ?></p>
                             <?php if ($funcionarioLogado['descricao'] === ""): ?>
-                                <p style="font-size: 0.8rem;" class="mt-0">Sem descrição.</p>
+                                <p style="font-size: 0.8rem; font-weight: lighter;" class="mt-0 mx-3">Sem descrição.</p>
                             <?php else: ?>
-                                <p style="font-size: 0.8rem;" class="mt-0"><?= htmlspecialchars($funcionarioLogado['descricao']) ?></p>
+                                <p style="font-size: 0.8rem; font-weight: lighter;" class="mt-0 mx-3"><?= htmlspecialchars($funcionarioLogado['descricao']) ?></p>
                             <?php endif; ?>
                         <?php endif; ?>
                         <a href="exibicaoaccount.php" class="btn btn-submit w-100 mb-2" id="btn-custom">Editar Perfil</a>
@@ -129,75 +129,112 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
         </div>
 
         <div class="row mt-3">
-            <?php foreach ($dado_funcionarios as $index => $funcionario): ?>
-                <?php $modalId = "editarFuncionario" . $index; ?>
-                <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
-                    <div class="card h-100">
-                        <img src="Assets/profissional1.png" alt="profissional" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= htmlspecialchars($funcionario['nome'] ?? 'Sem nome') ?></h5>
-                            <p class="card-text"><?= htmlspecialchars($funcionario['experiencia'] ?? 'Sem experiência') ?></p>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-success" id="saiba" data-bs-toggle="modal" data-bs-target="#adv">Saiba mais...</button>
-                                <?php if (Auth::isAdmin()): ?>
-                                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#<?= $modalId ?>"><i class="bi bi-pen-fill text-black"></i></button>
-                                    <form method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
-                                        <input type="hidden" name="id" value="<?= $index ?>">
-                                        <button type="submit" name="deletar" class="btn btn-danger">
-                                            <i class="bi bi-trash-fill text-black"></i>
-                                        </button>
-                                    </form>
-                                <?php endif; ?>
+    <?php foreach ($dado_funcionarios as $index => $funcionario): ?>
+        <?php
+            $modalId = "editarFuncionario" . $index;
+            $saibaMaisModalId = "saibaMaisFuncionario" . $index;
+        ?>
+        <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="d-flex align-items-center justify-content-center h-100"><img style="width: 150px;" src="<?= htmlspecialchars($funcionario['path'] ?? 'Assets/default.png') ?>" alt="profissional" class="card-img-top"></div>
+                <div class="card-body">
+                    <h5 class="card-title"><?= htmlspecialchars($funcionario['nome'] ?? 'Sem nome') ?></h5>
+                    <p class="card-text"><?= htmlspecialchars($funcionario['experiencia'] ?? 'Sem experiência') ?></p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#<?= $saibaMaisModalId ?>">Saiba mais...</button>
+                        <?php if (Auth::isAdmin()): ?>
+                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#<?= $modalId ?>"><i class="bi bi-pen-fill text-black"></i></button>
+                            <form method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
+                                <input type="hidden" name="id" value="<?= $index ?>">
+                                <button type="submit" name="deletar" class="btn btn-danger">
+                                    <i class="bi bi-trash-fill text-black"></i>
+                                </button>
+                            </form>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Edição -->
+        <div class="modal fade" id="<?= $modalId ?>" tabindex="-1" aria-labelledby="<?= $modalId ?>Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="POST">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="<?= $modalId ?>Label">Editar Funcionário</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="id" value="<?= $index ?>">
+                            <div class="mb-3">
+                                <label class="form-label">Nome</label>
+                                <input type="text" name="nome" class="form-control" value="<?= htmlspecialchars($funcionario['nome'] ?? '') ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($funcionario['email'] ?? '') ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nível de Experiência</label>
+                                <select class="form-control mb-2" name="nivel" required>
+                                    <option value="" disabled <?= empty($funcionario['experiencia']) ? 'selected' : '' ?>>Selecione seu nível de experiência</option>
+                                    <option value="iniciante" <?= ($funcionario['experiencia'] === 'iniciante') ? 'selected' : '' ?>>Iniciante</option>
+                                    <option value="experiente" <?= ($funcionario['experiencia'] === 'experiente') ? 'selected' : '' ?>>Experiente</option>
+                                    <option value="senior" <?= ($funcionario['experiencia'] === 'senior') ? 'selected' : '' ?>>Sênior</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Descrição</label>
+                                <textarea name="descricao" class="form-control" rows="3" required><?= htmlspecialchars($funcionario['descricao'] ?? '') ?></textarea>
                             </div>
                         </div>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="submit" name="editar" class="btn btn-primary">Salvar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
                 </div>
+            </div>
+        </div>
 
-                <!-- Modal de Edição -->
-                <div class="modal fade" id="<?= $modalId ?>" tabindex="-1" aria-labelledby="<?= $modalId ?>Label" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form method="POST">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="<?= $modalId ?>Label">Editar Funcionário</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <input type="hidden" name="id" value="<?= $index ?>">
-                                    <div class="mb-3">
-                                        <label class="form-label">Nome</label>
-                                        <input type="text" name="nome" class="form-control" value="<?= htmlspecialchars($funcionario['nome'] ?? '') ?>" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Email</label>
-                                        <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($funcionario['email'] ?? '') ?>" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Nível de Experiência</label>
-                                        <select class="form-control mb-2" name="nivel" required>
-                                            <option value="" disabled <?= empty($funcionario['experiencia']) ? 'selected' : '' ?>>Selecione seu nível de experiência</option>
-                                            <option value="iniciante" <?= ($funcionario['experiencia'] === 'iniciante') ? 'selected' : '' ?>>Iniciante</option>
-                                            <option value="experiente" <?= ($funcionario['experiencia'] === 'experiente') ? 'selected' : '' ?>>Experiente</option>
-                                            <option value="senior" <?= ($funcionario['experiencia'] === 'senior') ? 'selected' : '' ?>>Sênior</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Descrição</label>
-                                        <textarea name="descricao" class="form-control" rows="3" required><?= htmlspecialchars($funcionario['descricao'] ?? '') ?></textarea>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" name="editar" class="btn btn-primary">Salvar</button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                </div>
-                            </form>
+        <!-- Modal Saiba Mais -->
+        <div class="modal fade" id="<?= $saibaMaisModalId ?>" tabindex="-1" aria-labelledby="<?= $saibaMaisModalId ?>Label" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="<?= $saibaMaisModalId ?>Label">Detalhes do Funcionário</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body d-flex flex-column flex-md-row align-items-center gap-3">
+                        <img src="<?= htmlspecialchars($funcionario['path'] ?? 'Assets/default.png') ?>" alt="Foto do Funcionário" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
+                        <div>
+                            <h4><?= htmlspecialchars($funcionario['nome'] ?? 'Sem nome') ?></h4>
+                            <p><strong>Email:</strong> <br> <?= htmlspecialchars($funcionario['email'] ?? 'Sem email') ?></p>
+                            <p><strong>Área de Atuação:</strong> <br> <?= htmlspecialchars($funcionario['area'] ?? 'Não especificada') ?></p>
+                            <p><strong>Nível:</strong> <br> <?= htmlspecialchars($funcionario['experiencia'] ?? 'Não informado') ?></p>
+                            <p><strong>Descrição:</strong> <br> <?= nl2br(htmlspecialchars($funcionario['descricao'] ?? 'Sem descrição')) ?></p>
                         </div>
                     </div>
+                    <?php if (Auth::isAdmin()): ?>
+                        <div class="modal-footer">
+                            <form method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
+                                <input type="hidden" name="id" value="<?= $index ?>">
+                                <button type="submit" name="deletar" class="btn btn-danger">
+                                    <i class="bi bi-trash-fill"></i> Excluir
+                                </button>
+                            </form>
+                            <button class="btn btn-warning" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#<?= $modalId ?>">
+                                <i class="bi bi-pen-fill"></i> Editar
+                            </button>
+                        </div>
+                    <?php endif; ?>
                 </div>
-            <?php endforeach; ?>
+            </div>
         </div>
-    </div>
+    <?php endforeach; ?>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

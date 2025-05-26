@@ -1,11 +1,11 @@
-<?php
+    <?php
 require_once __DIR__ . '/../services/Auth.php';
 use Services\Auth;
 
 $usuario = Auth::getUsuario();
 
 // Carregando arquivos
-$usuariosJson = json_decode(file_get_contents(__DIR__ . '/../data/usuario.json'), true);
+$usuariosJson = json_decode(file_get_contents(__DIR__ . '/../data/usuarios.json'), true);
 $dataFuncionarioJson = json_decode(file_get_contents(__DIR__ . '/../data/data_funcionario.json'), true);
 
 $isAdmin = Auth::isAdmin();
@@ -58,6 +58,7 @@ $profileImage = isset($dadosLogado['path']) && !empty($dadosLogado['path'])
                     <div class="card-body">
                         <!-- Upload de imagem -->
                         <form action="../upload/upload.php" method="post" enctype="multipart/form-data" class="mb-4">
+                            <input type="hidden" name="email" value="<?= htmlspecialchars($dadosLogado['email']) ?>">
                             <label for="image" class="form-label fw-bold">Foto de Perfil:</label>
                             <input class="form-control" type="file" name="image" id="image" accept="image/*">
                             <button class="btn btn-primary mt-2" type="submit">Enviar Imagem</button>
@@ -65,6 +66,12 @@ $profileImage = isset($dadosLogado['path']) && !empty($dadosLogado['path'])
 
                         <!-- Dados -->
                         <form method="POST" action="atualizar_dados.php">
+                            <!-- Campo oculto para identificador fixo -->
+                            <?php if ($isAdmin): ?>
+                                <input type="hidden" name="user_identifier" value="<?= htmlspecialchars($dadosLogado['username'] ?? $usuario['username']) ?>">
+                            <?php else: ?>
+                                <input type="hidden" name="user_identifier" value="<?= htmlspecialchars($dadosLogado['email'] ?? $usuario['username']) ?>">
+                            <?php endif; ?>
                             <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <label class="fw-bold">Nome:</label>

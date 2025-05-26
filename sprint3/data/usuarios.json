@@ -28,5 +28,10 @@
         "username": "teste@gmail.com",
         "perfil": "funcionario",
         "password": "$2y$12$5dnNJdXndSW\/U5CfCME6YOJgk\/ICzsYtfcqwtqf8bp3GqH0MlNPI2"
+    },
+    {
+        "username": "carlos@gmail.com",
+        "perfil": "funcionario",
+        "password": "$2y$12$5YIsR1wNwVYxe5ZMOPtFa.OjBQdtYNHkldk8H5GJZVI7BByjpMlgq"
     }
 ]
