@@ -6,6 +6,7 @@ $usuario = Auth::getUsuario();
 
 $funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.json'), true);
 $dado_funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/data_funcionario.json'), true);
+$empresa = json_decode(file_get_contents(__DIR__ . '/../data/data_empresa.json'), true);
 
 // Caminho do arquivo de usuários
 $usuarioJsonPath = __DIR__ . '/../data/usuarios.json';
@@ -113,13 +114,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                                     }
                                 }
                             ?>
-                            <img style="max-width: 200px;" src="<?= htmlspecialchars($funcionarioLogado['path'] ?? 'Assets/default.png') ?>" alt="Funcionário">
-                            <h3 style="font-size: 1.2rem; font-weight: bold;" class="card-title"><?= htmlspecialchars($funcionarioLogado['nome'] ?? 'Sem nome') ?></h3>
-                            <p style="font-size: 1rem;" class="mt-0"><?= htmlspecialchars($funcionarioLogado['email'] ?? 'Sem email') ?></p>
-                            <?php if ($funcionarioLogado['descricao'] === ""): ?>
-                                <p style="font-size: 0.8rem; font-weight: lighter;" class="mt-0 mx-3">Sem descrição.</p>
+                            <?php if ($usuario['perfil'] != 'empresa') : ?>
+                                <img id="foto-perfil" src="<?= htmlspecialchars($funcionarioLogado['path'] ?? 'Assets/default.png') ?>" alt="Funcionário">
+                                <h3 style="font-size: 1.2rem; font-weight: bold;" class="card-title"><?= htmlspecialchars($funcionarioLogado['nome'] ?? 'Sem nome') ?></h3>
+                                <p style="font-size: 1rem;" class="mt-0"><?= htmlspecialchars($funcionarioLogado['email'] ?? 'Sem email') ?></p>
+                                <?php if ($funcionarioLogado['descricao'] === ""): ?>
+                                    <p style="font-size: 0.8rem; font-weight: lighter;" class="mt-0 mx-3">Sem descrição.</p>
+                                <?php else: ?>
+                                    <p style="font-size: 0.8rem; font-weight: lighter;" class="mt-0 mx-3"><?= htmlspecialchars($funcionarioLogado['descricao']) ?></p>
+                                <?php endif; ?>
                             <?php else: ?>
-                                <p style="font-size: 0.8rem; font-weight: lighter;" class="mt-0 mx-3"><?= htmlspecialchars($funcionarioLogado['descricao']) ?></p>
+                                <img id="foto-perfil" src="<?= htmlspecialchars($empresa['path'] ?? 'Assets/adm.png') ?>" alt="Funcionário">
+                                <h3 style="font-size: 1.2rem; font-weight: bold;" class="card-title"><?= htmlspecialchars($empresa['nome'] ?? 'sem nome') ?></h3>
+                                <p style="font-size: 1rem;" class="mt-0"><?= htmlspecialchars($empresa['email'] ?? 'sem nome') ?></p>
                             <?php endif; ?>
                         <?php endif; ?>
                         <a href="exibicaoaccount.php" class="btn btn-submit w-100 mb-2" id="btn-custom">Editar Perfil</a>
@@ -136,12 +143,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
         ?>
         <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
             <div class="card h-100">
-                <div class="d-flex align-items-center justify-content-center h-100"><img style="width: 150px;" src="<?= htmlspecialchars($funcionario['path'] ?? 'Assets/default.png') ?>" alt="profissional" class="card-img-top"></div>
+                <div style="height: 200px;" class="d-flex align-items-center justify-content-center">
+                    <img src="<?= htmlspecialchars($funcionario['path'] ?? 'Assets/default.png') ?>" alt="profissional" class="card-img-top w-100 h-100">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title"><?= htmlspecialchars($funcionario['nome'] ?? 'Sem nome') ?></h5>
-                    <p class="card-text"><?= htmlspecialchars($funcionario['experiencia'] ?? 'Sem experiência') ?></p>
+                    <p class="card-text"><?= htmlspecialchars($funcionario['atuacao'] ?? 'Sem Area de atuação') ?></p>
                     <div class="d-flex gap-2">
-                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#<?= $saibaMaisModalId ?>">Saiba mais...</button>
+                        <button id="saiba" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#<?= $saibaMaisModalId ?>">Saiba mais...</button>
                         <?php if (Auth::isAdmin()): ?>
                             <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#<?= $modalId ?>"><i class="bi bi-pen-fill text-black"></i></button>
                             <form method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
@@ -207,15 +216,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                     </div>
                     <div class="modal-body d-flex flex-column flex-md-row align-items-center gap-3">
-                        <img src="<?= htmlspecialchars($funcionario['path'] ?? 'Assets/default.png') ?>" alt="Foto do Funcionário" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
-                        <div>
-                            <h4><?= htmlspecialchars($funcionario['nome'] ?? 'Sem nome') ?></h4>
-                            <p><strong>Email:</strong> <br> <?= htmlspecialchars($funcionario['email'] ?? 'Sem email') ?></p>
-                            <p><strong>Área de Atuação:</strong> <br> <?= htmlspecialchars($funcionario['area'] ?? 'Não especificada') ?></p>
-                            <p><strong>Nível:</strong> <br> <?= htmlspecialchars($funcionario['experiencia'] ?? 'Não informado') ?></p>
-                            <p><strong>Descrição:</strong> <br> <?= nl2br(htmlspecialchars($funcionario['descricao'] ?? 'Sem descrição')) ?></p>
+                        <div class="col-sm-5">
+                            <img src="<?= htmlspecialchars($funcionario['path'] ?? 'Assets/default.png') ?>" alt="Foto do Funcionário" class="w-100 h-30">
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="col-sm-12">
+                                <h4 style="2em" class="fw-bold mb-0"><?= htmlspecialchars($funcionario['nome'] ?? 'Sem nome') ?></h4>
+                                <p style="1.5em" class="fw-normal mt-0 mb-1"><?= htmlspecialchars($funcionario['atuacao'] ?? 'Não especificada') ?></p>
+                                <p style="1.2em" class="fw-normal mt-2"><?= nl2br(htmlspecialchars($funcionario['descricao'] ?? 'Sem descrição')) ?></p>
+                            </div>
+
+                            <div class="col-sm-12 d-flex flex-row">
+                                <div class="col-sm-6 me-5">
+                                    <p><strong>Experiência:</strong><br> <?= htmlspecialchars($funcionario['experiencia'] ?? 'Não informado') ?></p>
+                                </div>
+                                <div class="col-sm-6 me-5">
+                                    <p><strong>Salário:</strong><br>
+                                        <?php if ($funcionario['experiencia'] === 'iniciante'): ?>
+                                            R$ 800,00
+                                        <?php elseif ($funcionario['experiencia'] === 'experiente'): ?>
+                                            R$ 1.200,00
+                                        <?php elseif ($funcionario['experiencia'] === 'senior'): ?>
+                                            R$ 1.800,00
+                                        <?php else: ?>
+                                            Não informado
+                                        <?php endif; ?>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <?php if ($usuario['perfil'] === 'empresa'): ?>
+                                <div class="col-sm-12 d-flex flex-row">
+                                    <div class="col-sm-6 me-5">
+                                        <p><strong>Email:</strong></p>
+                                        <p><?= htmlspecialchars($funcionario['email'] ?? 'Sem email') ?></p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p><strong>Telefone:</strong></p>
+                                        <p><?= htmlspecialchars($funcionario['telefone'] ?? 'Sem telefone') ?></p>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
+
                     <?php if (Auth::isAdmin()): ?>
                         <div class="modal-footer">
                             <form method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
@@ -234,6 +278,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
         </div>
     <?php endforeach; ?>
 </div>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

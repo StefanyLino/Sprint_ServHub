@@ -28,6 +28,9 @@ $novoDado = [
     "path" => "",
     "filename"=> "",
     "uploaded_at"=> "",
+    "path_curriculo"=> "",
+    "filename_curriculo"=> "",
+    "curriculo_uploaded_at"=> "",
 
 ];
 

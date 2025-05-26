@@ -10,7 +10,10 @@
         "telefone": "",
         "path": "uploads\/img_68349953cd9ab3.72437505.png",
         "filename": "img_68349953cd9ab3.72437505.png",
-        "uploaded_at": "2025-05-26 16:39:47"
+        "uploaded_at": "2025-05-26 16:39:47",
+        "path_curriculo": "",
+        "filename_curriculo": "",
+        "curriculo_uploaded_at": ""
     },
     {
         "nome": "carlos",
@@ -18,11 +21,14 @@
         "senha": "$2y$12$5YIsR1wNwVYxe5ZMOPtFa.OjBQdtYNHkldk8H5GJZVI7BByjpMlgq",
         "cpf": "123123123132123",
         "atuacao": "sou o malcon",
-        "descricao": "gengar",
-        "experiencia": "iniciante",
-        "telefone": "",
-        "path": "uploads\/img_68349c3dc34ad8.95154170.png",
-        "filename": "img_68349c3dc34ad8.95154170.png",
-        "uploaded_at": "2025-05-26 16:52:13"
+        "descricao": "baiano",
+        "experiencia": "experiente",
+        "telefone": "(11) 999999999",
+        "path": "uploads\/img_68349de04fdd59.25745178.jpg",
+        "filename": "img_68349de04fdd59.25745178.jpg",
+        "uploaded_at": "2025-05-26 16:59:12",
+        "path_curriculo": "uploads\/cv_6834a472b7ac61.47896097.pdf",
+        "filename_curriculo": "cv_6834a472b7ac61.47896097.pdf",
+        "curriculo_uploaded_at": "2025-05-26 17:27:14"
     }
 ]

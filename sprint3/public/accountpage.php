@@ -45,7 +45,7 @@ $profileImage = isset($dadosLogado['path']) && !empty($dadosLogado['path'])
             <div class="col-md-4" id="sidebar">
                 <div class="card mb-4">
                     <div class="card-body d-flex flex-column align-items-center">
-                        <img style="width: 200px;" src="<?= $profileImage ?>" alt="Foto de perfil">
+                        <img id="foto-perfil" src="<?= $profileImage ?>" alt="Foto de perfil">
                         <h3 class="card-title"><?= htmlspecialchars($dadosLogado['nome'] ?? $usuario['username']) ?></h3>
                         <p style="font-size: 0.8rem;"><?= htmlspecialchars($usuario['username']) ?></p>
                     </div>
@@ -61,7 +61,7 @@ $profileImage = isset($dadosLogado['path']) && !empty($dadosLogado['path'])
                             <input type="hidden" name="email" value="<?= htmlspecialchars($dadosLogado['email']) ?>">
                             <label for="image" class="form-label fw-bold">Foto de Perfil:</label>
                             <input class="form-control" type="file" name="image" id="image" accept="image/*">
-                            <button class="btn btn-primary mt-2" type="submit">Enviar Imagem</button>
+                            <button class="btn btn-primary mt-2" id="saiba" type="submit">Enviar Imagem</button>
                         </form>
 
                         <!-- Dados -->
@@ -112,16 +112,17 @@ $profileImage = isset($dadosLogado['path']) && !empty($dadosLogado['path'])
                                 <?php endif; ?>
 
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-success">Salvar Alterações</button>
+                                    <button type="submit" id="saiba" class="btn btn-success">Salvar Alterações</button>
                                 </div>
                             </div>
                         </form>
 
                         <!-- Upload de currículo -->
-                        <form action="../upload/upload2.php" method="post" enctype="multipart/form-data" class="mt-4">
+                        <form action="../upload/upload_curriculo.php" method="post" enctype="multipart/form-data" class="mt-4">
+                            <input type="hidden" name="email" value="<?= htmlspecialchars($dadosLogado['email']) ?>">
                             <label class="fw-bold">Currículo:</label>
                             <input class="form-control" type="file" name="file" accept="application/pdf,image/*" required>
-                            <button class="btn btn-secondary mt-2" type="submit">Enviar Currículo</button>
+                            <button class="btn btn-secondary mt-2" id="saiba" type="submit">Enviar Currículo</button>
                         </form>
                     </div>
                 </div>
