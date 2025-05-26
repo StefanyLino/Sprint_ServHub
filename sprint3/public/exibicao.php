@@ -49,20 +49,7 @@
             }
         }
 
-        if(isset($_POST['adicionar'])){
-            $nome = $_POST['nome'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $tipo = $_POST['tipo'] ?? '';
-
-            if (empty($nome) || empty($email) || empty($tipo)) {
-                $mensagem = "Erro: Todos os campos são obrigatórios para adicionar um funcionário.";
-            } else {
-                $funcionario = ($tipo === 'Carro') ? new Carro($nome, $email) : new Moto($nome, $email);
-                $locadora->adicionarFuncionario($funcionario);
-                $mensagem = "Funcionário adicionado com sucesso!";
-            }
-        }
-        elseif(isset($_POST['alugar'])){
+        if(isset($_POST['alugar'])){
             $nome = $_POST['nome'] ?? '';
             $dias = isset($_POST['dias']) ? (int)$_POST['dias'] : 1;
 

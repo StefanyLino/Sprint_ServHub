@@ -53,17 +53,12 @@ $profileImage = isset($dadosLogado['path']) && !empty($dadosLogado['path'])
             </div>
 
             <!-- Conteúdo principal -->
-            <div class="col-md-8">
+            <div class="col-md-8 d-flex flex-column">
                 <div class="card mb-4">
+                    <div class="card-header mx-0">
+                        <h5>Atualizar dados</h5>
+                    </div>
                     <div class="card-body">
-                        <!-- Upload de imagem -->
-                        <form action="../upload/upload.php" method="post" enctype="multipart/form-data" class="mb-4">
-                            <input type="hidden" name="email" value="<?= htmlspecialchars($dadosLogado['email']) ?>">
-                            <label for="image" class="form-label fw-bold">Foto de Perfil:</label>
-                            <input class="form-control" type="file" name="image" id="image" accept="image/*">
-                            <button class="btn btn-primary mt-2" id="saiba" type="submit">Enviar Imagem</button>
-                        </form>
-
                         <!-- Dados -->
                         <form method="POST" action="atualizar_dados.php">
                             <!-- Campo oculto para identificador fixo -->
@@ -116,14 +111,36 @@ $profileImage = isset($dadosLogado['path']) && !empty($dadosLogado['path'])
                                 </div>
                             </div>
                         </form>
-
-                        <!-- Upload de currículo -->
-                        <form action="../upload/upload_curriculo.php" method="post" enctype="multipart/form-data" class="mt-4">
-                            <input type="hidden" name="email" value="<?= htmlspecialchars($dadosLogado['email']) ?>">
-                            <label class="fw-bold">Currículo:</label>
-                            <input class="form-control" type="file" name="file" accept="application/pdf,image/*" required>
-                            <button class="btn btn-secondary mt-2" id="saiba" type="submit">Enviar Currículo</button>
-                        </form>
+                    </div> 
+                </div>
+                <div class="row mx-0">
+                    <!-- Upload de imagem -->
+                    <div class="card mb-4 col-md-6" id="adicionar">
+                        <div class="card-header">
+                            <h5>Alterar foto de perfil</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="../upload/upload.php" method="post" enctype="multipart/form-data" class="mb-4">
+                                <input type="hidden" name="email" value="<?= htmlspecialchars($dadosLogado['email']) ?>">
+                                <label for="image" class="form-label fw-bold">Foto de Perfil:</label>
+                                <input class="form-control" type="file" name="image" id="image" accept="image/*">
+                                <button class="btn btn-primary mt-2" id="saiba" type="submit">Enviar Imagem</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Upload de currículo -->
+                    <div class="card mb-4 col-md-6" id="adicionar">
+                        <div class="card-header">
+                            <h5>Enviar currículo</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="../upload/upload_curriculo.php" method="post" enctype="multipart/form-data" class="mt-4">
+                                <input type="hidden" name="email" value="<?= htmlspecialchars($dadosLogado['email']) ?>">
+                                <label class="fw-bold">Currículo:</label>
+                                <input class="form-control" type="file" name="file" accept="application/pdf,image/*" required>
+                                <button class="btn btn-secondary mt-2" id="saiba" type="submit">Enviar Currículo</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

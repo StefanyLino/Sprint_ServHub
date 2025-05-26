@@ -6,7 +6,7 @@ $usuario = Auth::getUsuario();
 
 $funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.json'), true);
 $dado_funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/data_funcionario.json'), true);
-$empresa = json_decode(file_get_contents(__DIR__ . '/../data/data_empresa.json'), true);
+$dado_empresa = json_decode(file_get_contents(__DIR__ . '/../data/data_empresa.json'), true);
 
 // Caminho do arquivo de usuários
 $usuarioJsonPath = __DIR__ . '/../data/usuarios.json';
@@ -113,6 +113,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                                         break;
                                     }
                                 }
+                                $empresa = null;
+                                foreach ($dado_empresa as $emp){
+                                    if (isset($emp['email']) && $emp['email'] === $usuario['username']) {
+                                        $empresa = $emp;
+                                        break;
+                                    }
+                                }
                             ?>
                             <?php if ($usuario['perfil'] != 'empresa') : ?>
                                 <img id="foto-perfil" src="<?= htmlspecialchars($funcionarioLogado['path'] ?? 'Assets/default.png') ?>" alt="Funcionário">
@@ -215,11 +222,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                         <h5 class="modal-title" id="<?= $saibaMaisModalId ?>Label">Detalhes do Funcionário</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                     </div>
-                    <div class="modal-body d-flex flex-column flex-md-row align-items-center gap-3">
+                    <div class="modal-body d-flex flex-column flex-md-row align-items-center gap-3 flex-wrap">
                         <div class="col-sm-5">
-                            <img src="<?= htmlspecialchars($funcionario['path'] ?? 'Assets/default.png') ?>" alt="Foto do Funcionário" class="w-100 h-30">
+                            <img src="<?= htmlspecialchars($funcionario['path'] ?? 'Assets/default.png') ?>" alt="Foto do Funcionário" class="w-100" style="max-height: 300px; border-radius: 20px" >
                         </div>
-                        <div class="col-sm-7">
+                        <div class="col-sm-6">
                             <div class="col-sm-12">
                                 <h4 style="2em" class="fw-bold mb-0"><?= htmlspecialchars($funcionario['nome'] ?? 'Sem nome') ?></h4>
                                 <p style="1.5em" class="fw-normal mt-0 mb-1"><?= htmlspecialchars($funcionario['atuacao'] ?? 'Não especificada') ?></p>
@@ -243,6 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                                         <?php endif; ?>
                                     </p>
                                 </div>
+                                <form action="" class="needs-validation" novalidate>
                             </div>
 
                             <?php if ($usuario['perfil'] === 'empresa'): ?>
@@ -257,6 +265,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                                     </div>
                                 </div>
                             <?php endif; ?>
+                        </div>
+                        <div class="col-sm-12">
+                            <form action="" class="needs-validation" novalidate method="post">
+                                <div class="mb-3">
+                                    <input type="text" hidden name="tipo_calculo" value="<?= htmlspecialchars($funcionario['experiencia'] ?? '') ?>">
+                                    <label for="">Calcule a previsão de aluguel desse funcionario</label><br>
+                                    <label for="dias" class="form-label">
+                                        Quantidade de semanas:
+                                    </label>
+                                    <input type="number" name="dias_calculo" class="form-control" value="1" required>
+                                </div>
+                                <button class="btn btn-success w-100" id="saiba" type="submit" name="calcular">Calcular</button>
+                            </form>
                         </div>
                     </div>
 

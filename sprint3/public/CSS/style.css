@@ -73,6 +73,11 @@ body{
     border-radius: 50%;
 }
 
+#adicionar{
+    padding: 0!important;
+
+}
+
 
 
 /* navbar homepage */
