@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "nome": "Cleber",
+        "email": "cleber@gmail.com",
+        "senha": "$2y$12$WlgyUhOg2Yi6DxYP3ItzwO0OONrG0gpR8D\/Li3p7FrQOrHngT3DiW",
+        "cpf": "12312312313123",
+        "atuacao": "Tecnico",
+        "descricao": "o cleber mais cleber dos clebers",
+        "experiencia": "senior",
+        "path": "",
+        "filename": "",
+        "uploaded_at": ""
+    },
+    {
+        "nome": "teste",
+        "email": "teste@gmail.com",
+        "senha": "$2y$12$5dnNJdXndSW\/U5CfCME6YOJgk\/ICzsYtfcqwtqf8bp3GqH0MlNPI2",
+        "cpf": "123131231221123",
+        "atuacao": "Tecnico",
+        "descricao": "",
+        "experiencia": "senior",
+        "path": "",
+        "filename": "",
+        "uploaded_at": ""
+    }
+]

@@ -15,18 +15,8 @@
         "password": "$2y$12$OhbLOyka4gD0V1b4pzD9e.8t1jzOZoQwnjhLYvi1W7xyr1KHaMFtC"
     },
     {
-        "username": "teste@gmail.com",
+        "username": "carlos@gmail.com",
         "perfil": "funcionario",
-        "password": "$2y$12$zAg7iwzl2wO5rrSRWrKfruCqWKc4g8Jcjx.zj11kD992kASDIPQkO"
-    },
-    {
-        "username": "teste2@gmail.com",
-        "perfil": "funcionario",
-        "password": "$2y$12$WlgyUhOg2Yi6DxYP3ItzwO0OONrG0gpR8D\/Li3p7FrQOrHngT3DiW"
-    },
-    {
-        "username": "teste@gmail.com",
-        "perfil": "funcionario",
-        "password": "$2y$12$5dnNJdXndSW\/U5CfCME6YOJgk\/ICzsYtfcqwtqf8bp3GqH0MlNPI2"
+        "password": "$2y$12$skqTCfJigqZgB\/un6T6CFOhupfxBvcYP05EmvIOJa\/wNkVZC7iny2"
     }
 ]

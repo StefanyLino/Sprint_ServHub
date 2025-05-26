@@ -1,112 +1,128 @@
 <?php
-require_once __DIR__ .'/../services/Auth.php';
-
+require_once __DIR__ . '/../services/Auth.php';
 use Services\Auth;
 
 $usuario = Auth::getUsuario();
-$funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/funcionarios.json'), true);
-$dado_funcionarios = json_decode(file_get_contents(__DIR__ . '/../data/data_funcionario.json'), true);
-$funcionarioLogado = null;
-foreach ($dado_funcionarios as $dado) {
-    if (isset($dado['email']) && $dado['email'] === $usuario['username']) {
-        $funcionarioLogado = $dado;
-        break;
+
+// Carregando arquivos
+$usuariosJson = json_decode(file_get_contents(__DIR__ . '/../data/usuario.json'), true);
+$dataFuncionarioJson = json_decode(file_get_contents(__DIR__ . '/../data/data_funcionario.json'), true);
+
+$isAdmin = Auth::isAdmin();
+$dadosLogado = null;
+
+// Busca dados com base no tipo de perfil
+if ($isAdmin) {
+    foreach ($usuariosJson as $user) {
+        if ($user['username'] === $usuario['username']) {
+            $dadosLogado = $user;
+            break;
+        }
+    }
+} else {
+    foreach ($dataFuncionarioJson as $user) {
+        if ($user['email'] === $usuario['username']) {
+            $dadosLogado = $user;
+            break;
+        }
     }
 }
+
+// Define imagem de perfil
+$profileImage = isset($dadosLogado['path']) && !empty($dadosLogado['path'])
+    ? $dadosLogado['path']
+    : 'Assets/adm.png';
 ?>
 
-<?php
-    include 'htmls/head.html';
-?>
+<?php include 'htmls/head.html'; ?>
 <body>
-    <?php
-        include 'htmls/nav.html';
-    ?>
+<?php include 'htmls/nav.html'; ?>
 
-    <div class="py-4 mx-2">
-        <div class="container mt-4">
-            <div class="row">
-                <!-- Sidebar -->
-                <div class="col-md-4" id="sidebar">
-                    <div class="card mb-4">
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <?php if (Auth::isAdmin()): ?>
-                                <img style="width: 200px;" src="Assets/adm.png" alt="">
-                                <h3 class="card-title"><?= htmlspecialchars($usuario['username']) ?></h3>
-                                <p id="descricao-adm" class="mt-0 fw-normal">
-                                    Você é o administrador da empresa, altere o que for necessário e deslogue sua conta para ter mais segurança.
-                                </p>
-                            <?php else: ?>
-                                <img style="width: 200px;" src="Assets/adm.png" alt="">
-                                <h3 class="card-title"><?= htmlspecialchars($funcionarioLogado['nome'] ?? '') ?></h3>
-                                <p style="font-size: 0.8rem;" class="mt-0"><?= htmlspecialchars($funcionarioLogado['email'] ?? '') ?></p>
-                            <?php endif; ?>
-                        </div>
+<div class="py-4 mx-2">
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-4" id="sidebar">
+                <div class="card mb-4">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <img style="width: 200px;" src="<?= $profileImage ?>" alt="Foto de perfil">
+                        <h3 class="card-title"><?= htmlspecialchars($dadosLogado['nome'] ?? $usuario['username']) ?></h3>
+                        <p style="font-size: 0.8rem;"><?= htmlspecialchars($usuario['username']) ?></p>
                     </div>
                 </div>
-                
-                <div class="col-md-8">
-                    <div class="card mb-4">
-                        <div class="card-body d-flex flex-column align-items-start">
-                            <img src="" alt="">
-                            <!-- Formulário de upload de imagem -->
-                            <div class="d-flex align-items-center justify-content-center flex-row">
-                                <?php if (Auth::isAdmin()): ?>
-                                    <img style="width: 100px;" class="me-3" src="Assets/adm.png" alt="">
+            </div>
+
+            <!-- Conteúdo principal -->
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <!-- Upload de imagem -->
+                        <form action="../upload/upload.php" method="post" enctype="multipart/form-data" class="mb-4">
+                            <label for="image" class="form-label fw-bold">Foto de Perfil:</label>
+                            <input class="form-control" type="file" name="image" id="image" accept="image/*">
+                            <button class="btn btn-primary mt-2" type="submit">Enviar Imagem</button>
+                        </form>
+
+                        <!-- Dados -->
+                        <form method="POST" action="atualizar_dados.php">
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label class="fw-bold">Nome:</label>
+                                    <input class="form-control" name="nome" value="<?= htmlspecialchars($dadosLogado['nome'] ?? '') ?>" required>
+                                </div>
+
+                                <div class="col-md-12 mb-3">
+                                    <label class="fw-bold">Email:</label>
+                                    <input class="form-control" type="email" name="email" value="<?= htmlspecialchars($dadosLogado['email'] ?? '') ?>" required>
+                                </div>
+
+                                <?php if (!$isAdmin): ?>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="fw-bold">Telefone:</label>
+                                        <input class="form-control" name="telefone" value="<?= htmlspecialchars($dadosLogado['telefone'] ?? '') ?>">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="fw-bold">CPF:</label>
+                                        <input class="form-control" name="cpf" value="<?= htmlspecialchars($dadosLogado['cpf'] ?? '') ?>">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="fw-bold">Atuação:</label>
+                                        <input class="form-control" name="atuacao" value="<?= htmlspecialchars($dadosLogado['atuacao'] ?? '') ?>">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="fw-bold">Nível de Experiência:</label>
+                                        <select class="form-control mb-2" name="experiencia" require id="">
+                                            <option value="" disabled selected>Selecione seu nível de experiência</option>
+                                            <option value="iniciante">Iniciante</option>
+                                            <option value="experiente">Experiente</option>
+                                            <option value="senior">Sênior</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label class="fw-bold">Descrição:</label>
+                                        <textarea class="form-control" name="descricao" rows="4"><?= htmlspecialchars($dadosLogado['descricao'] ?? '') ?></textarea>
+                                    </div>
                                 <?php endif; ?>
-                                <form action="../upload/upload.php" method="post" enctype="multipart/form-data" class="d-flex flex-column align-items-start justify-content-center">
-                                    <label class="fw-normal" for="image">Selecione uma imagem:</label>
-                                    <input class="form-control" type="file" name="image" id="image" accept="image/*">
-                                </form>
-                                <div class="d-flex align-self-center flex-row flex-wrap ms-3 mt-4">
-                                    <?php if (Auth::isAdmin()): ?>
-                                        <button class="btn btn-danger h-50"><i class="bi bi-trash-fill text-black"></i></button>
-                                        <button class="btn btn-warning h-50 ms-2"><i class="bi bi-pen-fill text-black"></i></button>
-                                    <?php endif; ?>
+
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-success">Salvar Alterações</button>
                                 </div>
                             </div>
-                            <!-- Formulário de dados do funcionário -->
-                            <form action="" class="row">
-                                <div class="col-md-12 mb-2">
-                                    <label class="fw-normal" for="name">Nome completo:</label>
-                                    <input class="form-control" type="text" value="<?= htmlspecialchars($funcionarioLogado['nome'] ?? '') ?>">
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <label class="fw-normal" for="telefone">Telefone:</label>
-                                    <input class="form-control" type="text" value="<?= htmlspecialchars($funcionarioLogado['telefone'] ?? '') ?>">
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <label class="fw-normal" for="cpf">CPF:</label>
-                                    <input class="form-control" type="text" value="<?= htmlspecialchars($funcionarioLogado['cpf'] ?? '') ?>">
-                                </div>
-                                <div class="col-md-12 mb-2">
-                                    <label class="fw-normal" for="email">Email:</label>
-                                    <input class="form-control" type="email" value="<?= htmlspecialchars($funcionarioLogado['email'] ?? '') ?>">
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <label class="fw-normal" for="description">Descrição:</label>
-                                    <textarea class="form-control" name="descricao" id="descricao" cols="30" rows="5"><?= htmlspecialchars($funcionarioLogado['descricao'] ?? '') ?></textarea>
-                                </div>
-                                <div class="col-md-12 mb-3 d-flex justify-content-center flex-column align-items-center">
-                                    <label for="curriculo" class="fw-normal mb-2">Envie seu Currículo</label>
-                                    <!-- Upload pdf -->
-                                    <form action="../upload/upload2.php" method="post" enctype="multipart/form-data">
-                                        <label for="file">Selecione um arquivo (imagem ou PDF):</label>
-                                        <input class="form-control" type="file" name="file" id="file" accept="image/*,application/pdf" required>
-                                    </form>
-                                </div>
-                                <div class="col-md-12 d-flex justify-content-center flex-row align-items-center">
-                                    <button type="submit" class="btn btn-submit w-50 mb-2" id="btn-custom"> Salvar Alterações</button>
-                                    <button type="reset" class="btn btn-submit w-50 ms-3 mb-2" id="btn-custom"> Restaurar </button>
-                                </div>
-                            </form>
-                        </div>
+                        </form>
+
+                        <!-- Upload de currículo -->
+                        <form action="../upload/upload2.php" method="post" enctype="multipart/form-data" class="mt-4">
+                            <label class="fw-bold">Currículo:</label>
+                            <input class="form-control" type="file" name="file" accept="application/pdf,image/*" required>
+                            <button class="btn btn-secondary mt-2" type="submit">Enviar Currículo</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
