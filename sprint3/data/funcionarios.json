@@ -9,6 +9,6 @@
         "tipo": "senior",
         "nome": "carlos",
         "experiencia": "senior",
-        "disponivel": true
+        "disponivel": false
     }
 ]

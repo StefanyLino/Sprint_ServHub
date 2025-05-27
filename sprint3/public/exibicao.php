@@ -37,6 +37,8 @@
 
     $usuario = Auth::getUsuario();
 
+    
+
     // veriifica os dados do formulario via POST
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
@@ -80,13 +82,14 @@
         elseif(isset($_POST['calcular'])){
             $dias = (int)$_POST['dias_calculo'];
             $tipo = $_POST['tipo_calculo'] ?? '';
+            $id = $_POST['id'] ?? null;
 
             // Verificar se o tipo selecionado é válido
             if (!in_array($tipo, ['iniciante', 'experiente', 'senior'])) {
                 $mensagem = "Erro: Tipo de funcionário inválido.";
             } else {
                 $valor = $locadora->calcularPrevisaoAluguel($dias, $tipo);
-                $mensagem = "Previsão de trabalho para {$dias} dias ({$tipo}): R$ " . number_format($valor, 2, ',', '.');
+                $mensagem = "Previsão de trabalho para {$dias} semana(s) ({$tipo}): R$ " . number_format($valor, 2, ',', '.');
             }
         }
 

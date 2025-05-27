@@ -31,6 +31,7 @@ $novoDado = [
     "path_curriculo"=> "",
     "filename_curriculo"=> "",
     "curriculo_uploaded_at"=> "",
+    "disponivel" => true,
 
 ];
 
@@ -38,14 +39,14 @@ $novoDado = [
 $novoUsuario = [
     "username" => $_POST["email_funcionario"],
     "perfil" => "funcionario",
-    "password" => $senhaCodificada // Senha codificada
+    "password" => $senhaCodificada, // Senha codificada
 ];
 
 $novoFuncionario = [
     "tipo" => $_POST["nivel-experiencia"],
     "nome" => $_POST["nome_funcionario"],
     "experiencia" => $_POST["nivel-experiencia"],
-    "disponivel" => true
+    "disponivel" => true,
 ];
 
 // adiciona os novos dados aos já existentes

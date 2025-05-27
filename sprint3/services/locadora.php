@@ -108,7 +108,8 @@ class Locadora {
 
     // Alugar veículo por n dias
     public function alugarFuncionario(string $nome, int $dias = 1): string { // Alterado de 'email' para 'nome'
-        foreach ($this->funcionarios as $funcionario) {
+        $dados = json_decode(file_get_contents(__DIR__ . '/../data/data_funcionarios.json'), true);
+        foreach ($this->$dados as $funcionario){
             if ($funcionario->getNome() === $nome && $funcionario->isDisponivel()) { // Alterado de 'getEmail' para 'getNome'
                 $valorAluguel = $funcionario->calcularAluguel($dias);
                 $mensagem = $funcionario->alugar();

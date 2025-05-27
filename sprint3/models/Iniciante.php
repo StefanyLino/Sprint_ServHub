@@ -11,6 +11,7 @@ class Iniciante extends Pessoa implements Locavel { // Alterado para herdar de P
 
     public function calcularAluguel(int $dias): float {
         return $dias * SEMANAL_INICIANTE;
+        
     }
 
     public function alugar(): string{

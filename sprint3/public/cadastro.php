@@ -15,7 +15,7 @@
                     <a class="btn btn-submit w-100 p-3" id="btn-custom" style="margin-bottom: 30px; border-radius: 10px;" href="cadastro-empresa.php">Cadastre-se como Empresa</a>
                     <a class="btn btn-submit w-100 p-3 mb-2" id="btn-custom" style="border-radius: 10px;" href="cadastro-funcionario.php"> Cadastre-se como Funcionario</a>
                 </div>
-                <div id="texto-login"><a href="Index.php" class="links align-self-start">Voltar <i class="bi bi-caret-right-fill"></i></a></div>
+                <div id="texto-login"><a href="../index.php" class="links align-self-start">Voltar <i class="bi bi-caret-right-fill"></i></a></div>
             </section>
         </main>
     </div>

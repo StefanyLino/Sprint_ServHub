@@ -56,11 +56,7 @@
 
             if (empty($nome) || empty($email) || empty($tipo)) {
                 $mensagem = "Erro: Todos os campos são obrigatórios para adicionar um funcionário.";
-            } else {
-                $funcionario = ($tipo === 'Carro') ? new Carro($nome, $email) : new Moto($nome, $email);
-                $locadora->adicionarFuncionario($funcionario);
-                $mensagem = "Funcionário adicionado com sucesso!";
-            }
+            } 
         }
         elseif(isset($_POST['alugar'])){
             $nome = $_POST['nome'] ?? '';

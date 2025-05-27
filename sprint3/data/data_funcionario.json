@@ -11,9 +11,10 @@
         "path": "uploads\/img_68349953cd9ab3.72437505.png",
         "filename": "img_68349953cd9ab3.72437505.png",
         "uploaded_at": "2025-05-26 16:39:47",
-        "path_curriculo": "",
-        "filename_curriculo": "",
-        "curriculo_uploaded_at": ""
+        "path_curriculo": "uploads2\/cv_68359e62b76a38.74850665.pdf",
+        "filename_curriculo": "cv_68359e62b76a38.74850665.pdf",
+        "curriculo_uploaded_at": "2025-05-27 11:13:38",
+        "disponivel": false
     },
     {
         "nome": "carlos",
@@ -29,6 +30,7 @@
         "uploaded_at": "2025-05-26 16:59:12",
         "path_curriculo": "uploads\/cv_6834a472b7ac61.47896097.pdf",
         "filename_curriculo": "cv_6834a472b7ac61.47896097.pdf",
-        "curriculo_uploaded_at": "2025-05-26 17:27:14"
+        "curriculo_uploaded_at": "2025-05-26 17:27:14",
+        "disponivel": true
     }
 ]

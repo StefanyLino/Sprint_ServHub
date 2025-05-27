@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ .'/../services/Auth.php';
+require_once __DIR__ . '/../services/locadora.php';
 use Services\Auth;
+
+$mensagem = '';
 
 $usuario = Auth::getUsuario();
 
@@ -52,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deletar'])) {
     }
 }
 
-// Editar funcionário (apenas no data_funcionario.json)
+// Editar funcionário
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
     $id = $_POST['id'];
     $dado_funcionarios[$id]['nome'] = $_POST['nome'];
@@ -64,6 +67,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
 
     header("Location: " . $_SERVER['PHP_SELF']);
     exit;
+}
+
+// --- CÁLCULO DE ALUGUEL NO MODAL ---
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['calcular'])) {
+    $dias = isset($_POST['dias_calculo']) ? (int)$_POST['dias_calculo'] : 1;
+    $tipo = $_POST['tipo_calculo'] ?? '';
+    $nome = $_POST['nome_calculo'] ?? '';
+    require_once __DIR__ . '/../config/config.php';
+    $valor = 0;
+    if ($tipo === 'iniciante' && defined('SEMANAL_INICIANTE')) {
+        $valor = $dias * SEMANAL_INICIANTE;
+    } elseif ($tipo === 'experiente' && defined('SEMANAL_EXPERIENTE')) {
+        $valor = $dias * SEMANAL_EXPERIENTE;
+    } elseif ($tipo === 'senior' && defined('SEMANAL_SENIOR')) {
+        $valor = $dias * SEMANAL_SENIOR;
+    }
+    $mensagem = "Previsão de contratação do(a) $nome para $dias semana(s) ($tipo): R$ " . number_format($valor, 2, ',', '.');
+}
+
+// --- ALUGAR FUNCIONÁRIO ---
+if(isset($_POST['alugar'])){
+    $nome = $_POST['nome_aluguel'] ?? '';
+    $dias = isset($_POST['dias_aluguel']) ? (int)$_POST['dias_aluguel'] : 1;
+
+    if (empty($nome)) {
+        $mensagem = "Erro: O nome do funcionário é obrigatório para alocar.";
+    } else {
+        $mensagem = $locadora->alocarFuncionario($nome, $dias);
+    }
 }
 ?>
 
@@ -92,6 +124,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                     </div>
                 </div>
             </div>
+            
+           
 
             <div class="col-md-4" id="sidebar">
                 <div class="card mb-4">
@@ -121,6 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                                     }
                                 }
                             ?>
+                             
                             <?php if ($usuario['perfil'] != 'empresa') : ?>
                                 <img id="foto-perfil" src="<?= htmlspecialchars($funcionarioLogado['path'] ?? 'Assets/default.png') ?>" alt="Funcionário">
                                 <h3 style="font-size: 1.2rem; font-weight: bold;" class="card-title"><?= htmlspecialchars($funcionarioLogado['nome'] ?? 'Sem nome') ?></h3>
@@ -141,6 +176,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                 </div>
             </div>
         </div>
+
+        <?php if ($mensagem): ?>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <?= htmlspecialchars($mensagem) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+        
 
         <div class="row mt-3">
     <?php foreach ($dado_funcionarios as $index => $funcionario): ?>
@@ -228,9 +271,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                         </div>
                         <div class="col-sm-6">
                             <div class="col-sm-12">
-                                <h4 style="2em" class="fw-bold mb-0"><?= htmlspecialchars($funcionario['nome'] ?? 'Sem nome') ?></h4>
-                                <p style="1.5em" class="fw-normal mt-0 mb-1"><?= htmlspecialchars($funcionario['atuacao'] ?? 'Não especificada') ?></p>
-                                <p style="1.2em" class="fw-normal mt-2"><?= nl2br(htmlspecialchars($funcionario['descricao'] ?? 'Sem descrição')) ?></p>
+                                <h4 class="fw-bold mb-0"><?= htmlspecialchars($funcionario['nome'] ?? 'Sem nome') ?></h4>
+                                <p class="fw-normal mt-0 mb-1"><?= htmlspecialchars($funcionario['atuacao'] ?? 'Não especificada') ?></p>
+                                <p class="fw-normal mt-2"><?= nl2br(htmlspecialchars($funcionario['descricao'] ?? 'Sem descrição')) ?></p>
                             </div>
 
                             <div class="col-sm-12 d-flex flex-row">
@@ -240,17 +283,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                                 <div class="col-sm-6 me-5">
                                     <p><strong>Salário:</strong><br>
                                         <?php if ($funcionario['experiencia'] === 'iniciante'): ?>
-                                            R$ 800,00
+                                            R$ <?= number_format(defined('SEMANAL_INICIANTE') ? SEMANAL_INICIANTE : 800, 2, ',', '.') ?> por semana
                                         <?php elseif ($funcionario['experiencia'] === 'experiente'): ?>
-                                            R$ 1.200,00
+                                            R$ <?= number_format(defined('SEMANAL_EXPERIENTE') ? SEMANAL_EXPERIENTE : 1200, 2, ',', '.') ?> por semana
                                         <?php elseif ($funcionario['experiencia'] === 'senior'): ?>
-                                            R$ 1.800,00
+                                            R$ <?= number_format(defined('SEMANAL_SENIOR') ? SEMANAL_SENIOR : 1800, 2, ',', '.') ?> por semana
                                         <?php else: ?>
                                             Não informado
                                         <?php endif; ?>
                                     </p>
                                 </div>
-                                <form action="" class="needs-validation" novalidate>
                             </div>
 
                             <?php if ($usuario['perfil'] === 'empresa'): ?>
@@ -266,20 +308,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                                 </div>
                             <?php endif; ?>
                         </div>
+
+                        <!-- FORMULÁRIO DE CÁLCULO -->
                         <div class="col-sm-12">
-                            <form action="" class="needs-validation" novalidate method="post">
+                            <form action="exibicao.php" class="needs-validation" novalidate method="post" id="formCalculo-<?= $index ?>">
                                 <div class="mb-3">
                                     <input type="text" hidden name="tipo_calculo" value="<?= htmlspecialchars($funcionario['experiencia'] ?? '') ?>">
-                                    <label for="">Calcule a previsão de aluguel desse funcionario</label><br>
+                                    <input type="text" hidden name="nome_calculo" value="<?= htmlspecialchars($funcionario['nome'] ?? '') ?>">
+                                    <input type="hidden" name="id" value="<?= $index ?>">
                                     <label for="dias" class="form-label">
+                                        Calcule a previsão de aluguel desse funcionário<br>
                                         Quantidade de semanas:
                                     </label>
                                     <input type="number" name="dias_calculo" class="form-control" value="1" required>
                                 </div>
-                                <button class="btn btn-success w-100" id="saiba" type="submit" name="calcular">Calcular</button>
+                                <button class="btn btn-info w-100" id="calcular" type="submit" name="calcular">Calcular</button>
                             </form>
-                            <p><?php $mensagem ?></p>
                         </div>
+                        <?php if (!empty($funcionario['disponivel']) && $funcionario['disponivel'] === true): ?>
+                            <?php if (Auth::isAdmin() || $usuario['perfil'] === 'empresa'): ?>
+                                <div class="col-sm-12">
+                                    <form method="post" class="needs-validation" novalidate>
+                                        <div class="mb-3">
+                                            <input type="hidden" name="tipo_aluguel" value="<?= htmlspecialchars($funcionario['experiencia'] ?? '') ?>">
+                                            <input type="hidden" name="nome_aluguel" value="<?= htmlspecialchars($funcionario['nome'] ?? '') ?>">
+                                            <label for="dias" class="form-label">Faça a contratação desse funcionário</label>
+                                            <input type="number" name="dias_aluguel" class="form-control" value="1" required>
+                                        </div>
+                                        <button type="submit" name="alugar" class="btn btn-success w-100">Alugar</button>
+                                    </form>
+                                </div>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <p>Funcionário já contratado. Espere ele ser devolvido para poder contratá-lo.</p>
+                        <?php endif; ?>
+                        
                     </div>
 
                     <?php if (Auth::isAdmin()): ?>
@@ -298,11 +361,97 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar'])) {
                 </div>
             </div>
         </div>
+
+         <!-- Modal add funcionário por adm -->
+        <div class="modal fade" id="funcionario" tabindex="-1"  aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" >Adicionar funcionário</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body d-flex flex-column flex-md-row align-items-center gap-3 flex-wrap">
+                        <form class="w-100" action="salvar-funcionario.php" method="POST">
+                            <div>
+                                <label for="nome" class="fw-normal">Nome completo:</label>
+                                <input type="text" name="nome_funcionario" id="nome_funcionario" required class="form-control shadow-sm" placeholder="Digite seu nome">
+                            </div>
+                            <div>
+                                <label for="email" class="fw-normal">Email:</label>
+                                <input type="email" name="email_funcionario" id="email_funcionario" required class="form-control shadow-sm" placeholder="Digite seu email">
+                            </div>
+                            <div>
+                                <label for="senha" class="fw-normal">Senha:</label>
+                                <input type="password" min="8" name="senha_funcionario" id="senha_funcionario" required class="form-control shadow-sm" placeholder="Digite sua senha">
+                            </div>
+                            <div>
+                                <label for="cpf" class="fw-normal">CPF:</label>
+                                <input type="number" min="11" name="cpf" id="cpf" required class="form-control shadow-sm" placeholder="Digite seu CPF">
+                            </div>
+                            <div>
+                                <label for="atuacao" class="fw-normal">Área de Atuação</label>
+                                <input type="text" name="atuacao" id="atuacao" required class="form-control shadow-sm" placeholder="Digite sua area de atuação(Ex. Engenheiro, Medico e etc)">
+                            </div>
+                            <div>
+                                <label for="experiencia" class="fw-normal">Nivel de Experiência</label>
+                                <select class="form-control mb-2" name="nivel-experiencia" id="">
+                                    <option value="" disabled selected>Selecione seu nível de experiência</option>
+                                    <option value="iniciante">Iniciante</option>
+                                    <option value="experiente">Experiente</option>
+                                    <option value="senior">Sênior</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-submit w-100 mb-2" id="btn-custom">Cadastre-se</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal add empresa por adm -->
+        <div class="modal fade" id="empresa" tabindex="-1"  aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" >Adicionar Empresa</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body d-flex flex-column flex-md-row align-items-center gap-3 flex-wrap">
+                        <form class="w-100" method="post" action="salvar-empresa.php">
+                            <div>
+                                <label for="nome" class="fw-normal">Nome:</label>
+                                <input type="text" placeholder="Nome da empresa" id="nome_empresa" name="nome_empresa" required class="form-control shadow-sm">
+                            </div>
+                            <div>
+                                <label for="email" class="fw-normal">Email:</label>
+                                <input type="email" placeholder="Digite o Email comercial" id="email_empresa" name="email_empresa" required class="form-control shadow-sm">
+                            </div>
+                            <div>
+                                <label for="senha" class="fw-normal">Senha:</label>
+                                <input type="password" min="8" placeholder="Digite seu senha" id="senha_empresa" name="senha_empresa" required class="form-control shadow-sm">
+                            </div>
+                            <div>
+                                <label for="cnpj" class="fw-normal">CNPJ:</label>
+                                <input type="number" min="14" placeholder="CNPJ da empresa" id="cnpj" name="cnpj" required class="form-control shadow-sm">
+                            </div>
+                            <div>
+                                <label for="endereco" class="fw-normal">Endereço:</label>
+                                <input type="text" placeholder="Endereço da empresa" id="endereco" name="endereco" required class="form-control shadow-sm">
+                            </div>
+                            <button type="submit" class="btn btn-submit mt-3 w-100  mb-2" id="btn-custom">Cadastre-se:</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <?php endforeach; ?>
 </div>
 
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 </html>

@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
                 <div class="d-flex justify-content-start flex-column align-items-start">
                     <p id="senha-esqueceu" class="mb-2">Não tem uma conta? <a href="cadastro.php" class="links">Cadastre-se</a></p>
-                    <div id="texto-cadastro" class="aling-self-center"><a href="Index.php" class="links" >Voltar <i class="bi bi-caret-right-fill"></i></a></div>
+                    <div id="texto-cadastro" class="aling-self-center"><a href="../index.php" class="links" >Voltar <i class="bi bi-caret-right-fill"></i></a></div>
                 </div>
             </section>
         </main>
