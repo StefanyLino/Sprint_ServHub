@@ -31,6 +31,6 @@ class Senior extends Pessoa implements Locavel { // Alterado para herdar de Pess
     }
 
     public function getNivelExperiencia(): string {
-        return 'Senior';
+        return 'senior';
     }
 }

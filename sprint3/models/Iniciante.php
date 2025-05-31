@@ -9,7 +9,7 @@ use Interfaces\Locavel;
 
 class Iniciante extends Pessoa implements Locavel { // Alterado para herdar de Pessoa
 
-    public function calcularAluguel(int $dias): float {
+    public function calcularAluguel(string int $dias): float {
         return $dias * SEMANAL_INICIANTE;
         
     }

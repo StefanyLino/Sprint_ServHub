@@ -31,6 +31,6 @@ class Experiente extends Pessoa implements Locavel { // Alterado para herdar de 
     }
 
     public function getNivelExperiencia(): string {
-        return 'Experiente';
+        return 'experiente';
     }
 }

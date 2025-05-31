@@ -86,15 +86,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['calcular'])) {
     $mensagem = "Previsão de contratação do(a) $nome para $dias semana(s) ($tipo): R$ " . number_format($valor, 2, ',', '.');
 }
 
+
 // --- ALUGAR FUNCIONÁRIO ---
-if(isset($_POST['alugar'])){
+if (isset($_POST['alugar'])) {
     $nome = $_POST['nome_aluguel'] ?? '';
-    $dias = isset($_POST['dias_aluguel']) ? (int)$_POST['dias_aluguel'] : 1;
+    $tipo = strtolower($_POST['tipo_aluguel'] ?? '');
+    $dias = isset($_POST['dias_aluguel']) ? (int)$_POST['dias_aluguel'] : 5;
+
 
     if (empty($nome)) {
-        $mensagem = "Erro: O nome do funcionário é obrigatório para alocar.";
+        $mensagem = "Erro: O nome do funcionário não encontrado tente novamente.";
     } else {
-        $mensagem = $locadora->alocarFuncionario($nome, $dias);
+        $mensagem = $locadora->alugarFuncionario($nome, $tipo, $dias);
     }
 }
 ?>

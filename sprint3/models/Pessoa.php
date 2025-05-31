@@ -19,13 +19,17 @@ abstract class Pessoa {
         return $this->nome;
     }
 
-    public function getExperiencia(): int {
+    
+
+    public function getExperiencia(): string {
         return $this->experiencia;
     }
-
+    
     public function isDisponivel(): bool {
         return $this->disponivel;
     }
+
+
 
     public function alugar(): string {
         $this->disponivel = false;

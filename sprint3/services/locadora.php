@@ -49,6 +49,25 @@ class Locadora {
         file_put_contents($arquivoJson, json_encode($dados, JSON_PRETTY_PRINT));
     }
 
+    private function salvarFuncionariosData(): void {
+        $dados = [];
+        
+
+        foreach ($this->funcionarios as $funcionario) {
+            $dados[] = [
+                'nome' => $funcionario->getNome(),
+                'experiencia' => strtolower($funcionario->getNivelExperiencia()),
+                'disponivel' => $funcionario->isDisponivel()
+            ];
+        }
+
+        error_log("Salvando dados no JSON: " . print_r($dados, true));
+
+        $arquivoJson = __DIR__ . '/../data/data_funcionario.json';
+
+        file_put_contents($arquivoJson, json_encode($dados, JSON_PRETTY_PRINT));
+    }
+
     // Remover funcionário
     public function removerFuncionario(string $nome): string {
         $removido = false;
@@ -106,18 +125,27 @@ class Locadora {
     }
 
 
-    // Alugar veículo por n dias
-    public function alugarFuncionario(string $nome, int $dias = 1): string { // Alterado de 'email' para 'nome'
-        $dados = json_decode(file_get_contents(__DIR__ . '/../data/data_funcionarios.json'), true);
-        foreach ($this->$dados as $funcionario){
-            if ($funcionario->getNome() === $nome && $funcionario->isDisponivel()) { // Alterado de 'getEmail' para 'getNome'
-                $valorAluguel = $funcionario->calcularAluguel($dias);
+    // Contratar funcionario por n dias
+    public function alugarFuncionario(string $nome, string $tipo, int $dias = 1): string {
+        foreach ($this->funcionarios as $key => $funcionario) {
+            if ($funcionario->getNome() === $nome && $funcionario->isDisponivel()) {
+                if($tipo === 'iniciante') {
+                    $valorAluguel = (new Iniciante('', '', 1))->calcularAluguel($dias);
+                } elseif ($tipo === 'experiente') {
+                    $valorAluguel = (new Experiente('', '', 3))->calcularAluguel($dias);
+                } elseif ($tipo === 'senior') {
+                    $valorAluguel = (new Senior('', '', 5))->calcularAluguel($dias);
+                } else {
+                    return "Tipo de funcionário inválido.";
+                }
                 $mensagem = $funcionario->alugar();
-                $this->salvarFuncionarios();
+                // Atualiza o funcionário na lista para manter a alteração
+                $this->funcionarios[$key] = $funcionario;
+                $this->salvarFuncionariosData();
                 return $mensagem . " Valor do aluguel: R$ " . number_format($valorAluguel, 2, ',', '.');
             }
         }
-        return "Funcionario não disponível.";
+        return "Funcionário não disponível ou não encontrado.";
     }
 
     // Devolver veículo
@@ -150,18 +178,6 @@ class Locadora {
         }
 
         throw new \InvalidArgumentException("Tipo de funcionário inválido.");
-    }
-
-    public function alocarFuncionario(string $nome, int $dias): string {
-        foreach ($this->funcionarios as $funcionario) {
-            if ($funcionario->getNome() === $nome && $funcionario->isDisponivel()) {
-                $valorAluguel = $funcionario->calcularAluguel($dias);
-                $funcionario->alugar();
-                $this->salvarFuncionarios();
-                return "Funcionário '{$nome}' alugado por {$dias} dias. Valor total: R$ " . number_format($valorAluguel, 2, ',', '.');
-            }
-        }
-        return "Erro: Funcionário '{$nome}' não encontrado ou indisponível.";
     }
 
     public function liberarFuncionario(string $nome): string {
