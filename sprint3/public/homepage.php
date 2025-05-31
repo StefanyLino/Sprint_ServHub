@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['calcular'])) {
 if (isset($_POST['alugar'])) {
     $nome = $_POST['nome_aluguel'] ?? '';
     $tipo = strtolower($_POST['tipo_aluguel'] ?? '');
-    $dias = isset($_POST['dias_aluguel']) ? (int)$_POST['dias_aluguel'] : 5;
+    $dias = isset($_POST['dias_aluguel']) ? (int)$_POST['dias_aluguel'] : 1;
 
 
     if (empty($nome)) {

@@ -50,22 +50,44 @@ class Locadora {
     }
 
     private function salvarFuncionariosData(): void {
-        $dados = [];
-        
-
-        foreach ($this->funcionarios as $funcionario) {
-            $dados[] = [
-                'nome' => $funcionario->getNome(),
-                'experiencia' => strtolower($funcionario->getNivelExperiencia()),
-                'disponivel' => $funcionario->isDisponivel()
-            ];
-        }
-
-        error_log("Salvando dados no JSON: " . print_r($dados, true));
-
         $arquivoJson = __DIR__ . '/../data/data_funcionario.json';
 
-        file_put_contents($arquivoJson, json_encode($dados, JSON_PRETTY_PRINT));
+        // Carrega os dados atuais
+        $dadosAtuais = [];
+        if (file_exists($arquivoJson)) {
+            $dadosAtuais = json_decode(file_get_contents($arquivoJson), true);
+            if (!is_array($dadosAtuais)) {
+                $dadosAtuais = [];
+            }
+        }
+
+        // Reorganiza para acesso fácil por nome
+        $mapaDados = [];
+        foreach ($dadosAtuais as $item) {
+            if (isset($item['nome'])) {
+                $mapaDados[$item['nome']] = $item;
+            }
+        }
+
+        // Atualiza ou adiciona os dados
+        foreach ($this->funcionarios as $funcionario) {
+            $nome = $funcionario->getNome();
+
+            $tipo = $funcionario->getTipo();
+
+            // Mantém dados antigos ou cria novo
+            $mapaDados[$nome]['nome'] = $nome;
+            $mapaDados[$nome]['experiencia'] = $tipo; 
+            $mapaDados[$nome]['disponivel'] = $funcionario->isDisponivel();
+        }
+
+
+        // Salva de volta como array
+        $dadosParaSalvar = array_values($mapaDados);
+
+        error_log("Salvando dados no JSON: " . print_r($dadosParaSalvar, true));
+
+        file_put_contents($arquivoJson, json_encode($dadosParaSalvar, JSON_PRETTY_PRINT));
     }
 
     // Remover funcionário
@@ -141,7 +163,7 @@ class Locadora {
                 $mensagem = $funcionario->alugar();
                 // Atualiza o funcionário na lista para manter a alteração
                 $this->funcionarios[$key] = $funcionario;
-                $this->salvarFuncionariosData();
+                $this->salvarFuncionariosData($tipo);
                 return $mensagem . " Valor do aluguel: R$ " . number_format($valorAluguel, 2, ',', '.');
             }
         }

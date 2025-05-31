@@ -19,9 +19,19 @@ abstract class Pessoa {
         return $this->nome;
     }
 
+    public function getTipo(): string {
+        if ($this instanceof Iniciante) {
+            return 'iniciante';
+        } elseif ($this instanceof Experiente) {
+            return 'experiente';
+        } elseif ($this instanceof Senior) {
+            return 'senior';
+        }
+        return 'desconhecido';
+    }
     
 
-    public function getExperiencia(): string {
+    public function getNivelExperiencia(): string {
         return $this->experiencia;
     }
     
