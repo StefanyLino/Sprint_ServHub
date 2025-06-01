@@ -73,11 +73,8 @@ class Locadora {
         foreach ($this->funcionarios as $funcionario) {
             $nome = $funcionario->getNome();
 
-            $tipo = $funcionario->getTipo();
-
             // Mantém dados antigos ou cria novo
             $mapaDados[$nome]['nome'] = $nome;
-            $mapaDados[$nome]['experiencia'] = $tipo; 
             $mapaDados[$nome]['disponivel'] = $funcionario->isDisponivel();
         }
 
