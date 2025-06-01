@@ -141,6 +141,7 @@ $profileImage = isset($dadosLogado['path']) && !empty($dadosLogado['path'])
                             </div>
                             <div class="card-body">
                                 <form action="../upload/upload.php" method="post" enctype="multipart/form-data" class="mb-4">
+                                    <input type="hidden" name="perfil" value="<?= htmlspecialchars($usuario['perfil']) ?>">
                                     <input type="hidden" name="email" value="<?= htmlspecialchars($dadosLogado['email']) ?>">
                                     <label for="image" class="form-label fw-bold">Foto de Perfil:</label>
                                     <input class="form-control" type="file" name="image" id="image" accept="image/*">

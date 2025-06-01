@@ -1,7 +1,11 @@
 <?php
-
-function atualizarFuncionarioJson($fileName, $filePath, $emailUsuario) {
+$perfil = $_POST['perfil']; // Padrão para 'funcionario'
+function atualizarFuncionarioJson($fileName, $filePath, $emailUsuario, $perfil) {
+    if($perfil === 'funcionario'){
     $dataFile = __DIR__ . '/../data/data_funcionario.json';
+    } else {
+        $dataFile = __DIR__ . '/../data/data_empresa.json';
+    }
     if (!file_exists($dataFile)) return;
 
     $funcionarios = json_decode(file_get_contents($dataFile), true);
@@ -58,7 +62,7 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         file_put_contents($jsonFile, json_encode($existingData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
         // Atualiza também no data_funcionario.json
-        atualizarFuncionarioJson($imagemNome, $webPath, $emailUsuario);
+        atualizarFuncionarioJson($imagemNome, $webPath, $emailUsuario, $perfil);
 
         echo "Imagem enviada com sucesso!";
     } else {

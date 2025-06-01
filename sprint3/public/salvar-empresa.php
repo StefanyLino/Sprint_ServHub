@@ -20,7 +20,10 @@ $novoDado = [
     "email" => $_POST["email_empresa"],
     "senha" => $senhaCodificada, // Senha codificada
     "cnpj" => $_POST["cnpj"],
-    "endereco" => $_POST["endereco"]
+    "endereco" => $_POST["endereco"],
+    "path" => "",
+    "filename" => "",
+    "uploaded_at" => "",
 
 ];
 
