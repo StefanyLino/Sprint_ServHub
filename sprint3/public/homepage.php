@@ -100,6 +100,16 @@ if (isset($_POST['alugar'])) {
         $mensagem = $locadora->alugarFuncionario($nome, $tipo, $dias);
     }
 }
+
+// --- DEVOLVER FUNCIONÁRIO ---
+if (isset($_POST['devolver'])) {
+    $nome = $_POST['nome_devolver'] ?? '';
+    if (empty($nome)) {
+        $mensagem = "Erro: O nome do funcionário não encontrado tente novamente.";
+    } else {
+        $mensagem = $locadora->devolverFuncionario($nome);
+    }
+}
 ?>
 
 <?php include 'htmls/head.html'; ?>
@@ -342,8 +352,14 @@ if (isset($_POST['alugar'])) {
                                     </form>
                                 </div>
                             <?php endif; ?>
-                        <?php else: ?>
+                        <?php elseif ($usuario['perfil'] === 'empresa'): ?>
                             <p>Funcionário já contratado. Espere ele ser devolvido para poder contratá-lo.</p>
+                        <?php elseif (Auth::isAdmin()): ?>
+                            <p>Funcionário não disponível para contratação.</p><br>
+                            <form action="" class="needs-validation" novalidate method="post">
+                                <input type="hidden" name="nome_devolver" value="<?= htmlspecialchars($funcionario['nome'] ?? '') ?>">
+                                <button name="devolver" class="btn btn-info" type="submit">Devolver</button>
+                            </form>
                         <?php endif; ?>
                         
                     </div>

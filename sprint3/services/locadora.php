@@ -167,12 +167,13 @@ class Locadora {
         return "Funcionário não disponível ou não encontrado.";
     }
 
-    // Devolver veículo
-    public function devolverFuncionario(string $nome): string { // Alterado de 'email' para 'nome'
+    // Devolver Funcionario
+    public function devolverFuncionario(string $nome): string {
         foreach ($this->funcionarios as $funcionario) {
-            if ($funcionario->getNome() === $nome && !$funcionario->isDisponivel()) { // Alterado de 'getEmail' para 'getNome'
+            if ($funcionario->getNome() === $nome) { 
                 $mensagem = $funcionario->devolver();
-                $this->salvarFuncionarios();
+                
+                $this->salvarFuncionariosData();
                 return $mensagem;
             }
         }
