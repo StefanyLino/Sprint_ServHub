@@ -198,10 +198,24 @@ if (isset($_POST['devolver'])) {
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif; ?>
+
+        <?php
+            $busca = $_GET['pesquisa'] ?? '';
+            $dado_funcionarios = json_decode(file_get_contents('../data/data_funcionario.json'), true);
+
+            // Filtrar funcionários, se houver termo de busca
+            if ($busca) {
+                $busca = strtolower($busca);
+                $dado_funcionarios = array_filter($dado_funcionarios, function ($func) use ($busca) {
+                    return strpos(strtolower($func['nome']), $busca) !== false || 
+                        strpos(strtolower($func['atuacao']), $busca) !== false;
+                });
+            }
+        ?>
         
 
         <div class="row mt-3">
-    <?php foreach ($dado_funcionarios as $index => $funcionario): ?>
+        <?php foreach ($dado_funcionarios as $index => $funcionario): ?>
         <?php
             $modalId = "editarFuncionario" . $index;
             $saibaMaisModalId = "saibaMaisFuncionario" . $index;
