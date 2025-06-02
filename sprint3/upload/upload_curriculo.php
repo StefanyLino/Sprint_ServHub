@@ -35,8 +35,8 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
     }
 
     $curriculoNome = uniqid('cv_', true) . '.' . $ext;
-    $uploadDir = __DIR__ . '/../public/uploads/';
-    $webPath = 'uploads/' . $curriculoNome;
+    $uploadDir = __DIR__ . '/../public/uploads2/';
+    $webPath = 'uploads2/' . $curriculoNome;
 
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
