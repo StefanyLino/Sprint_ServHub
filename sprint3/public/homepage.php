@@ -357,11 +357,13 @@ if (isset($_POST['devolver'])) {
                         <?php elseif ($usuario['perfil'] === 'empresa'): ?>
                             <p>Funcionário já contratado. Espere ele ser devolvido para poder contratá-lo.</p>
                         <?php elseif (Auth::isAdmin()): ?>
-                            <p>Funcionário não disponível para contratação.</p><br>
-                            <form action="" class="needs-validation" novalidate method="post">
-                                <input type="hidden" name="nome_devolver" value="<?= htmlspecialchars($funcionario['nome'] ?? '') ?>">
-                                <button name="devolver" class="btn btn-info" type="submit">Devolver</button>
-                            </form>
+                            <div class="d-flex flex-column gap-0">
+                                <p>Funcionário não disponível para contratação.</p><br>
+                                <form action="" class="needs-validation" novalidate method="post">
+                                    <input type="hidden" name="nome_devolver" value="<?= htmlspecialchars($funcionario['nome'] ?? '') ?>">
+                                    <button name="devolver" class="btn btn-info" type="submit">Devolver</button>
+                                </form>
+                            </div>
                         <?php endif; ?>
                         
                     </div>
