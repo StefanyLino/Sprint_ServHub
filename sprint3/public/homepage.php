@@ -381,6 +381,9 @@ if (isset($_POST['devolver'])) {
                             </button>
                         </div>
                     <?php endif; ?>
+                    <a href="baixar_curriculo.php?arquivo=<?= urlencode($funcionario['filename_curriculo']) ?>" class="btn btn-primary">
+                        Baixar Currículo
+                    </a>
                 </div>
             </div>
         </div>
