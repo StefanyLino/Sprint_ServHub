@@ -361,7 +361,7 @@ if (isset($_POST['devolver'])) {
                                 <p>Funcionário não disponível para contratação.</p><br>
                                 <form action="" class="needs-validation" novalidate method="post">
                                     <input type="hidden" name="nome_devolver" value="<?= htmlspecialchars($funcionario['nome'] ?? '') ?>">
-                                    <button name="devolver" class="btn btn-info" type="submit">Devolver</button>
+                                    <button name="devolver" class="btn btn-success" type="submit">Devolver</button>
                                 </form>
                             </div>
                         <?php endif; ?>
