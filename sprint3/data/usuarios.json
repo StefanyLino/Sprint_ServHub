@@ -33,5 +33,15 @@
         "username": "carlos@gmail.com",
         "perfil": "funcionario",
         "password": "$2y$12$5YIsR1wNwVYxe5ZMOPtFa.OjBQdtYNHkldk8H5GJZVI7BByjpMlgq"
+    },
+    {
+        "username": "slinos@email.com",
+        "perfil": "empresa",
+        "password": "$2y$12$9Kx6MuySQUB4JQ\/KnIOsE.Oe5fWydvUeaFa3LaWFVmCkWo1dREzHO"
+    },
+    {
+        "username": "stefany@gmail.com",
+        "perfil": "funcionario",
+        "password": "$2y$12$spDTvei9GHRbdm1fkSo08u07ACNOpsgPc11rVs8mL9YVoIEiEsSt6"
     }
 ]

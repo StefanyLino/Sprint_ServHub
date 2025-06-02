@@ -10,5 +10,11 @@
         "nome": "carlos",
         "experiencia": "senior",
         "disponivel": false
+    },
+    {
+        "tipo": "experiente",
+        "nome": "Stefany Lino Silva",
+        "experiencia": "experiente",
+        "disponivel": true
     }
 ]

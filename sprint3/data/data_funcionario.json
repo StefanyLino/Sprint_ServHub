@@ -32,5 +32,22 @@
         "filename_curriculo": "cv_683d936d4171c9.81015085.pdf",
         "curriculo_uploaded_at": "2025-06-02 12:05:01",
         "disponivel": true
+    },
+    {
+        "nome": "Stefany Lino Silva",
+        "email": "stefany@gmail.com",
+        "senha": "$2y$12$spDTvei9GHRbdm1fkSo08u07ACNOpsgPc11rVs8mL9YVoIEiEsSt6",
+        "cpf": "12345678910",
+        "atuacao": "Desenvolvedor de Sistemas",
+        "descricao": "",
+        "experiencia": "experiente",
+        "telefone": "",
+        "path": "",
+        "filename": "",
+        "uploaded_at": "",
+        "path_curriculo": "",
+        "filename_curriculo": "",
+        "curriculo_uploaded_at": "",
+        "disponivel": true
     }
 ]

@@ -28,5 +28,15 @@
         "path": "uploads\/img_683d9061e04b07.60177230.png",
         "filename": "img_683d9061e04b07.60177230.png",
         "uploaded_at": "2025-06-02 11:52:01"
+    },
+    {
+        "nome": "SLINOS",
+        "email": "slinos@email.com",
+        "senha": "$2y$12$9Kx6MuySQUB4JQ\/KnIOsE.Oe5fWydvUeaFa3LaWFVmCkWo1dREzHO",
+        "cnpj": "123456789012",
+        "endereco": "Rua Amém da Glória N°7",
+        "path": "uploads\/img_683de8a7b621a6.27589685.png",
+        "filename": "img_683de8a7b621a6.27589685.png",
+        "uploaded_at": "2025-06-02 18:08:39"
     }
 ]
