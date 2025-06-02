@@ -43,5 +43,10 @@
         "username": "stefany@gmail.com",
         "perfil": "funcionario",
         "password": "$2y$12$spDTvei9GHRbdm1fkSo08u07ACNOpsgPc11rVs8mL9YVoIEiEsSt6"
+    },
+    {
+        "username": "teste3@gmail.com",
+        "perfil": "funcionario",
+        "password": "$2y$12$eRfd6pp\/wNbbSvSlWbcIr.4lRzfwyC96ZJ4JJ6M8dnE2Q6.giyiby"
     }
 ]

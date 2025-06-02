@@ -16,5 +16,11 @@
         "nome": "Stefany Lino Silva",
         "experiencia": "experiente",
         "disponivel": true
+    },
+    {
+        "tipo": "senior",
+        "nome": "teste3",
+        "experiencia": "senior",
+        "disponivel": true
     }
 ]
