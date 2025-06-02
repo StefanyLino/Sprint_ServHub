@@ -18,40 +18,16 @@ Esses protótipos serviram como fundamentais para a concepção e estruturação
 # Sprint 2:
 Na sprint 2 nós começamos a realizar o desenvolvimento do site, para isso utilizamos as tecnologias do HTML, CSS, JavaScript e Bootstrap além de fazer a atualização da documentação.<hr>
 
-Para essa sprint começamos fazendo a página principal:<br><br>
-<img width="550" alt="página principal" src="https://github.com/user-attachments/assets/b7258df4-52d5-4b43-8e73-6b2be53e5a2f" /><br>
-Está pagina conta com uma basica interface para que o cliente possa realizar o login ou o cadastro.<br>
+Para essa sprint desenvolvemos diferentes protótipos:<br><br>
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/5bcd8f99-f866-4cdb-acfd-a8931ce70de8" />
+<img width="322" alt="página de escolha de cadastro" src="https://github.com/user-attachments/assets/b72e1ac7-1728-4c0a-81ba-41b21026627f" />
+<img width="322" alt="página de cadastro funcionario" src="https://github.com/user-attachments/assets/4fc30a53-65c1-4d2f-9f81-c4e3e1c14a2f" />
+<img width="322" alt="página de cadastro empresa" src="https://github.com/user-attachments/assets/cfde9804-0f47-4b3e-bfc8-ce48731f3150" />
+<img width="322" alt="login" src="https://github.com/user-attachments/assets/93966657-ef47-43d1-885a-379ae0ced118" />
+<img width="322" alt="usuario" src="https://github.com/user-attachments/assets/049d05b1-06af-4ae0-b03a-6c982496af3e" />
+> RESTO SE ENCONTRA NO [FIGMA](https://www.figma.com/design/lrHISCyA54JSEmNoifZxEM/livro?node-id=0-1&p=f&t=4F7AUhxJ7eMScFUM-0)
 
-Após ela podemos seguir por dois caminho a pagina de login e a pagina de cadastro.
-Caso queira realizar o cadastro temos uma tela de seleção com duas opções o cadastro de funcionario e cadastro de empresa<br><br>
-<img width="550" alt="página de escolha de cadastro" src="https://github.com/user-attachments/assets/b72e1ac7-1728-4c0a-81ba-41b21026627f" /><br>
-Após clicar em uma das duas opções sera redirecionado para a página de cadastro correspondente sendo elas página de cadastro de funcionários e de empresas respectivamente<br><br>
-<img width="550" alt="página de cadastro funcionario" src="https://github.com/user-attachments/assets/4fc30a53-65c1-4d2f-9f81-c4e3e1c14a2f" />
-<img width="550" alt="página de cadastro empresa" src="https://github.com/user-attachments/assets/cfde9804-0f47-4b3e-bfc8-ce48731f3150" /><br>
-Realizando o cadastro você sera redirecionado para a página principal do site(homepage) e realizar o login normalmente em posteriores entradas no site, mas antes de mostrala caso opte por realizar o login irá se deparar com está pagina<br><br>
-<img width="550" alt="login" src="https://github.com/user-attachments/assets/93966657-ef47-43d1-885a-379ae0ced118" /><br>
-Preenchendo as informações você será levado para a homepage onde dependendo do tipo de cadastro feito seram diferentes, para empresas abrira apenas uma tela simples com nosso funcionarios cadastrados para poder ver seus curricolos e informações proficionais.<br><br>
-<img width="550" alt="usuario" src="https://github.com/user-attachments/assets/049d05b1-06af-4ae0-b03a-6c982496af3e" /><br>
-Porem para contratalos basta pedir ao adm, para que ele faça o intermedio entre empresa e funcionario e finalmente contrate o funcionario para a empresa, a tela do adm conta com opções além das normais podendo mudar o estado do perfil do funcionario para contratado ou contratavel e até em casos de violação do site apagar a conta do funcionario ou da empresa inflatora<br><br>
-<img width="550" alt="admin" src="https://github.com/user-attachments/assets/e5d4bde3-06d7-4b78-8953-e5e835a8375f" /><br>
-Além dessas página nosso site ainda conta com uma adptadibilidade com a maioria dos aparelho eletronicos sendo adptavel a pc, notbook, celular e tablet, logo abaixo essa adaptabilidade pode ser vista.<br>
-Pc/laptop:<br>
-<img width="550" alt="image" src="https://github.com/user-attachments/assets/3bcbb55d-f463-4aa5-bcd2-ab3854d24914" /><br>
-Tablet:<br>
-<img width="515" alt="image" src="https://github.com/user-attachments/assets/d623aa36-5dd7-4a6c-94a1-a00da8a94f1f" /><br>
-Celular:<br>
-<img width="284" alt="image" src="https://github.com/user-attachments/assets/12791fc8-5ae4-4f1e-9929-1afed552fb23" />
+Todos os protótipos foram passados para o Front-End, usando HTML, CSS e JavaScript.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Sprint 3
+Durante a Sprint 3, o grupo finalizou o desenvolvimento do projeto, ajustando o Front-End e implementando o Back-End em PHP com JSON. Foram criadas funcionalidades essenciais, organizada a documentação, atualizado o cronograma e preparados os slides da apresentação.
