@@ -99,6 +99,7 @@ if (isset($_POST['alugar'])) {
     } else {
         $mensagem = $locadora->alugarFuncionario($nome, $tipo, $dias);
     }
+    header("Location: ".$_SERVER['PHP_SELF']);
 }
 
 // --- DEVOLVER FUNCIONÁRIO ---
@@ -109,6 +110,7 @@ if (isset($_POST['devolver'])) {
     } else {
         $mensagem = $locadora->devolverFuncionario($nome);
     }
+    header("Location: ".$_SERVER['PHP_SELF']);
 }
 ?>
 

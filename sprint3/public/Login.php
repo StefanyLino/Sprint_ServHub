@@ -64,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div>
                         <label for="senha" class="fw-normal">Senha:</label>
                         <input type="password" id="senha" name="senha" class="form-control input-custom shadow-sm"  required />
-                        <a href="recuperar-senha.php" class="links" >Esqueci minha senha</a>
                     </div>
                     <button type="submit" class="btn btn-submit mt-3 mb-3 w-100 " id="btn-custom">Entrar</button>
                 </form>
