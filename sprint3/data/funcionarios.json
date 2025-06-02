@@ -1,0 +1,14 @@
+[
+    {
+        "tipo": "senior",
+        "nome": "teste",
+        "experiencia": "senior",
+        "disponivel": true
+    },
+    {
+        "tipo": "senior",
+        "nome": "carlos",
+        "experiencia": "senior",
+        "disponivel": false
+    }
+]

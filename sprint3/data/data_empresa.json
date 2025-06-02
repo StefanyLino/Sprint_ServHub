@@ -1,0 +1,32 @@
+[
+    {
+        "nome": "ford",
+        "email": "ford@gmail.com",
+        "senha": "$2y$12$EDCLf.4Z.bH1kD.hOiDuUe\/L42ZBzPNuimTn6FOCbeBHM3jvS51Ju",
+        "cnpj": "07901368000170",
+        "endereco": "rua sim do lado do parque tal",
+        "path": "",
+        "filename": "",
+        "uploaded_at": ""
+    },
+    {
+        "nome": "honda",
+        "email": "honda@gmail.com",
+        "senha": "$2y$12$wET21nS08\/f5q2OJ4kV1LeGCMebtG66hoZPws.A265eJyNceuIHce",
+        "cnpj": "180230816238190263",
+        "endereco": "sim",
+        "path": "",
+        "filename": "",
+        "uploaded_at": ""
+    },
+    {
+        "nome": "nike",
+        "email": "nike@gmail.com",
+        "senha": "$2y$12$OhbLOyka4gD0V1b4pzD9e.8t1jzOZoQwnjhLYvi1W7xyr1KHaMFtC",
+        "cnpj": "0120310239123",
+        "endereco": "não",
+        "path": "",
+        "filename": "",
+        "uploaded_at": ""
+    }
+]

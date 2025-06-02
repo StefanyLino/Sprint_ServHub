@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg primary-bg-color py-4 px-2" id="navbar">
+    <div class="container">
+        <div class="container d-flex justify-content-between" id="bot-nav">
+            <a class="navbar-brand text-black" id="logo" href="../public/exibicao.php">ServHub</a>
+            <button id="burgue" class="navbar-toggler text-black" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+
+        <div class="container col-sm-8 mx-2" id="formulario">
+            <form class="d-flex" id="search-form">
+                <i class="bi bi-search text-black mt-2"></i>
+                <input class="form-control me-2 bg-transparent text-white" type="search" placeholder="Busque um funcionário...">
+                <button class="btn secondary-bg-color text-black" type="submit">Pesquisar</button>
+            </form>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-items">
+            <ul class="navbar-nav mb-2 mb-lg-0 ">
+                <li class="nav-item mx-3">
+                    <a class="nav-link text-black" href="../public/exibicao.php">HOME</a>
+                </li>
+                <li class="nav-item mx-3">
+                    <a class="nav-link text-black" href="../public/exibicaoaccount.php">CONTA</a>
+                </li>
+                <li class="nav-item mx-3">
+                    <a class="nav-link text-white" href="?logout=1" id="logout">LOGOUT</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

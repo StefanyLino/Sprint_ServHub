@@ -1,0 +1,19 @@
+{
+    "name": "dev_2o_ano/sprint3",
+    "autoload": {
+        "psr-4": {
+            "Dev2oAno\\Sprint3\\": "src/",
+            "Services\\": "services/",
+            "Models\\": "models/",
+            "Interfaces\\": "interfaces/"
+        }
+    },
+    "authors": [
+        {
+            "name": "gabriel-ortolani",
+            "email": "gabrielortolanisenai@gmail.com"
+        }
+    ],
+    "require": {}
+}
+

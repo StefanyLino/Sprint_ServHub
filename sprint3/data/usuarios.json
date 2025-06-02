@@ -1,0 +1,37 @@
+[
+    {
+        "username": "grupo4@gmail.com",
+        "perfil": "admin",
+        "password": "$2y$12$iKGzYCwueiIY2EDMVgr05utvujA5avqPLBHV4Pfupdcuf\/8wBkAjS"
+    },
+    {
+        "username": "honda@gmail.com",
+        "perfil": "empresa",
+        "password": "$2y$12$wET21nS08\/f5q2OJ4kV1LeGCMebtG66hoZPws.A265eJyNceuIHce"
+    },
+    {
+        "username": "nike@gmail.com",
+        "perfil": "empresa",
+        "password": "$2y$12$OhbLOyka4gD0V1b4pzD9e.8t1jzOZoQwnjhLYvi1W7xyr1KHaMFtC"
+    },
+    {
+        "username": "teste@gmail.com",
+        "perfil": "funcionario",
+        "password": "$2y$12$zAg7iwzl2wO5rrSRWrKfruCqWKc4g8Jcjx.zj11kD992kASDIPQkO"
+    },
+    {
+        "username": "teste2@gmail.com",
+        "perfil": "funcionario",
+        "password": "$2y$12$WlgyUhOg2Yi6DxYP3ItzwO0OONrG0gpR8D\/Li3p7FrQOrHngT3DiW"
+    },
+    {
+        "username": "teste@gmail.com",
+        "perfil": "funcionario",
+        "password": "$2y$12$5dnNJdXndSW\/U5CfCME6YOJgk\/ICzsYtfcqwtqf8bp3GqH0MlNPI2"
+    },
+    {
+        "username": "carlos@gmail.com",
+        "perfil": "funcionario",
+        "password": "$2y$12$5YIsR1wNwVYxe5ZMOPtFa.OjBQdtYNHkldk8H5GJZVI7BByjpMlgq"
+    }
+]

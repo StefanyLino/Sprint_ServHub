@@ -22,9 +22,10 @@ body{
     height: 100vh;
 }
 #fundo {
-    height: 100vh !important;
-    background-image: url(Assets/Login-fundo.png);
+    height: 100vh;
+    background-image: url(../Assets/Login-fundo.png);
     background-size: cover;
+    background-position: center;
 }
 
 .input-custom {
@@ -66,13 +67,25 @@ body{
     }
 }
 
+#foto-perfil{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+#adicionar{
+    padding: 0!important;
+
+}
+
+
 
 /* navbar homepage */
 
 /* NAVBAR */
 #navbar {
     background-color: #E9EDEB;
-    box-shadow: 3px 3px 5px black;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.639);
 }
 
 #navbar .navbar-nav{
@@ -106,6 +119,11 @@ body{
     color: white;
     box-shadow: 3px 3px 2px black;
     margin-right: 20px;
+}
+
+.links{
+    text-decoration: none;
+    color: var(--primary-color);
 }
 
 
@@ -193,9 +211,6 @@ body{
 
 /* card principal */
 
-.card-title{
-    font-weight: bold;
-}
 
 #saiba{
     background-color: #320A59;
@@ -206,6 +221,7 @@ body{
     display: none;
 }
 
+/* Celular */
 @media screen and (max-width:426px){
     #principal{
         display: none;
@@ -215,6 +231,25 @@ body{
     }
     #responsivo{
         display: block;
+    }
+    #form-login{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0!important;
+    }
+    #texto-login{
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 40px;
+    }
+    #texto-cadastro{
+        text-align: center;
+        align-self: center;
+    }
+    #form-login form input{
+        margin-bottom: 5px;
     }
 
 }
@@ -268,6 +303,7 @@ body{
     }
   }
 
+
 /* laptop */
 
 @media(min-width: 991px) and (max-width:1024px){
@@ -275,3 +311,27 @@ body{
         width: 40%;
     }
 }
+
+
+/* Card */
+
+#titulo-card{
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+#texto-card{
+    width: 60%;
+    margin-top: 5px;
+    margin-left: 15px;
+    font-size: 1.5em;
+    font-weight: lighter;
+}
+
+#logo-card{
+    width: 40%;
+    margin-right: 40px;
+}
+

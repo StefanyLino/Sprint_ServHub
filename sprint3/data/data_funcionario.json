@@ -1,0 +1,36 @@
+[
+    {
+        "nome": "teste",
+        "email": "teste@gmail.com",
+        "senha": "$2y$12$5dnNJdXndSW\/U5CfCME6YOJgk\/ICzsYtfcqwtqf8bp3GqH0MlNPI2",
+        "cpf": "123131231221123",
+        "atuacao": "Tecnico",
+        "descricao": "traleleiro tralala",
+        "experiencia": "iniciante",
+        "telefone": "",
+        "path": "uploads\/img_68349953cd9ab3.72437505.png",
+        "filename": "img_68349953cd9ab3.72437505.png",
+        "uploaded_at": "2025-05-26 16:39:47",
+        "path_curriculo": "uploads2\/cv_68359e62b76a38.74850665.pdf",
+        "filename_curriculo": "cv_68359e62b76a38.74850665.pdf",
+        "curriculo_uploaded_at": "2025-05-27 11:13:38",
+        "disponivel": true
+    },
+    {
+        "nome": "carlos",
+        "email": "carlos@gmail.com",
+        "senha": "$2y$12$5YIsR1wNwVYxe5ZMOPtFa.OjBQdtYNHkldk8H5GJZVI7BByjpMlgq",
+        "cpf": "123123123132123",
+        "atuacao": "sou o malcon",
+        "descricao": "baiano",
+        "experiencia": "experiente",
+        "telefone": "(11) 999999999",
+        "path": "uploads\/img_68349de04fdd59.25745178.jpg",
+        "filename": "img_68349de04fdd59.25745178.jpg",
+        "uploaded_at": "2025-05-26 16:59:12",
+        "path_curriculo": "uploads\/cv_6834a472b7ac61.47896097.pdf",
+        "filename_curriculo": "cv_6834a472b7ac61.47896097.pdf",
+        "curriculo_uploaded_at": "2025-05-26 17:27:14",
+        "disponivel": false
+    }
+]
