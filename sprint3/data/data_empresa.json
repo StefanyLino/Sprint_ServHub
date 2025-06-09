@@ -24,7 +24,7 @@
         "email": "nike@gmail.com",
         "senha": "$2y$12$OhbLOyka4gD0V1b4pzD9e.8t1jzOZoQwnjhLYvi1W7xyr1KHaMFtC",
         "cnpj": "0120310239123",
-        "endereco": "não",
+        "endereco": "n\u00e3o",
         "path": "uploads\/img_683d9061e04b07.60177230.png",
         "filename": "img_683d9061e04b07.60177230.png",
         "uploaded_at": "2025-06-02 11:52:01"
@@ -34,9 +34,19 @@
         "email": "slinos@email.com",
         "senha": "$2y$12$9Kx6MuySQUB4JQ\/KnIOsE.Oe5fWydvUeaFa3LaWFVmCkWo1dREzHO",
         "cnpj": "123456789012",
-        "endereco": "Rua Amém da Glória N°7",
+        "endereco": "Rua Am\u00e9m da Gl\u00f3ria N\u00b07",
         "path": "uploads\/img_683de8a7b621a6.27589685.png",
         "filename": "img_683de8a7b621a6.27589685.png",
         "uploaded_at": "2025-06-02 18:08:39"
+    },
+    {
+        "nome": "Rito gomes",
+        "email": "ritogomes@gmail.com",
+        "senha": "$2y$12$R.1g2rQCQBIpcX9CEWwXUO8YtkCmSu13g90Mxvte380sHoRFsNJJy",
+        "cnpj": "0120310239123",
+        "endereco": "Rua Am\u00e9m da Gl\u00f3ria N\u00b07",
+        "path": "",
+        "filename": "",
+        "uploaded_at": ""
     }
 ]

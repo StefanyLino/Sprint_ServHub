@@ -43,5 +43,15 @@
         "username": "teste3@gmail.com",
         "perfil": "funcionario",
         "password": "$2y$12$eRfd6pp\/wNbbSvSlWbcIr.4lRzfwyC96ZJ4JJ6M8dnE2Q6.giyiby"
+    },
+    {
+        "username": "teste2@gmail.com",
+        "perfil": "funcionario",
+        "password": "$2y$12$obF1S7OvLFfTRPe0NsT8TO8FptqyOw5dOn29jAmoa8hxLm9FzpW0."
+    },
+    {
+        "username": "ritogomes@gmail.com",
+        "perfil": "empresa",
+        "password": "$2y$12$R.1g2rQCQBIpcX9CEWwXUO8YtkCmSu13g90Mxvte380sHoRFsNJJy"
     }
 ]

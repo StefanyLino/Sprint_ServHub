@@ -117,6 +117,7 @@ if (isset($_POST['devolver'])) {
 <?php include 'htmls/nav.html'; ?>
 
 <div class="py-4 mx-2">
+    
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-8">
@@ -136,8 +137,9 @@ if (isset($_POST['devolver'])) {
                         <a href="exibicaoaccount.php" class="btn btn-submit w-100 mb-2" id="btn-custom">Editar Perfil</a>
                     </div>
                 </div>
+                <button class="btn btn-submit" id="btn-custom" data-bs-toggle="modal" data-bs-target="#funcionario">Cadastrar Funcionário</button>
+        <button class="btn btn-submit" id="btn-custom" data-bs-toggle="modal" data-bs-target="#empresa">Cadastrar Empresa</button>
             </div>
-            
            
 
             <div class="col-md-4" id="sidebar">
@@ -211,8 +213,7 @@ if (isset($_POST['devolver'])) {
             }
         ?>
         
-        <button class="btn btn-primary">Cadastrar Funcionário</button>
-        <button class="btn btn-primary">Cadastrar Empresa</button>
+        
         <div class="row mt-3">
         <?php foreach ($dado_funcionarios as $index => $funcionario): ?>
         <?php
@@ -440,7 +441,7 @@ if (isset($_POST['devolver'])) {
                                     <option value="senior">Sênior</option>
                                 </select>
                             </div>
-                            <button class="btn btn-submit w-100 mb-2" id="btn-custom">Cadastre-se</button>
+                            <button class="btn btn-submit w-100 mb-2" id="btn-custom">Cadastrar</button>
                         </form>
                     </div>
                 </div>
@@ -477,7 +478,7 @@ if (isset($_POST['devolver'])) {
                                 <label for="endereco" class="fw-normal">Endereço:</label>
                                 <input type="text" placeholder="Endereço da empresa" id="endereco" name="endereco" required class="form-control shadow-sm">
                             </div>
-                            <button type="submit" class="btn btn-submit mt-3 w-100  mb-2" id="btn-custom">Cadastre-se:</button>
+                            <button type="submit" class="btn btn-submit mt-3 w-100  mb-2" id="btn-custom">Cadastrar</button>
                         </form>
                     </div>
                 </div>
