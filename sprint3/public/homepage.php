@@ -189,7 +189,7 @@ if (isset($_POST['devolver'])) {
                 </div>
             </div>
         </div>
-
+        
         <?php if ($mensagem): ?>
             <div class="alert alert-info alert-dismissible fade show" role="alert">
                 <?= htmlspecialchars($mensagem) ?>
@@ -211,7 +211,8 @@ if (isset($_POST['devolver'])) {
             }
         ?>
         
-
+        <button class="btn btn-primary">Cadastrar Funcionário</button>
+        <button class="btn btn-primary">Cadastrar Empresa</button>
         <div class="row mt-3">
         <?php foreach ($dado_funcionarios as $index => $funcionario): ?>
         <?php
