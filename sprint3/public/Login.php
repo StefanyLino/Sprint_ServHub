@@ -67,10 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <button type="submit" class="btn btn-submit mt-3 mb-3 w-100 " id="btn-custom">Entrar</button>
                 </form>
+                <div class="alert alert-danger" role="alert" id="mensagem-erro" style="<?php echo empty($mensagem) ? 'display: none;' : ''; ?>">
+                    <?php echo htmlspecialchars($mensagem); // Exibe a mensagem de erro se houver ?>
+                </div>
                 <div class="d-flex justify-content-start flex-column align-items-start">
                     <p id="senha-esqueceu" class="mb-2">Não tem uma conta? <a href="cadastro.php" class="links">Cadastre-se</a></p>
                     <div id="texto-cadastro" class="aling-self-center"><a href="../index.php" class="links" >Voltar <i class="bi bi-caret-right-fill"></i></a></div>
-                </div>
+                </div>  
             </section>
         </main>
     </div>
